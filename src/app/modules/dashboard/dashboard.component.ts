@@ -5,7 +5,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 @Component({
   selector: 'assist-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers:[]
 })
 
 export class DashboardComponent implements OnInit {
