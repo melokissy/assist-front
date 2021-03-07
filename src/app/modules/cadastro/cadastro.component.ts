@@ -17,6 +17,7 @@ export class CadastroComponent implements OnInit {
 
   mensagensErro: any;
 
+
   formCadastro = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required]),
@@ -45,7 +46,7 @@ export class CadastroComponent implements OnInit {
             //após 1 segundo, redireciona para a rota de login
             setTimeout(() => {
               this.roteador.navigate(['/users']);
-            }, 1000);
+            }, 100);
           }
           ,(responseError: HttpErrorResponse) => {
             //resposta caso existam erros!

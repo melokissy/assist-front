@@ -12,8 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
-   // EditProjectComponent
+    AppComponent,
+     // EditProjectComponent
   ],
   imports: [
     BrowserModule,

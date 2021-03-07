@@ -67,16 +67,6 @@ export class UserService {
       )
   }
 
-  // public store(user: User): Alert {
-  //   const alert = this.validate(user);
-
-  //   if (alert.isError()) {
-  //     return alert;
-  //   }
-
-  //   user.id = ++this.lastId;
-  //   this.users.push(user);
-  // }
 
   // PUT /user/:id
   public update(id: number, values: {}) {
