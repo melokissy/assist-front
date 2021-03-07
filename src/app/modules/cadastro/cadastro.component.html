@@ -1,0 +1,73 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <assist-header></assist-header>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <div class="mdl-grid">
+
+        <form [formGroup]="formCadastro" (ngSubmit)="handleCadastrarUsuario()">
+
+          <assist-form-group [campo]="formCadastro.get('name')">
+            <input formControlName="name" autofocus required type="text" name="name" assistFormField>
+            <!-- se tiver erros, entao... -->
+            <div *ngIf="formCadastro.get('name').errors">
+              <!-- errors.required... -->
+              <span class="mdl-textfield__error" *ngIf="formCadastro.get('name').errors.required">
+                Informar um nome é obrigatório!
+              </span>
+              <!-- errors.minlength... -->
+              <span class="mdl-textfield__error" *ngIf="formCadastro.get('name').errors.minlength">
+                Você preencheu {{ formCadastro.get('name').errors.minlength.actualLength }} caracteres
+                de {{ formCadastro.get('name').errors.minlength.requiredLength }}
+              </span>
+            </div>
+          </assist-form-group>
+
+          <assist-form-group [campo]="formCadastro.get('email')">
+            <input formControlName="email" required type="email" name="email" assistFormField>
+            <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
+          </assist-form-group>
+
+          <assist-form-group [campo]="formCadastro.get('password')">
+            <input formControlName="password" required type="password" name="password" assistFormField>
+            <span class="mdl-textfield__error">Informar uma senha é obrigatório!</span>
+          </assist-form-group>
+
+          <assist-form-group [campo]="formCadastro.get('userIcon')">
+            <input formControlName="userIcon" type="text" name="Avatar" assistFormField>
+            <span class="mdl-textfield__error" *ngIf="formCadastro.get('userIcon').hasError('required')">
+              Informar uma url com um avatar é obrigatório!
+            </span>
+            <span class="mdl-textfield__error mdl-textfield__checking"
+              *ngIf="formCadastro.get('userIcon').status === 'PENDING'">
+              Validação pendente....
+            </span>
+            <span class="mdl-textfield__error mdl-textfield__valid"
+              *ngIf="formCadastro.get('userIcon').status === 'VALID'">
+              URL Válida 😃
+            </span>
+            <span class="mdl-textfield__error" *ngIf="formCadastro.get('userIcon').hasError('urlInvalida')">
+              Erro na URL informada 😧
+            </span>
+          </assist-form-group>
+
+          <div class="mdl-card__actions">
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised" (click)="handleCadastrarUsuario()">
+              Cadastrar
+            </button>
+
+            <button [routerLink]="'/users'"  class="mdl-button mdl-button--colored mdl-button--raised" type="button" style="margin-left: 10px;">
+              cancelar
+            </button>
+          </div>
+
+          <ul *ngIf="mensagensErro" class="mdl-textfield is-invalid">
+            <li *ngFor="let erro of mensagensErro" class="mdl-textfield__error">
+              {{erro.message}}: {{erro.value}}
+            </li>
+          </ul>
+
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

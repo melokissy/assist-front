@@ -1,0 +1,74 @@
+<header class="headerGlobal mdl-layout__header" style="background-color:#20B2AA;">
+  <button class="mdl-layout__drawer-button" (click)="toggleMenu()">
+    <span class="material-icons">&#58834;</span>
+  </button>
+
+  <div class="mdl-layout__header-row">
+    <span class="headerGlobal__title mdl-layout-title">Assist Support </span>
+
+    <div class="mdl-layout-spacer"></div>
+
+    <!-- Search -->
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+         mdl-textfield--floating-label mdl-textfield--align-right is-focused mdl-cell--hide-phone ">
+      <!--Para fechar remover is-focused-->
+      <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+        <span class="material-icons">search</span>
+      </label>
+      <div class="mdl-textfield__expandable-holder">
+        <input class="headerSearch__input mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp"
+          placeholder="Filtrar Tickets...">
+      </div>
+    </div>
+    <!--./Search-->
+  </div>
+</header>
+<section class="headerGlobal__menuArea mdl-layout__drawer" [ngClass]="{ 'headerGlobal__menuArea--active': isMenuOpen }">
+  <span class="mdl-layout-title">
+    <!-- <img class="headerGlobal__logo" src="assets/img/logo.svg" alt="AssistSupport"> -->
+    <div [routerLink]="'/dashboard'"></div>
+
+  </span>
+
+  <header class="headerGlobal__userInfo">
+    <img src="http://placehold.it/48x48" class="headerGlobal__userInfoAvatar">
+    <div class="headerGlobal__userInfoData">
+      <h5 class="headerGlobal__userInfoDataName">Pessoa de Tal</h5>
+      <span>pesso.al@email.br</span>
+      <div class="mdl-layout-spacer"></div>
+    </div>
+  </header>
+
+  <nav class="mdl-navigation">
+    <a [routerLink]="'/dashboard'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
+      <span class="material-icons">dashboard</span> Dashboard
+    </a>
+    <a [routerLink]="'/tickets'" class="mdl-navigation__link">
+      <span class="material-icons">assignment</span> Tickets
+    </a>
+    <!-- <a [routerLink]="'/cadastro'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
+      <span class="material-icons">person</span> Cadastro
+    </a> -->
+    <a [routerLink]="'/users'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
+      <span class="material-icons">person</span> Usuários
+    </a>
+    <a [routerLink]="'/projects'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
+      <span class="material-icons">description</span> Projetos
+    </a>
+    <a [routerLink]="'/relatorios'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
+      <span class="material-icons">article</span> Relatórios
+    </a>
+    <a [routerLink]="'/graficos'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
+      <span class="material-icons">assessment</span> Gráficos
+    </a>
+    <a [routerLink]="'/configuracao'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
+      <span class="material-icons">build</span> configuração
+    </a>
+    <a [routerLink]="'/login'" class="mdl-navigation__link">
+      <span class="material-icons">logout</span> Logout
+    </a>
+  </nav>
+</section>
+<!-- FECHAR MENU EM QUALQUER LUGAR DA TELA -->
+<div class="headerGlobal__menuOverlay" (click)="toggleMenu()"></div>
+<!-- <div class="headerGlobal__menuOverlay"></div> -->

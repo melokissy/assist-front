@@ -1,0 +1,58 @@
+
+.demo-card-square, .mdl-card {
+    width: 260px;
+    height: 100px;
+    margin-top: 30px;
+    align-content: center;
+    border-radius: 5px;
+  }
+  .mdl-card__title {
+    font-size: 300px;
+  }
+  .mdl-card__title-text{
+    color: white;
+    font-size: 90px;
+    margin-left: 30px;
+    margin-bottom: 15px;
+  }
+  .mdl-card__actions, .mdl-card--border{
+    background-color: #DCDCDC;
+
+  }
+
+  .card-total{
+    margin-left: 265px;
+
+  }
+
+  .card-meus, .card-meus-pendentes, .card-meus-fechados{
+    margin-left: 5px;
+  }
+
+
+  section.card-list {
+    max-width: 799px;
+    width: 50%;
+    justify-content: center;
+
+  }
+
+  .u-list{
+    justify-content: center;
+    margin-top: 50px;
+    margin-left: 265px;
+  }
+
+  .card-titulo-total{
+    background-color: #1858cf;
+  }
+  .card-titulo-meus{
+    background-color: rgb(50, 209, 188);
+  }
+  .card-titulo-pend{
+    background-color: rgb(255, 62, 62);
+
+  }
+  .card-titulo-fechado{
+    background-color: rgb(228, 157, 5);
+  }
