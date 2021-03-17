@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+//import { ProjectComponent } from './project/project.component';
 //import { EditProjectComponent } from './edit-project/edit-project.component';
 
 
@@ -13,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
+    //ProjectComponent,
      // EditProjectComponent
   ],
   imports: [

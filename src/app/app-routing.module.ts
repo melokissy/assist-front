@@ -44,11 +44,11 @@ const rotas: Routes = [
     // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
   },
-/*   {
+  {
     path: 'projects',
     // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/project/project.module').then(m => m.ProjectModule)
-  }, */
+  },
   {
     path: 'dashboard',
     // canActivate: [AuthGuard],

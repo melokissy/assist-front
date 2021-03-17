@@ -1,0 +1,45 @@
+
+section.u-list {
+
+  max-width: 1080px;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+  align-items: stretch;
+  padding-top: 20px;
+
+
+}
+section .u-list h1 {
+  font-size: 35px;
+  font-weight: normal;
+  margin-left: -100px;
+
+}
+section .u-list i {
+  font-size: 25px;
+  font-weight: normal;
+
+}
+
+section .columStyle {
+  padding-left: 35px;
+
+}
+
+.btn-new-user{
+float: right;
+margin-right: 50px;
+margin-top: 15px;
+}
+
+.titulo{
+  font-size: 13px;
+}
+
+.mdl-grid{
+  display: flex;
+  margin: 0 auto;
+  align-items: stretch;
+}

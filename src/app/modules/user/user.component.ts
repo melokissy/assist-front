@@ -20,8 +20,6 @@ export class UsersComponent implements OnInit {
   mensagemErro: any;
   editPress = false;
 
-
-
   constructor(public userService: UserService, private httpClient: HttpClient,
     private roteador: Router) {
     this.auxUser = new User();

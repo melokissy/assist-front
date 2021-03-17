@@ -1,0 +1,38 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <assist-header></assist-header>
+
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <div class="mdl-grid">
+
+  <main class="mdl-layout__content">
+
+    <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button" [routerLink] = "'/cadastro'"> novo projeto</button>
+    <!-- <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button"> pesquisar</button> -->
+    <br>
+
+    <section class="u-list" >
+      <table class="table mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Nome</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Descrição</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Status</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ações</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of this.projectList">
+            <td class="columStyle mdl-data-table__cell--non-numeric">{{project.name}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric">{{project.description}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric">{{project.status}}</td>
+            <td class="actions columStyle mdl-data-table__cell--non-numeric">
+
+              <button  [routerLink]="'/cadastro'"  type="button" class="mdl-button mdl-button--raised mdl-button--colored"><i class="material-icons" >mode_edit</i></button>
+              <button  type="button" class="mdl-button mdl-button--raised" style="margin-left: 5px;" style="background-color: red;"><i class="material-icons" style="color: blanchedalmond;">delete</i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+
