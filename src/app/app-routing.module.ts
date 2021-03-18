@@ -54,6 +54,12 @@ const rotas: Routes = [
     // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
+  {
+  path: 'projectForm',
+  // canActivate: [AuthGuard],
+  loadChildren: () => import('./modules/project-form/project-form.module').then(m => m.ProjectFormModule)
+ },
+
 
   // {
   //   path: '**',

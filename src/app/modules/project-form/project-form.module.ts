@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectsComponent } from './project.component';
+import { ProjectFormComponent } from './project-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import { ProjectFormService } from 'src/app/services/project-form.service';
 import { SharedComponentsModule } from 'src/app/components/shared-components.module';
 import { AssistFormModule } from 'src/app/components/assist-form.module';
-import { ProjectRoutingModule } from './project-routing.module';
-import { ProjectService } from 'src/app/services/project.service';
+import { ProjectFormRoutingModule } from './project-form-routing.module';
 
 
 @NgModule({
-  declarations: [ProjectsComponent],
+  declarations: [ProjectFormComponent],
   imports: [
     CommonModule,
     // FormsModule,
@@ -18,9 +19,8 @@ import { ProjectService } from 'src/app/services/project.service';
     HttpClientModule,
     SharedComponentsModule,
     AssistFormModule,
-    ProjectRoutingModule,
-
+    ProjectFormRoutingModule,
   ],
-  providers: [ProjectService]
+  providers: [ProjectFormService]
 })
-export class ProjectModule { }
+export class ProjectFormModule { }
