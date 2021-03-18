@@ -50,5 +50,27 @@ export class ProjectsComponent implements OnInit {
       )
   }
 
+  deleteProject(id: number){
+    let projectData = id
+    console.log(projectData);
+
+    this.httpClient
+    .delete('http://localhost:41124/AssistApi/resource/projects/' + projectData)
+    .subscribe(
+      () => {
+        console.log('deletado com sucesso');
+
+        //redirciona apos 1 s
+         setTimeout(() => {
+           this.projects();
+         }, 100);
+      }
+      , (reponseError: HttpErrorResponse) => {
+        this.mensagemErro = reponseError.error.body
+      }
+    )
+  }
+
+
 
 }
