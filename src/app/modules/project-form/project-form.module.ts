@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectFormComponent } from './project-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ProjectFormService } from 'src/app/services/project-form.service';
@@ -14,7 +14,7 @@ import { ProjectFormRoutingModule } from './project-form-routing.module';
   declarations: [ProjectFormComponent],
   imports: [
     CommonModule,
-    // FormsModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     SharedComponentsModule,

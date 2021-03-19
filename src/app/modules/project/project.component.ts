@@ -36,7 +36,7 @@ export class ProjectsComponent implements OnInit {
       .subscribe(
         lista => {
           this.projectList = lista;
-          console.log(this.projectList);
+          console.log(this.projectList + 'lista dos projetos');
         },
         (responseError: HttpErrorResponse) => {
           this.mensagemErro = '';

@@ -1,1 +1,59 @@
-<p>project-form works!</p>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <assist-header></assist-header>
+
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <div class="mdl-grid">
+
+        <form [formGroup]="formProjeto" (ngSubmit)="cadastrarProjeto()">
+          <!-- nome -->
+          <assist-form-group [campo]="formProjeto.get('name')">
+            <input formControlName="name" autofocus required type="text" name="name" assistFormField>
+            <!-- se tiver erros, entao... -->
+            <div *ngIf="formProjeto.get('name').errors">
+              <!-- errors.required... -->
+              <span class="mdl-textfield__error" *ngIf="formProjeto.get('name').errors.required">
+                Informar um nome é obrigatório!
+              </span>
+              <!-- errors.minlength... -->
+              <span class="mdl-textfield__error" *ngIf="formProjeto.get('name').errors.minlength">
+                Você preencheu {{ formProjeto.get('name').errors.minlength.actualLength }} caracteres
+                de {{ formProjeto.get('name').errors.minlength.requiredLength }}
+              </span>
+            </div>
+          </assist-form-group>
+
+          <!-- descrição -->
+          <assist-form-group [campo]="formProjeto.get('description')">
+            <input formControlName="description" required type="text" name="description" assistFormField>
+            <span class="mdl-textfield__error">Informar descrição é obrigatório!</span>
+          </assist-form-group>
+
+          <!-- status -->
+          <assist-form-group [campo]="formProjeto.get('status')">
+            <input formControlName="status" required type="text" name="status" assistFormField>
+            <span class="mdl-textfield__error">Informar status é obrigatório!</span>
+          </assist-form-group>
+
+
+          <div class="mdl-card__actions">
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised" >
+              Cadastrar
+            </button>
+
+            <button [routerLink]="'/projects'"  class="mdl-button mdl-button--colored mdl-button--raised" type="button" style="margin-left: 10px;">
+              cancelar
+            </button>
+          </div>
+
+          <ul *ngIf="mensagensErro" class="mdl-textfield is-invalid">
+            <li *ngFor="let erro of mensagensErro" class="mdl-textfield__error">
+              {{erro.message}}: {{erro.value}}
+            </li>
+          </ul>
+
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
