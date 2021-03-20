@@ -30,6 +30,10 @@ export class ProjectsComponent implements OnInit {
     this.projects();
   }
 
+  editarProjeto(){
+
+  }
+
   projects(){
     this.projectService
       .listar()
@@ -70,7 +74,4 @@ export class ProjectsComponent implements OnInit {
       }
     )
   }
-
-
-
 }

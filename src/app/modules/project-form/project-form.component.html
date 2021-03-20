@@ -31,17 +31,18 @@
 
           <!-- status -->
           <assist-form-group [campo]="formProjeto.get('status')">
-            <input formControlName="status"  type="checkbox" id="statusCheckbox" name="status" assistFormField>
+            <input formControlName="status" type="checkbox" id="statusCheckbox" name="status" assistFormField>
             <span class="mdl-textfield__error">Informar status é obrigatório!</span>
           </assist-form-group>
 
 
           <div class="mdl-card__actions">
-            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised" >
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised">
               Cadastrar
             </button>
 
-            <button [routerLink]="'/projects'"  class="mdl-button mdl-button--colored mdl-button--raised" type="button" style="margin-left: 10px;">
+            <button [routerLink]="'/projects'" class="mdl-button mdl-button--colored mdl-button--raised" type="button"
+              style="margin-left: 10px;">
               cancelar
             </button>
           </div>
@@ -53,6 +54,8 @@
           </ul>
 
         </form>
+
+
       </div>
     </div>
   </main>

@@ -4,13 +4,16 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project';
 
+
 @Component({
   selector: 'app-projects',
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.css'],
   providers:[]
 })
+
 export class ProjectFormComponent implements OnInit {
+
   mensagensErro: any;
 
   formProjeto = new FormGroup({
@@ -25,9 +28,10 @@ export class ProjectFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
-  cadastrarProjeto(){
+   cadastrarProjeto(){
     if (this.formProjeto.valid) {
       const projectData = new Project(this.formProjeto.value);
       console.log('PROJETO INSERIDO' + projectData.name);
@@ -36,6 +40,7 @@ export class ProjectFormComponent implements OnInit {
         .subscribe(
           () => {
             console.log('Cadastrado com sucesso!');
+            alert("Cadastrado com sucesso!");
 
             this.formProjeto.reset();
 
@@ -43,6 +48,7 @@ export class ProjectFormComponent implements OnInit {
             setTimeout(() => {
                 this.roteador.navigate(['/projects']);
               }, 100);
+
             }
             ,(responseError: HttpErrorResponse) => {
               //caso erros
@@ -55,6 +61,7 @@ export class ProjectFormComponent implements OnInit {
       this.validaCampos(this.formProjeto);
     }
   }
+
 
   validaCampos(form: FormGroup){
     Object.keys(form.controls).forEach(field => {

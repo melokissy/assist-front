@@ -27,7 +27,7 @@
             <td  class="columStyle mdl-data-table__cell--non-numeric" *ngIf="project.status">Ativo</td>
             <td class="actions columStyle mdl-data-table__cell--non-numeric">
 
-              <button  [routerLink]="'/cadastro'"  type="button" class="mdl-button mdl-button--raised mdl-button--colored"><i class="material-icons" >mode_edit</i></button>
+              <button  (click)="this.editarProjeto(project.id)" [routerLink]="'/projectForm'"  type="button" class="mdl-button mdl-button--raised mdl-button--colored"><i class="material-icons" >mode_edit</i></button>
               <button  (click)="this.deleteProject(project.id)" type="button" class="mdl-button mdl-button--raised" style="margin-left: 5px;" style="background-color: red;"><i class="material-icons" style="color: blanchedalmond;">delete</i></button>
             </td>
           </tr>
