@@ -104,11 +104,6 @@ export class ProjectService {
       alert.setError(true);
     }
 
-    if (project.status === '') {
-      alert.setMessage('O campo status é obrigatório');
-      alert.setError(true);
-    }
-
     return alert;
   }
 }

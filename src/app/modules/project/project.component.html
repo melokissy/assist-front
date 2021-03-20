@@ -23,7 +23,8 @@
           <tr *ngFor="let project of this.projectList">
             <td class="columStyle mdl-data-table__cell--non-numeric">{{project.name}}</td>
             <td  class="columStyle mdl-data-table__cell--non-numeric">{{project.description}}</td>
-            <td  class="columStyle mdl-data-table__cell--non-numeric">{{project.status}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric" *ngIf="!project.status">Desativado</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric" *ngIf="project.status">Ativo</td>
             <td class="actions columStyle mdl-data-table__cell--non-numeric">
 
               <button  [routerLink]="'/cadastro'"  type="button" class="mdl-button mdl-button--raised mdl-button--colored"><i class="material-icons" >mode_edit</i></button>

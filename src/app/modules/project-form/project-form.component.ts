@@ -16,7 +16,7 @@ export class ProjectFormComponent implements OnInit {
   formProjeto = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     description: new FormControl('', [Validators.required]),
-    status: new FormControl('', [Validators.required]),
+    status: new FormControl(false, []),
 
   })
 
@@ -36,6 +36,7 @@ export class ProjectFormComponent implements OnInit {
         .subscribe(
           () => {
             console.log('Cadastrado com sucesso!');
+
             this.formProjeto.reset();
 
             //após 1 segundo, redireciona para a rota de login

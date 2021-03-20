@@ -2,7 +2,7 @@ export class Project {
   id: number;
   name: string;
   description: string;
-  status: string;
+  status: boolean;
 
   constructor(values = {}) {
     Object.assign(this, values);
