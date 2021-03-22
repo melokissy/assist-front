@@ -1,37 +1,51 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project';
+import { ProjectFormService } from 'src/app/services/project-form.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
   selector: 'app-projects',
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.css'],
-  providers:[]
+  providers: []
 })
 
+@Injectable()
 export class ProjectFormComponent implements OnInit {
 
   mensagensErro: any;
-
-  formProjeto = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    description: new FormControl('', [Validators.required]),
-    status: new FormControl(false, []),
-
-  })
-
-  constructor( private httpClient: HttpClient,
+  formProjeto: FormGroup;
+  projeto: Project;
+  projeto2: Observable <Project>;
+  constructor(
+    private httpClient: HttpClient,
     private roteador: Router) {
+
   }
 
   ngOnInit(): void {
 
+      this.createFormGroup(new Project)
+ }
+  createFormGroup(data: any) {
+    return this.formProjeto = new FormGroup({
+      name: new FormControl( data.name, [Validators.required, Validators.minLength(3)]),
+      description: new FormControl(data.description, [Validators.required]),
+      status: new FormControl(data.status, []),
+    })
   }
 
-   cadastrarProjeto(){
+  editarProjeto(project) {
+    this.projeto = project;
+    this.createFormGroup(project);
+    console.log("oque tem aqui nessa porra: ", this.formProjeto.value)
+  }
+
+  cadastrarProjeto() {
     if (this.formProjeto.valid) {
       const projectData = new Project(this.formProjeto.value);
       console.log('PROJETO INSERIDO' + projectData.name);
@@ -46,24 +60,24 @@ export class ProjectFormComponent implements OnInit {
 
             //após 1 segundo, redireciona para a rota de login
             setTimeout(() => {
-                this.roteador.navigate(['/projects']);
-              }, 100);
+              this.roteador.navigate(['/projects']);
+            }, 100);
 
-            }
-            ,(responseError: HttpErrorResponse) => {
-              //caso erros
-              this.mensagensErro = responseError.error.body;
-            }
+          }
+          , (responseError: HttpErrorResponse) => {
+            //caso erros
+            this.mensagensErro = responseError.error.body;
+          }
         )
 
     }
-    else{
+    else {
       this.validaCampos(this.formProjeto);
     }
   }
 
 
-  validaCampos(form: FormGroup){
+  validaCampos(form: FormGroup) {
     Object.keys(form.controls).forEach(field => {
       const control = form.get(field);
       control.markAsTouched({ onlySelf: true });

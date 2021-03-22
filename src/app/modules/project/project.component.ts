@@ -4,13 +4,15 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../components/header/header.component';
 import { ProjectService } from 'src/app/services/project.service';
+import { ProjectFormComponent } from '../project-form/project-form.component';
+import { ProjectFormService } from 'src/app/services/project-form.service';
 
 
 @Component({
   selector: 'app-projects',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css'],
-  providers:[]
+  providers:[ProjectFormComponent]
 
 })
 export class ProjectsComponent implements OnInit {
@@ -20,17 +22,23 @@ export class ProjectsComponent implements OnInit {
   projectList = [];
   mensagemErro: any;
   editPress = false;
+  projectform:  ProjectFormComponent;
+  project = new Project;
 
   constructor(public projectService: ProjectService, private httpClient: HttpClient,
-    private roteador: Router) {
+    private roteador: Router,projectform: ProjectFormComponent) {
     this.auxProj = new Project();
-  }
+    this.projectform = projectform;
+    }
 
   ngOnInit(): void {
     this.projects();
   }
 
-  editarProjeto(){
+
+  getById(idProjeto){
+    this.project = this.projectService.get(idProjeto,this.projectList);
+    this.projectform.editarProjeto(this.project);
 
   }
 

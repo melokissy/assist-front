@@ -68,7 +68,7 @@ const rotas: Routes = [
 
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   }
 ]

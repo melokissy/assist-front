@@ -2,10 +2,13 @@
   <assist-header></assist-header>
 
   <main class="mdl-layout__content">
+    <div class="titulo-form">
+      <label >Cadastrar Projeto</label>
+    </div>
     <div class="page-content">
       <div class="mdl-grid">
-
-        <form [formGroup]="formProjeto" (ngSubmit)="cadastrarProjeto()">
+        <div>
+        <form  class="formStyle" [formGroup]="formProjeto" (ngSubmit)="cadastrarProjeto()">
           <!-- nome -->
           <assist-form-group [campo]="formProjeto.get('name')">
             <input formControlName="name" autofocus required type="text" name="name" assistFormField>
@@ -31,8 +34,7 @@
 
           <!-- status -->
           <assist-form-group [campo]="formProjeto.get('status')">
-            <input formControlName="status" type="checkbox" id="statusCheckbox" name="status" assistFormField>
-            <span class="mdl-textfield__error">Informar status é obrigatório!</span>
+            <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" assistFormField>
           </assist-form-group>
 
 
@@ -54,7 +56,7 @@
           </ul>
 
         </form>
-
+       </div>
 
       </div>
     </div>

@@ -42,13 +42,14 @@ export class ProjectService {
       name: projectApi.name,
       description: projectApi.description,
       status: projectApi.status,
-      id: projectApi.id
+      id: projectApi.id,
+      createdAt: projectApi.createdAt
     })
   }
 
-  // GET /users/:id
-  public get(id: number): Project {
-    return this.projects
+  // GET /projects/:id
+  public get(id: number, projects: any): Project {
+    return projects
       .filter(project => project.id === id)
       .pop();
   }
@@ -70,7 +71,7 @@ export class ProjectService {
 
   // PUT /user/:id
   public update(id: number, values: {}) {
-    const project = this.get(id);
+    const project = this.get(id, this.projects);
 
     if (!project) {
       return null;
