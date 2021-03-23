@@ -41,7 +41,8 @@ export class UserService {
       name: userApi.name,
       email: userApi.email,
       status: userApi.status,
-      id: userApi.id
+      id: userApi.id,
+      profile: userApi.profile
     })
   }
 
@@ -101,11 +102,6 @@ export class UserService {
 
     if (user.email === '') {
       alert.setMessage('O campo email é obrigatório');
-      alert.setError(true);
-    }
-
-    if (user.status === '') {
-      alert.setMessage('O campo status é obrigatório');
       alert.setError(true);
     }
 

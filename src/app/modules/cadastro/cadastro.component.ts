@@ -8,6 +8,7 @@ import { map, catchError } from "rxjs/operators";
 import { Router } from '@angular/router';
 import { UsersComponent } from '../user/user.component';
 
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -22,7 +23,8 @@ export class CadastroComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    userIcon: new FormControl()
+    userIcon: new FormControl(),
+    profile: new FormControl()
   })
 
   constructor(private httpClient: HttpClient,

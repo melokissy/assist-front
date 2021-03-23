@@ -50,12 +50,25 @@
             </span>
           </assist-form-group>
 
+          <assist-form-group [campo]="formCadastro.get('profile')">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <select class="mdl-textfield__input" id="profile" name="profile" formControlName="profile">
+                <option></option>
+                <option value="Cliente">Cliente</option>
+                <option value="Tecnico">Técnico</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+              <label class="mdl-textfield__label" for="profile">Perfil</label>
+            </div>
+          </assist-form-group>
+
           <div class="mdl-card__actions">
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised">
               Cadastrar
             </button>
 
-            <button [routerLink]="'/users'"  class="mdl-button mdl-button--colored mdl-button--raised" type="button" style="margin-left: 10px;">
+            <button [routerLink]="'/users'" class="mdl-button mdl-button--colored mdl-button--raised" type="button"
+              style="margin-left: 10px;">
               cancelar
             </button>
           </div>

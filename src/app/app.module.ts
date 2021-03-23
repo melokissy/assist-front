@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RelatorioComponent } from './modules/relatorio/relatorio.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { ProjectFormComponent } from './modules/project-form/project-form.component';
 
 //import { ProjectComponent } from './project/project.component';
@@ -16,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
+    //RelatorioComponent,
     //ProjectFormComponent,
     //ProjectFormComponent,
     //ProjectComponent,
@@ -25,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],

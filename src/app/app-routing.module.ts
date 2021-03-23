@@ -18,10 +18,10 @@ import { UsersComponent } from './modules/user/user.component';
 //   ]
 
 const rotas: Routes = [
-/*   {
-    path: 'editproject',
-    loadChildren: () => import('./modules/edit-project/edit-project.module').then(m => m.EditProjectModule)
-  }, */
+  /*   {
+      path: 'editproject',
+      loadChildren: () => import('./modules/edit-project/edit-project.module').then(m => m.EditProjectModule)
+    }, */
   {
     path: 'cadastro',
     loadChildren: () => import('./modules/cadastro/cadastro.module').then(m => m.CadastroModule)
@@ -55,10 +55,15 @@ const rotas: Routes = [
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-  path: 'projectForm',
-  // canActivate: [AuthGuard],
-  loadChildren: () => import('./modules/project-form/project-form.module').then(m => m.ProjectFormModule)
- },
+    path: 'projectForm',
+    // canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/project-form/project-form.module').then(m => m.ProjectFormModule)
+  },
+  {
+    path: 'relatorios',
+    // canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/relatorio/relatorio.module').then(m => m.RelatorioModule)
+  },
 
 
   // {
@@ -77,7 +82,7 @@ const rotas: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(rotas)
+    RouterModule.forRoot(rotas),
   ],
   exports: [RouterModule],
   providers: [AuthGuard]

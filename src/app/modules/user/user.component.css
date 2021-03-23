@@ -1,7 +1,6 @@
 
 section.u-list {
 
-  max-width: 1080px;
   width: 100%;
   justify-content: center;
   display: flex;
@@ -31,7 +30,7 @@ section .columStyle {
 .btn-new-user{
 float: right;
 margin-right: 50px;
-margin-top: 15px;
+margin-top: 0px;
 }
 
 .titulo{
@@ -42,4 +41,12 @@ margin-top: 15px;
   display: flex;
   margin: 0 auto;
   align-items: stretch;
+}
+
+.titulo-pagina{
+  font-family: Roboto;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 30px;
+  color: #757575;
 }

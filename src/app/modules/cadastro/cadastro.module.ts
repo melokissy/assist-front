@@ -19,6 +19,7 @@ import { SharedComponentsModule } from '../../components/shared-components.modul
     SharedComponentsModule,
     AssistFormModule,
     CadastroRoutingModule
+
   ]
 })
 export class CadastroModule { }
