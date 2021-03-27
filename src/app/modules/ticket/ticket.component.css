@@ -1,6 +1,14 @@
+.titulo-pagina{
+  font-family: Roboto;
+  font-size: 20px;
+  margin-left: 20px;
+  color: #494949;
+  margin-top: 40px;
+}
+
 
 section.u-list {
-  max-width: 95%;
+
   width: 100%;
   justify-content: center;
   display: flex;
@@ -30,7 +38,7 @@ section .columStyle {
 .btn-new-user{
 float: right;
 margin-right: 50px;
-margin-top: 15px;
+margin-top: 0px;
 }
 
 .titulo{
@@ -50,9 +58,3 @@ margin-top: 15px;
   margin-top: 30px;
   color: #757575;
 }
-.btn-novo-projeto{
-  margin-top: 0px;
-}
-
-
-

@@ -1,28 +1,22 @@
-import { timeStamp } from "console";
+import { User } from "./user";
 
 export class Ticket {
 
-    subject = '';
-    description = '';
-    requester = '';
-    type = '';
-    priority = '';
-    status='';
-    project = '';
-    reponsible = '';
-    createdAt = '';
-    editedAt = '';
+  id: number;
+  subject: string;
+  description: string;
+  requester: User;
+  type: string;
+  priority: string;
+  status: string;
+  project_id: number;
+  responsible: User;
+  createdAt: Date;
+  editedAt: Date;
+  closeAt: Date;
+  dueDate: Date;
 
-    constructor({ subject, description, requester, type, priority, status, project, reponsible, createdAt, editedAt}) {
-      this.subject = subject;
-      this.description = description;
-      this.requester = requester;
-      this.type = type;
-      this.priority = priority;
-      this.status = status;
-      this.project = project;
-      this.reponsible = reponsible;
-      this.createdAt = createdAt;
-      this.editedAt = editedAt;
-    }
+  constructor(values = {}) {
+    Object.assign(this, values);
   }
+}

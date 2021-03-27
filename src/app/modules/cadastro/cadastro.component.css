@@ -1,0 +1,24 @@
+.titulo-form{
+  font-family: Roboto;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 30px;
+  color: #757575;
+}
+section.user-form-card {
+  max-width: 80%;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+  align-items: stretch;
+  margin-top: 30px;
+  padding-top: 0%;
+}
+.formStyle{
+  margin-top: 15px;
+  margin-left: 20px;
+}
+.card-btn{
+  padding-bottom: 30px;
+}

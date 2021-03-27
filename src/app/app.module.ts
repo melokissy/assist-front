@@ -8,21 +8,12 @@ import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RelatorioComponent } from './modules/relatorio/relatorio.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { ProjectFormComponent } from './modules/project-form/project-form.component';
-
-//import { ProjectComponent } from './project/project.component';
-//import { EditProjectComponent } from './edit-project/edit-project.component';
-
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    //RelatorioComponent,
-    //ProjectFormComponent,
-    //ProjectFormComponent,
-    //ProjectComponent,
-     // EditProjectComponent
+    AppComponent
+
   ],
   imports: [
     BrowserModule,

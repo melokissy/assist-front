@@ -64,6 +64,12 @@ const rotas: Routes = [
     // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/relatorio/relatorio.module').then(m => m.RelatorioModule)
   },
+  {
+    path: 'tickets',
+    // canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/ticket/ticket.module').then(m => m.TicketModule)
+  },
+
 
 
   // {

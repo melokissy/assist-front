@@ -1,10 +1,18 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
   <assist-header></assist-header>
+
   <main class="mdl-layout__content">
+
+    <section class="user-form-card demo-card-wide mdl-card mdl-shadow--2dp">
+
+    <div class="titulo-form">
+      <label >Cadastrar Usuário</label>
+    </div>
+
     <div class="page-content">
       <div class="mdl-grid">
 
-        <form [formGroup]="formCadastro" (ngSubmit)="handleCadastrarUsuario()">
+        <form class="formStyle" [formGroup]="formCadastro" (ngSubmit)="handleCadastrarUsuario()">
 
           <assist-form-group [campo]="formCadastro.get('name')">
             <input formControlName="name" autofocus required type="text" name="name" assistFormField>
@@ -62,7 +70,7 @@
             </div>
           </assist-form-group>
 
-          <div class="mdl-card__actions">
+          <div class="mdl-card__actions card-btn">
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised">
               Cadastrar
             </button>
@@ -82,5 +90,7 @@
         </form>
       </div>
     </div>
+    </section>
+
   </main>
 </div>

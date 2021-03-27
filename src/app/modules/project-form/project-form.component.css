@@ -10,3 +10,18 @@
   margin-top: 15px;
   margin-left: 20px;
 }
+
+section.project-form-card {
+  max-width: 80%;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+  align-items: stretch;
+  margin-top: 30px;
+  padding-top: 0%;
+}
+.card-btn{
+  padding-bottom: 30px;
+}
+

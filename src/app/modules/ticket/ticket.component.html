@@ -1,0 +1,52 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <assist-header></assist-header>
+
+  <main class="mdl-layout__content">
+    <div class="titulo-pagina">
+      <label>Tickets</label>
+    </div>
+
+    <div class="page-content">
+      <div class="mdl-grid">
+
+  <main class="mdl-layout__content">
+
+    <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button" [routerLink] = "'/cadastro'"> novo ticket</button>
+    <!-- <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button"> pesquisar</button> -->
+    <br>
+
+    <section class="u-list" >
+      <table class="table mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Número</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Assunto</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Solicitante</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Tipo</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Prioridade</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Status</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Responsável</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Abertura</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Vencimento</th>
+          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ações</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of this.ticketList">
+            <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.id}}</td>
+            <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.subject}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric">{{ticket.requester.name}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric">{{ticket.type}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric">{{ticket.priority}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric">{{ticket.status}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric">{{ticket.responsible.name}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric">{{ticket.createdAt | date:'dd/MM/yyyy'}}</td>
+            <td  class="columStyle mdl-data-table__cell--non-numeric">{{ticket.dueDate | date:'dd/MM/yyyy'}}</td>
+            <td class="actions columStyle mdl-data-table__cell--non-numeric">
+
+              <button [routerLink]="'/cadastro'"  type="button" class="mdl-button mdl-button--raised mdl-button--colored"><i class="material-icons" >search</i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
