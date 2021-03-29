@@ -69,6 +69,11 @@ const rotas: Routes = [
     // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/ticket/ticket.module').then(m => m.TicketModule)
   },
+  {
+    path: 'tickets/ticketInfo',
+    // canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/ticket/ticket-info/ticket-info.module').then(m => m.TicketInfoModule)
+  },
 
 
 

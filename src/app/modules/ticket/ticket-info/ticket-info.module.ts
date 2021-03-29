@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TicketService } from 'src/app/services/ticket.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedComponentsModule } from 'src/app/components/shared-components.module';
 import { AssistFormModule } from 'src/app/components/assist-form.module';
-import { TicketRoutingModule } from '../ticket/ticket-routing.module';
-import { TicketService } from 'src/app/services/ticket.service';
-import { TicketComponent } from './ticket.component';
-import { TicketInfoComponent } from './ticket-info/ticket-info.component';
+import { TicketRoutingModule } from '../ticket-routing.module';
+import { TicketInfoComponent } from './ticket-info.component';
 
 
 
 @NgModule({
-  declarations: [TicketComponent, TicketInfoComponent],
+  declarations: [],
   imports: [
     CommonModule,
     // FormsModule,
@@ -24,4 +23,4 @@ import { TicketInfoComponent } from './ticket-info/ticket-info.component';
   ],
   providers: [TicketService]
 })
-export class TicketModule { }
+export class TicketInfoModule { }

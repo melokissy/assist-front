@@ -11,7 +11,7 @@
 
   <main class="mdl-layout__content">
 
-    <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button" [routerLink] = "'/cadastro'"> novo ticket</button>
+    <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button" [routerLink] = "''"> novo ticket</button>
     <!-- <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button"> pesquisar</button> -->
     <br>
 
@@ -42,7 +42,7 @@
             <td  class="columStyle mdl-data-table__cell--non-numeric">{{ticket.dueDate | date:'dd/MM/yyyy'}}</td>
             <td class="actions columStyle mdl-data-table__cell--non-numeric">
 
-              <button [routerLink]="'/cadastro'"  type="button" class="mdl-button mdl-button--raised mdl-button--colored"><i class="material-icons" >search</i></button>
+              <button [routerLink] = "'/tickets/ticketInfo'" type="button" class="mdl-button mdl-button--raised mdl-button--colored"><i class="material-icons" >search</i></button>
             </td>
           </tr>
         </tbody>
