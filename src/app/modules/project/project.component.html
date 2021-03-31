@@ -2,53 +2,55 @@
   <assist-header></assist-header>
 
   <main class="mdl-layout__content">
+    <div class="container-fluid">
+      <h1 class="mt-4 titulo-pagina">Projetos</h1>
 
-    <div class="titulo-pagina">
-      <label>Projetos</label>
-    </div>
+      <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button" [routerLink]="'/projectForm'">
+        NOVO PROJETO </button>
+      <br>
 
-    <div class="page-content">
-      <div class="mdl-grid">
+      <div class="page-content">
+        <div class="mdl-grid">
 
-        <main class="mdl-layout__content">
+          <main class="mdl-layout__content">
+            <div class="container-fluid">
+              <div class="card mb-4">
 
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Todos os projetos</div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Código</th>
+                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Nome</th>
+                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Descrição</th>
+                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Status</th>
+                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Data criação</th>
+                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ações</th>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let project of this.projectList">
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.id}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.name}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.description}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric" *ngIf="!project.status">Desativado</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric" *ngIf="project.status">Ativo</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.createdAt | date:'dd/MM/yyyy'}}</td>
+                          <td class="actions columStyle mdl-data-table__cell--non-numeric">
 
-
-          <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user btn-novo-projeto" type="button"
-            [routerLink]="'/projectForm'"> novo projeto</button>
-          <!-- <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button"> pesquisar</button> -->
-          <br>
-
-          <section class="u-list">
-            <table class="table mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-              <thead>
-                <th class="columStyle mdl-data-table__cell--non-numeric titulo">Código</th>
-                <th class="columStyle mdl-data-table__cell--non-numeric titulo">Nome</th>
-                <th class="columStyle mdl-data-table__cell--non-numeric titulo">Descrição</th>
-                <th class="columStyle mdl-data-table__cell--non-numeric titulo">Status</th>
-                <th class="columStyle mdl-data-table__cell--non-numeric titulo">Data criação</th>
-                <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ações</th>
-              </thead>
-              <tbody>
-                <tr *ngFor="let project of this.projectList">
-                  <td class="columStyle mdl-data-table__cell--non-numeric">{{project.id}}</td>
-                  <td class="columStyle mdl-data-table__cell--non-numeric">{{project.name}}</td>
-                  <td class="columStyle mdl-data-table__cell--non-numeric">{{project.description}}</td>
-                  <td class="columStyle mdl-data-table__cell--non-numeric" *ngIf="!project.status">Desativado</td>
-                  <td class="columStyle mdl-data-table__cell--non-numeric" *ngIf="project.status">Ativo</td>
-                  <td class="columStyle mdl-data-table__cell--non-numeric">{{project.createdAt | date:'dd/MM/yyyy'}}</td>
-                  <td class="actions columStyle mdl-data-table__cell--non-numeric">
-
-                    <button (click)="this.getById(project.id)" [routerLink]="'/projectForm'" type="button"
-                      class="mdl-button mdl-button--raised mdl-button--colored"><i
-                        class="material-icons">mode_edit</i></button>
-                    <button (click)="this.deleteProject(project.id)" type="button" class="mdl-button mdl-button--raised"
-                      style="margin-left: 5px;" style="background-color: red;"><i class="material-icons"
-                        style="color: blanchedalmond;">delete</i></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-        </main>
+                            <button (click)="this.getById(project.id)" [routerLink]="'/projectForm'" type="button"
+                              class="mdl-button mdl-button--raised mdl-button--colored"><i
+                                class="material-icons">mode_edit</i></button>
+                            <button (click)="this.deleteProject(project.id)" type="button" class="mdl-button mdl-button--raised"
+                              style="margin-left: 5px;" style="background-color: red;"><i class="material-icons"
+                                style="color: blanchedalmond;">delete</i></button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
       </div>

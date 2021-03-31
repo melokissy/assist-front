@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from 'src/environments/environment';
 import { Ticket } from '../models/ticket';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class TicketService {
   constructor(private http: HttpClient) { }
 
   // GET /tickets
-  listar() {
+  listar(){
     return this.http
       .get(this.apiUrl)
       .pipe<Ticket[]>(
