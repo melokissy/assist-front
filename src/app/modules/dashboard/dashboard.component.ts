@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   mensagemErro: any;
   counter: Counter ;
   ticketsVencidos: Ticket[];
+  ticketsVencendo: Ticket[];
 
   constructor(public ticketService: TicketService, private httpClient: HttpClient,
     private roteador: Router) {
@@ -39,6 +40,10 @@ export class DashboardComponent implements OnInit {
           this.ticketService.listarVencidos()
             .subscribe(data => {
               this.ticketsVencidos = data;
+              this.ticketService.listarVencendo()
+              .subscribe( vencendo => {
+                this.ticketsVencendo = vencendo;
+              })
             })
     });
   })}

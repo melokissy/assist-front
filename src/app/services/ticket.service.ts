@@ -16,6 +16,7 @@ export class TicketService {
   apiUrl = `${environment.apiUrl}tickets/`;
   apiUrlpendentes = `${environment.apiUrl}tickets/tickets-pendentes`;
   apiUrlVencidos = `${environment.apiUrl}tickets/tickets-vencidos`;
+  apiUrlVencendo = `${environment.apiUrl}tickets/tickets-vencendo`;
 
 
   public lastId = 0;
@@ -105,6 +106,19 @@ export class TicketService {
       )
   }
 
-
-
+    // GET /tickets/tickets-vencendo
+    listarVencendo() {
+      return this.http
+        .get(this.apiUrlVencendo)
+        .pipe<Ticket[]>(
+          map(
+            (response: any[]) => {
+              return response
+                .map(
+                  ticketApi => this.newTicket(ticketApi)
+                )
+            }
+          )
+        )
+    }
 }
