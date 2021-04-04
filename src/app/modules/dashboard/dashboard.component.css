@@ -3564,6 +3564,22 @@
 	 background-color: rgba(0, 0, 0, 0.03);
 	 border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
+
+.card-header-a-vencer {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  color: white;
+  background-color: #ffc107 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.card-header-vencidos {
+  padding: 0.75rem 1.25rem;
+  color: white;
+  margin-bottom: 0;
+  background-color: #dc3545 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
  .card-header:first-child {
 	 border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
 }
@@ -7986,6 +8002,7 @@
  .sb-sidenav-dark .sb-sidenav-footer {
 	 background-color: #343a40;
 }
+
  .sb-sidenav-light {
 	 background-color: #f8f9fa;
 	 color: #212529;
