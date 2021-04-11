@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 const rotasCadastro: Routes = [
-  { path: '', component: CadastroComponent }
+  { path: '', component: CadastroComponent },
+  { path: ':id', component: CadastroComponent }
+
 ]
 
 @NgModule({

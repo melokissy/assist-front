@@ -36,7 +36,7 @@
           </assist-form-group>
 
           <assist-form-group [campo]="formCadastro.get('password')">
-            <input formControlName="password" required type="password" name="password" assistFormField>
+            <input formControlName="password" type="password" name="password" assistFormField>
             <span class="mdl-textfield__error">Informar uma senha é obrigatório!</span>
           </assist-form-group>
 
@@ -70,9 +70,14 @@
             </div>
           </assist-form-group>
 
+          <!-- status -->
+          <assist-form-group [campo]="formCadastro.get('status')">
+            <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" assistFormField>
+          </assist-form-group>
+
           <div class="mdl-card__actions card-btn">
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised">
-              Cadastrar
+              {{this.id? 'Editar' : 'Cadastrar'}}
             </button>
 
             <button [routerLink]="'/users'" class="mdl-button mdl-button--colored mdl-button--raised" type="button"

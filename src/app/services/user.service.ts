@@ -4,6 +4,7 @@ import { Alert } from '../models/alert';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,14 @@ export class UserService {
       )
   }
 
+  getById(id: number) : Observable<User>{
+    return this.http.get<User>(this.apiUrl+`${id}`);
+  }
+
+
+  public atualizar(id: number, user:User) : Observable<User>{
+    return this.http.put<User>(this.apiUrl+`${id}`, user);
+  }
 
   // PUT /user/:id
   public update(id: number, values: {}) {

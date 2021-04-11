@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedComponentsModule } from '../../components/shared-components.module';
+import { UserService } from 'src/app/services/user.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SharedComponentsModule } from '../../components/shared-components.modul
     SharedComponentsModule,
     AssistFormModule,
     CadastroRoutingModule
+  ],
+  providers: [UserService]
 
-  ]
 })
 export class CadastroModule { }
