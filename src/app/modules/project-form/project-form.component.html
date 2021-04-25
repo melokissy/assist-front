@@ -10,7 +10,7 @@
     <div class="page-content">
       <div class="mdl-grid">
         <div>
-        <form  class="formStyle" [formGroup]="formProjeto" (ngSubmit)="cadastrarProjeto()">
+        <form  class="formStyle" [formGroup]="formProjeto" (ngSubmit)="handleCadastrarProjeto()">
           <!-- nome -->
           <assist-form-group [campo]="formProjeto.get('name')">
             <input formControlName="name" autofocus required type="text" name="name" assistFormField>
@@ -42,7 +42,7 @@
 
           <div class="mdl-card__actions card-btn">
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised">
-              Cadastrar
+              {{this.id? 'Editar' : 'Cadastrar'}}
             </button>
 
             <button [routerLink]="'/projects'" class="mdl-button mdl-button--colored mdl-button--raised" type="button"

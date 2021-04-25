@@ -38,8 +38,6 @@ export class ProjectsComponent implements OnInit {
 
   getById(idProjeto){
     this.project = this.projectService.get(idProjeto,this.projectList);
-    this.projectform.editarProjeto(this.project);
-
   }
 
   projects(){

@@ -8,11 +8,12 @@ import { TicketRoutingModule } from '../ticket/ticket-routing.module';
 import { TicketService } from 'src/app/services/ticket.service';
 import { TicketComponent } from './ticket.component';
 import { TicketInfoComponent } from './ticket-info/ticket-info.component';
+import { CadastroTicketComponent } from './cadastro-ticket/cadastro-ticket.component';
 
 
 
 @NgModule({
-  declarations: [TicketComponent, TicketInfoComponent],
+  declarations: [TicketComponent, TicketInfoComponent, CadastroTicketComponent],
   imports: [
     CommonModule,
     // FormsModule,

@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ProjectsComponent } from './project.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ProjectFormComponent } from '../project-form/project-form.component';
 
 
 const rotasProject: Routes = [

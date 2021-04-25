@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project';
-import { ProjectFormService } from 'src/app/services/project-form.service';
 import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ProjectService } from 'src/app/services/project.service';
 
 
 @Component({
@@ -19,17 +19,33 @@ export class ProjectFormComponent implements OnInit {
 
   mensagensErro: any;
   formProjeto: FormGroup;
+  id: number;
+  projectService: ProjectService;
   projeto: Project;
   projeto2: Observable <Project>;
+  params: any = {};
+  formCadastro: FormGroup;
   constructor(
     private httpClient: HttpClient,
-    private roteador: Router) {
-
+    private roteador: Router, private activatedRoute: ActivatedRoute,
+    projectService: ProjectService) {
+      this.projectService = projectService;
   }
 
   ngOnInit(): void {
-
-      this.createFormGroup(new Project)
+    this.params = this.activatedRoute.params
+    this.id = this.params.value.id;
+    if (this.params && this.params.value && this.params.value.id) {
+      this.projectService.getById(this.params.value.id)
+        .subscribe(response => {
+          this.createFormGroup(response);
+          this.projeto = response;
+        },
+          errorResponse => alert("PROJETO NÃO EXISTE")
+        );
+    } else {
+      this.createFormGroup(new Project);
+    }
  }
   createFormGroup(data: any) {
     return this.formProjeto = new FormGroup({
@@ -38,11 +54,25 @@ export class ProjectFormComponent implements OnInit {
       status: new FormControl(data.status, []),
     })
   }
+  handleCadastrarProjeto(){
+    if (this.formProjeto.valid) {
+      if (this.id) {
+        this.projectService.atualizar(this.id, this.formProjeto.value).subscribe(projectEdited => {
+          this.createFormGroup(projectEdited);
+        });
+        //após 1 segundo, redireciona para a rota de projetos
+        setTimeout(() => {
+          this.roteador.navigate(['/projects']);
+        }, 100);
+        alert("Projeto atualizado com sucesso");
+      } else {
+        this.cadastrarProjeto();
+      }
 
-  editarProjeto(project) {
-    this.projeto = project;
-    this.createFormGroup(project);
-    console.log("oque tem aqui nessa porra: ", this.formProjeto.value)
+    }
+    else {
+      this.validaCampos(this.formProjeto);
+    }
   }
 
   cadastrarProjeto() {

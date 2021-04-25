@@ -31,10 +31,6 @@ const rotas: Routes = [
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
   },
   {
-    path: 'edit-user',
-    loadChildren: () => import('./modules/edit-user/edit-user.module').then(m => m.EditUserModule)
-  },
-  {
     path: 'inbox',
     // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/caixa-de-entrada/caixa-de-entrada.module').then(m => m.CaixaDeEntradaModule)
@@ -74,7 +70,11 @@ const rotas: Routes = [
     // canActivate: [AuthGuard],
     loadChildren: () => import('./modules/ticket/ticket-info/ticket-info.module').then(m => m.TicketInfoModule)
   },
-
+  {
+    path: 'tickets/cadastro-ticket',
+    // canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/ticket/cadastro-ticket/cadastro-ticket.module').then(m => m.CadastroTicketModule)
+  },
 
 
   // {

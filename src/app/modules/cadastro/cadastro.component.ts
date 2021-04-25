@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { map, catchError } from "rxjs/operators";
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsersComponent } from '../user/user.component';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -39,7 +38,9 @@ export class CadastroComponent implements OnInit {
 
 
   constructor(private httpClient: HttpClient,
-    private roteador: Router, private activatedRoute: ActivatedRoute, userService: UserService) {
+    private roteador: Router,
+    private activatedRoute: ActivatedRoute,
+    userService: UserService) {
     this.userService = userService;
   }
 

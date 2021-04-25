@@ -4,6 +4,7 @@ import { Alert } from '../models/alert';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { Project } from '../models/project';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -67,6 +68,16 @@ export class ProjectService {
           }
         )
       )
+  }
+
+
+  getById(id: number) : Observable<Project>{
+    return this.http.get<Project>(this.apiUrl+`${id}`);
+  }
+
+
+  public atualizar(id: number, project:Project) : Observable<Project>{
+    return this.http.put<Project>(this.apiUrl+`${id}`, project);
   }
 
   // PUT /user/:id

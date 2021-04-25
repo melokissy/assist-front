@@ -38,7 +38,7 @@
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{project.createdAt | date:'dd/MM/yyyy'}}</td>
                           <td class="actions columStyle mdl-data-table__cell--non-numeric">
 
-                            <button (click)="this.getById(project.id)" [routerLink]="'/projectForm'" type="button"
+                            <button routerLink="/projectForm/{{project.id}}" type="button"
                               class="mdl-button mdl-button--raised mdl-button--colored"><i
                                 class="material-icons">mode_edit</i></button>
                             <button (click)="this.deleteProject(project.id)" type="button" class="mdl-button mdl-button--raised"
