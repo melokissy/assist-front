@@ -3,13 +3,64 @@
 
   <main class="mdl-layout__content">
 
-    <div class="titulo-pagina">
-      <label>PÁGINA NOVO TICKET EM CONSTRUÇÃO</label>
-      <i class="material-icons">build</i>
+    <section class="user-form-card demo-card-wide mdl-card mdl-shadow--2dp">
 
-    </div>
+      <div class="titulo-form">
+        <label>Cadastrar Ticket</label>
+      </div>
 
-    </main>
+      <div class="page-content">
+        <div class="mdl-grid">
 
+          <form class="formStyle" [formGroup]="formCadastroTicket" (ngSubmit)="cadastrarTicket()">
+            <div class="campoTotal">
+              <div class="filho">
+                <label class="label-1 label-titulo-1">Título</label>
+                <input formControlName="subject" autofocus required type="text" name="subject" class="input-layout">
+              </div>
+              <div class="filho">
+                <label class="label-1">Descrição</label>
+                <textarea formControlName="description" autofocus required type="text" name="description" class="input-layout-2" ></textarea>
+              </div>
+            </div>
+            <!-- SOLICITANTE  -->
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label>Solicitante</label>
 
+                <select class="mdl-textfield__input selector-requester" id="requester" name="requester"
+                  formControlName="requester">
+                  <option value="" disabled>Choose a requester</option>
+                  <option *ngFor="let requester of userList" [ngValue]="requester">
+                    {{ requester.name }}
+                  </option>
+                </select>
+              </div>
+
+            <!-- status -->
+            <!-- <assist-form-group [campo]="formCadastroTicket.get('status')">
+            <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" assistFormField>
+          </assist-form-group> -->
+
+            <div class="mdl-card__actions card-btn">
+              <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised">
+                Cadastrar
+              </button>
+              <button [routerLink]="'/tickets'" class="mdl-button mdl-button--colored mdl-button--raised" type="button"
+                style="margin-left: 10px;" ngClick=limparUsers()>
+                cancelar
+              </button>
+            </div>
+
+            <ul *ngIf="mensagensErro" class="mdl-textfield is-invalid">
+              <li *ngFor="let erro of mensagensErro" class="mdl-textfield__error">
+                {{erro.message}}: {{erro.value}}
+              </li>
+            </ul>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
 </div>

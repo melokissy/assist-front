@@ -41,6 +41,7 @@ export class TicketService {
         )
       )
   }
+
   newTicket(ticketApi) {
     return new Ticket({
       subject: ticketApi.subject,
@@ -64,6 +65,19 @@ export class TicketService {
     return this.tickets
       .filter(ticket => ticket.id === id)
       .pop();
+  }
+
+  // POST /projects
+  cadastrarTicket(ticket: Ticket) {
+    return this.http
+      .post(this.apiUrl+'cadastro-ticket', ticket)
+      .pipe<Ticket>(
+        map(
+          (user: any) => {
+            return this.newTicket(ticket);
+          }
+        )
+      )
   }
 
   // GET
