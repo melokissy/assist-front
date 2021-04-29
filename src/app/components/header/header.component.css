@@ -49,13 +49,13 @@
   pointer-events: all;
  }
  .mdl-layout-title{
-   background-color: #008080;
+   background-color: #444444;
    color: white;
    font-style: normal;
  }
 
  .headerGlobal__userInfo {
-  background-color: #008080 !important;
+  background-color: #444444 !important;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -77,3 +77,7 @@
   font-size: 18px;
   margin: 0;
  }
+
+ .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+   color: #293846;
+  }

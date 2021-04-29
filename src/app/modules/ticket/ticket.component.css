@@ -23,6 +23,7 @@
 	 float: right;
 	 margin-right: 50px;
 	 color: white;
+   background-color: rgb(0, 179, 0);
 }
  .titulo {
 	 font-size: 13px;
@@ -8045,4 +8046,7 @@
 }
  .sb-sidenav-light .sb-sidenav-footer {
 	 background-color: #e9ecef;
+}
+.mdl-button--raised.mdl-button--colored:hover {
+    background: rgb(1, 150, 1);
 }

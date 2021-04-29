@@ -67,13 +67,13 @@ export class TicketService {
       .pop();
   }
 
-  // POST /projects
+  // POST /tickets
   cadastrarTicket(ticket: Ticket) {
     return this.http
       .post(this.apiUrl+'cadastro-ticket', ticket)
       .pipe<Ticket>(
         map(
-          (user: any) => {
+          (ticket: any) => {
             return this.newTicket(ticket);
           }
         )

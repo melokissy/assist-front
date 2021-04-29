@@ -46,7 +46,16 @@ export class CadastroTicketComponent implements OnInit {
       subject: new FormControl( data.subject, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(data.description, [Validators.required]),
       requester: new FormControl(this.userList),
+      type: new FormControl(data.type, [Validators.required]),
+      priority: new FormControl(data.priority, [Validators.required]),
+      project_id: new FormControl(data.project_id, [Validators.required])
     })
+  }
+  get subject(): any {
+    return this.formCadastroTicket.get('subject');
+  }
+  setValue() {
+    this.formCadastroTicket.setValue({first: 'Carson', last: 'Drew'});
   }
 
   limparUsers(){
@@ -71,6 +80,8 @@ export class CadastroTicketComponent implements OnInit {
         //caso erros
         this.mensagensErro = responseError.error.body;
       })
+    } else{
+      alert('PREENCHER CAMPOS OBRIGATÓRIOS');
     }
   }
 
@@ -85,7 +96,6 @@ export class CadastroTicketComponent implements OnInit {
     this.projectService.listar().subscribe( projects => {
       this.projectList = projects;
       this.createFormGroup(new Ticket);
-
     });
   }
 
