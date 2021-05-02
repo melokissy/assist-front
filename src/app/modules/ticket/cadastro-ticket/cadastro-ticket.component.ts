@@ -43,12 +43,12 @@ export class CadastroTicketComponent implements OnInit {
 
   createFormGroup(data: any) {
     return this.formCadastroTicket = new FormGroup({
-      subject: new FormControl( data.subject, [Validators.required, Validators.minLength(3)]),
-      description: new FormControl(data.description, [Validators.required]),
+      subject: new FormControl( '', [Validators.required, Validators.minLength(3)]),
+      description: new FormControl('', [Validators.required]),
       requester: new FormControl(this.userList),
-      type: new FormControl(data.type, [Validators.required]),
-      priority: new FormControl(data.priority, [Validators.required]),
-      project_id: new FormControl(data.project_id, [Validators.required])
+      type: new FormControl('', [Validators.required]),
+      priority: new FormControl('', [Validators.required]),
+      project: new FormControl('', [Validators.required])
     })
   }
   get subject(): any {

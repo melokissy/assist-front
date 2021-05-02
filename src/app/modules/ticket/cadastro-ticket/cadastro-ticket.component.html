@@ -17,28 +17,35 @@
 
       <div class="page-content">
         <div class="mdl-grid">
-
           <form class="formStyle" [formGroup]="formCadastroTicket" (ngSubmit)="cadastrarTicket()">
-            <div class="campoTotal">
-              <div class="filho">
-                <label class="label-1 label-titulo-1">Título</label>
-                <label style="color:red;padding-left:2px;vertical-align:central">*</label>
-                <input formControlName="subject" autofocus required type="text" id="subject" name="subject" class="input-layout">
-              </div>
-              <table>
-                <tr>
-                  <!-- PRIORIDADE  -->
-                  <td> <label class="label-1 label-titulo-1">Prioridade</label>
-                    <label style="color:red;padding-left:2px;vertical-align:central">*</label>
-                  </td>
-                  <td> <select class="mdl-textfield__input selector-priority" id="priority" name="priority"
-                      formControlName="priority">
-                      <option></option>
-                      <option value="Cliente">Alta</option>
-                      <option value="Tecnico">Média</option>
-                      <option value="Administrador">Baixa</option>
-                    </select></td>
-                </tr>
+          <table>
+            <assist-form-group [campo]="formCadastroTicket.get('subject')">
+              <tr>
+                <!-- TITULO  -->
+                <td> <label class="label-1 label-titulo-1">Título</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td>  <input formControlName="subject" autofocus required type="text" id="subject" name="subject"
+                  class="input-layout"></td>
+              </tr>
+            </assist-form-group>
+
+
+                <assist-form-group [campo]="formCadastroTicket.get('priority')">
+                  <tr>
+                    <!-- PRIORIDADE  -->
+                    <td> <label class="label-1 label-titulo-1">Prioridade</label>
+                      <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                    </td>
+                    <td> <select class="mdl-textfield__input selector-priority" id="priority" name="priority"
+                        formControlName="priority">
+                        <option></option>
+                        <option value="Alta">Alta</option>
+                        <option value="Media">Média</option>
+                        <option value="Baixa">Baixa</option>
+                      </select></td>
+                  </tr>
+                </assist-form-group>
                 <tr>
                   <!-- TIPO  -->
                   <td> <label class="label-1 label-titulo-1">Tipo</label>
@@ -47,17 +54,17 @@
                   <td> <select class="mdl-textfield__input selector-priority" id="type" name="type"
                       formControlName="type">
                       <option></option>
-                      <option value="Cliente">Solicitação</option>
-                      <option value="Tecnico">Problema</option>
-                      <option value="Administrador">Dúvida</option>
+                      <option value="Solicitação">Solicitação</option>
+                      <option value="Problema">Problema</option>
+                      <option value="Dúvida">Dúvida</option>
                     </select></td>
                 </tr>
                 <tr>
                   <!-- PROJETO  -->
                   <td><label class="label-1 label-titulo-1">Projeto</label> <label
                       style="color:red;padding-left:2px;vertical-align:central">*</label></td>
-                  <td> <select class="mdl-textfield__input selector-requester" id="project_id" name="project_id"
-                      formControlName="project_id">
+                  <td> <select class="mdl-textfield__input selector-requester" id="project" name="project"
+                      formControlName="project">
                       <option value="" disabled>Choose a project</option>
                       <option *ngFor="let project of projectList" [ngValue]="project">
                         {{ project.name }}
@@ -82,10 +89,10 @@
                   <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                   <td>
                     <textarea formControlName="description" autofocus required type="text" name="description"
-                    class="input-layout-2"></textarea></td>
+                      class="input-layout-2"></textarea>
+                  </td>
                 </tr>
               </table>
-            </div>
 
             <!-- status -->
             <!-- <assist-form-group [campo]="formCadastroTicket.get('status')">

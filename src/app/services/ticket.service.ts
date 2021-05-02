@@ -14,6 +14,7 @@ import { Counter } from '../models/counter';
 export class TicketService {
 
   apiUrl = `${environment.apiUrl}tickets/`;
+  apiUrlCadastro = `${environment.apiUrl}tickets`;
   apiUrlpendentes = `${environment.apiUrl}tickets/tickets-pendentes`;
   apiUrlVencidos = `${environment.apiUrl}tickets/tickets-vencidos`;
   apiUrlVencendo = `${environment.apiUrl}tickets/tickets-vencendo`;
@@ -50,13 +51,14 @@ export class TicketService {
       type: ticketApi.type,
       priority: ticketApi.priority,
       status: ticketApi.status,
-      project_id: ticketApi.project_id,
+      project: ticketApi.project,
       responsible: ticketApi.responsible,
       createdAt: ticketApi.createdAt,
       editedAt: ticketApi.editedAt,
       closeAt: ticketApi.closeAt,
       dueDate: ticketApi.dueDate,
-      id: ticketApi.id
+      id: ticketApi.id,
+      number: ticketApi.number
     })
   }
 
@@ -70,7 +72,7 @@ export class TicketService {
   // POST /tickets
   cadastrarTicket(ticket: Ticket) {
     return this.http
-      .post(this.apiUrl+'cadastro-ticket', ticket)
+      .post(this.apiUrlCadastro, ticket)
       .pipe<Ticket>(
         map(
           (ticket: any) => {

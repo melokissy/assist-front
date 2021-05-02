@@ -1,0 +1,105 @@
+.titulo-form{
+  font-family: Roboto;
+  font-size: 20px;
+  margin-left: 26px;
+  margin-top: 30px;
+  color: #293846;
+  margin-bottom: 20px;
+  font-weight: 550;
+
+}
+.titulo-form2{
+  font-family: Roboto;
+  font-size: 20px;
+  margin-left: 26px;
+  margin-top: 0;
+  color: #293846;
+  margin-bottom: 20px;
+  font-weight: 550;
+
+}
+.subtitulo-form{
+  font-family: Roboto;
+  font-size: 15px;
+  margin-left: 26px;
+  margin-top: 5px;
+  color: #293846;
+  margin-bottom: 10px;
+}
+.linha{
+  width: 95%;
+  margin-left: 26px;
+}
+section.user-form-card {
+  max-width: 96%;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+  align-items: stretch;
+  margin-top: 30px;
+  padding-top: 0%;
+}
+.formStyle{
+  margin-top: 15px;
+  margin-left: 20px;
+}
+.card-btn{
+  padding-bottom: 30px;
+}
+.selector-requester{
+  z-index: 1000;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  width: 400px;
+  border-radius: 5px;
+
+}
+.selector-priority{
+  z-index: 1000;
+  margin-left: 20px;
+  margin-top: 15px;
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  width: 200px;
+  border-radius: 5px;
+}
+.label-1{
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: 550;
+}
+.input-layout{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 60px;
+  margin-bottom: 2px;
+  width: 900px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 30px;
+  border-radius: 5px;
+}
+.input-layout-2{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 20px;
+  margin-top: 15px;
+  width: 900px;
+  height: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  border-radius: 5px;
+}
+.btn-cancelar{
+  background-color: crimson;
+}
+.btn-cadastrar{
+  background-color: rgb(29, 116, 247);
+}
+
+
+

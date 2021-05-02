@@ -10,12 +10,13 @@ export class Ticket {
   type: string;
   priority: string;
   status: string;
-  project_id: Project;
+  project: Project;
   responsible: User;
   createdAt: Date;
   editedAt: Date;
   closeAt: Date;
   dueDate: Date;
+  number: string;
 
   constructor(values = {}) {
     Object.assign(this, values);
