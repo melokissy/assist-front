@@ -43,7 +43,7 @@
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.dueDate |
                             date:'dd/MM/yyyy'}}</td>
                           <td class="actions columStyle mdl-data-table__cell--non-numeric">
-                            <button [routerLink]="'/tickets/ticketInfo'" type="button"
+                            <button routerLink="/tickets/ticketInfo/{{ticket.id}}" type="button"
                               class="mdl-button mdl-button--raised mdl-button--colored"><i
                                 class="material-icons">search</i></button>
                           </td>

@@ -23,7 +23,7 @@ export class TicketService {
   public lastId = 0;
 
   private tickets: Ticket[] = [];
-   counter:Counter;
+  counter: Counter;
 
   constructor(private http: HttpClient) { }
 
@@ -69,6 +69,10 @@ export class TicketService {
       .pop();
   }
 
+  getById(id: number) : Observable<Ticket>{
+    return this.http.get<Ticket>(this.apiUrl+`${id}`);
+  }
+
   // POST /tickets
   cadastrarTicket(ticket: Ticket) {
     return this.http
@@ -82,20 +86,26 @@ export class TicketService {
       )
   }
 
+  //DELETE
+  public delete(id: number) {
+    this.tickets = this.tickets.filter(ticket => ticket.id !== id);
+    return this;
+  }
+
   // GET
   listarCounter() {
     return this.http
-    .get(this.apiUrlpendentes)
-    .pipe<Counter[]>(
-      map(
-        (response: any[]) => {
-          return response
-            .map(
-              counterApi => this.newCounter(counterApi)
-            )
-        }
+      .get(this.apiUrlpendentes)
+      .pipe<Counter[]>(
+        map(
+          (response: any[]) => {
+            return response
+              .map(
+                counterApi => this.newCounter(counterApi)
+              )
+          }
+        )
       )
-    )
   }
   newCounter(counterApi) {
     return new Counter({
@@ -104,7 +114,7 @@ export class TicketService {
       qtdConcluido: counterApi.qtdConcluidos,
       qtdApropriado: counterApi.qtdApropriados
     })
-   }
+  }
 
   // GET /tickets/tickets-vencidos
   listarVencidos() {
@@ -122,19 +132,19 @@ export class TicketService {
       )
   }
 
-    // GET /tickets/tickets-vencendo
-    listarVencendo() {
-      return this.http
-        .get(this.apiUrlVencendo)
-        .pipe<Ticket[]>(
-          map(
-            (response: any[]) => {
-              return response
-                .map(
-                  ticketApi => this.newTicket(ticketApi)
-                )
-            }
-          )
+  // GET /tickets/tickets-vencendo
+  listarVencendo() {
+    return this.http
+      .get(this.apiUrlVencendo)
+      .pipe<Ticket[]>(
+        map(
+          (response: any[]) => {
+            return response
+              .map(
+                ticketApi => this.newTicket(ticketApi)
+              )
+          }
         )
-    }
+      )
+  }
 }

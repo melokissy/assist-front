@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit {
           this.ticketService.listarVencidos()
             .subscribe(data => {
               this.ticketsVencidos = data;
+              console.log(data)
               this.ticketService.listarVencendo()
               .subscribe( vencendo => {
                 this.ticketsVencendo = vencendo;

@@ -7,7 +7,7 @@ import { CadastroTicketComponent } from './cadastro-ticket/cadastro-ticket.compo
 
 const rotasTickets: Routes = [
   { path: '', component: TicketComponent },
-  { path: 'ticketInfo', component: TicketInfoComponent },
+  { path: 'ticketInfo/:id', component: TicketInfoComponent },
   { path: 'cadastro-ticket', component: CadastroTicketComponent }
 
 ]
