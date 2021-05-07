@@ -30,6 +30,14 @@
           <form class="formStyle" [formGroup]="">
             <table>
               <tr>
+                <!-- ABERTURA  -->
+                <td> <label class="label-1 label-titulo-1">Data de criação</label>
+                </td>
+                <td> <input class="data" value="{{ticket.createdAt |
+                  date:'dd/MM/yyyy'}}" disabled>
+                </td>
+              </tr>
+              <tr>
                 <!-- PRIORIDADE  -->
                 <td> <label class="label-1 label-titulo-1">Prioridade</label>
                 </td>
@@ -52,6 +60,13 @@
                     <option>Dúvida</option>
                     <option>Problema</option>
                   </select></td>
+              </tr>
+              <tr>
+                <!-- STATUS  -->
+                <td> <label class="label-1 label-titulo-1">Status</label>
+                </td>
+                <td> <input class="status-input" value="{{ticket.status}}" disabled>
+                </td>
               </tr>
               <!-- SOLICITANTE  -->
               <tr>
@@ -94,13 +109,17 @@
                     class="input-layout-2" value="{{ticket.description}}" disabled>{{ticket.description}}</textarea>
                 </td>
               </tr>
+
+            </table>
+            <hr class="linha2">
+            <table>
               <tr>
                 <!-- COMENTÁRIO  -->
                 <label class="label-1">Comentário</label>
 
                 <td>
                   <textarea formControlName="comment" autofocus required type="text" name="comment"
-                    class="input-layout-2"></textarea>
+                    class="input-layout-3"></textarea>
                 </td>
               </tr>
             </table>
