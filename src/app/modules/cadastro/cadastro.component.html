@@ -5,42 +5,75 @@
 
     <section class="user-form-card demo-card-wide mdl-card mdl-shadow--2dp">
 
-    <div class="titulo-form">
-      <label >Cadastrar Usuário</label>
-    </div>
+      <div class="titulo-form">
+        <label>Cadastrar Usuário</label>
+      </div>
 
-    <div class="page-content">
-      <div class="mdl-grid">
+      <hr class="linha">
 
-        <form class="formStyle" [formGroup]="formCadastro" (ngSubmit)="handleCadastrarUsuario()">
 
-          <assist-form-group [campo]="formCadastro.get('name')">
-            <input formControlName="name" autofocus required type="text" name="name" assistFormField>
-            <!-- se tiver erros, entao... -->
-            <div *ngIf="formCadastro.get('name').errors">
-              <!-- errors.required... -->
-              <span class="mdl-textfield__error" *ngIf="formCadastro.get('name').errors.required">
-                Informar um nome é obrigatório!
-              </span>
-              <!-- errors.minlength... -->
-              <span class="mdl-textfield__error" *ngIf="formCadastro.get('name').errors.minlength">
-                Você preencheu {{ formCadastro.get('name').errors.minlength.actualLength }} caracteres
-                de {{ formCadastro.get('name').errors.minlength.requiredLength }}
-              </span>
-            </div>
-          </assist-form-group>
+      <div class="page-content">
+        <div class="mdl-grid">
 
-          <assist-form-group [campo]="formCadastro.get('email')">
-            <input formControlName="email" required type="email" name="email" assistFormField>
-            <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
-          </assist-form-group>
+          <form class="formStyle" [formGroup]="formCadastro" (ngSubmit)="handleCadastrarUsuario()">
 
-          <assist-form-group [campo]="formCadastro.get('password')">
-            <input formControlName="password" type="password" name="password" assistFormField>
-            <span class="mdl-textfield__error">Informar uma senha é obrigatório!</span>
-          </assist-form-group>
+            <table>
+              <assist-form-group [campo]="formCadastro.get('Name')">
+                <tr>
+                  <!-- NOME  -->
+                  <td> <label class="label-1 label-titulo-1">Nome</label>
+                    <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                  </td>
+                  <td> <input formControlName="name" autofocus required type="text" id="name" name="name"
+                      class="input-name"></td>
+                </tr>
+              </assist-form-group>
 
-          <assist-form-group [campo]="formCadastro.get('userIcon')">
+              <assist-form-group [campo]="formCadastro.get('Email')">
+                <tr>
+                  <!-- email  -->
+                  <td> <label class="label-1 label-titulo-1">Email</label>
+                    <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                  </td>
+                  <td> <input formControlName="email" autofocus required type="text" id="email" name="email"
+                      class="input-email">
+                    <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
+                  </td>
+                </tr>
+              </assist-form-group>
+
+              <!-- password  -->
+              <!-- <assist-form-group [campo]="formCadastro.get('Password')">
+              <tr>
+
+                <td> <label class="label-1 label-titulo-1">Senha</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td> <input formControlName="password" autofocus required type="text" id="password" name="password"
+                    class="input-senha">
+                    <span class="mdl-textfield__error">Informar um nome de senha é obrigatório!</span>
+                  </td>
+              </tr>
+            </assist-form-group> -->
+
+              <tr>
+                <!-- Perfil  -->
+                <td> <label class="label-1 label-titulo-1">Perfil</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td> <select class="mdl-textfield__input selector-type" id="profile" name="profile"
+                    formControlName="profile">
+                    <option hidden></option>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Tecnico">Técnico</option>
+                    <option value="Administrador">Administrador</option>
+                  </select></td>
+              </tr>
+
+
+            </table>
+
+            <!-- <assist-form-group [campo]="formCadastro.get('userIcon')">
             <input formControlName="userIcon" type="text" name="Avatar" assistFormField>
             <span class="mdl-textfield__error" *ngIf="formCadastro.get('userIcon').hasError('required')">
               Informar uma url com um avatar é obrigatório!
@@ -56,45 +89,39 @@
             <span class="mdl-textfield__error" *ngIf="formCadastro.get('userIcon').hasError('urlInvalida')">
               Erro na URL informada 😧
             </span>
-          </assist-form-group>
+          </assist-form-group> -->
 
-          <assist-form-group [campo]="formCadastro.get('profile')">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <select class="mdl-textfield__input" id="profile" name="profile" formControlName="profile">
-                <option></option>
-                <option value="Cliente">Cliente</option>
-                <option value="Tecnico">Técnico</option>
-                <option value="Administrador">Administrador</option>
-              </select>
-              <label class="mdl-textfield__label" for="profile">Perfil</label>
+
+
+            <!-- status -->
+            <assist-form-group [campo]="formCadastro.get('status')">
+              <label class="label-1">Status</label>
+
+              <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" assistFormField>
+              <label>Ativo</label>
+
+            </assist-form-group>
+
+            <div class="mdl-card__actions card-btn">
+              <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar">
+                {{this.id? 'Editar' : 'Cadastrar'}}
+              </button>
+
+              <button [routerLink]="'/users'" class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar"
+                type="button" style="margin-left: 10px;">
+                cancelar
+              </button>
             </div>
-          </assist-form-group>
 
-          <!-- status -->
-          <assist-form-group [campo]="formCadastro.get('status')">
-            <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" assistFormField>
-          </assist-form-group>
+            <ul *ngIf="mensagensErro" class="mdl-textfield is-invalid">
+              <li *ngFor="let erro of mensagensErro" class="mdl-textfield__error">
+                {{erro.message}}: {{erro.value}}
+              </li>
+            </ul>
 
-          <div class="mdl-card__actions card-btn">
-            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar">
-              {{this.id? 'Editar' : 'Cadastrar'}}
-            </button>
-
-            <button [routerLink]="'/users'" class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar" type="button"
-              style="margin-left: 10px;">
-              cancelar
-            </button>
-          </div>
-
-          <ul *ngIf="mensagensErro" class="mdl-textfield is-invalid">
-            <li *ngFor="let erro of mensagensErro" class="mdl-textfield__error">
-              {{erro.message}}: {{erro.value}}
-            </li>
-          </ul>
-
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
     </section>
 
   </main>

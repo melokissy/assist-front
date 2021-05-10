@@ -75,7 +75,7 @@
                         </thead>
                         <tbody>
                           <tr *ngFor="let ticket of this.ticketsVencendo">
-                            <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.number}}</td>
+                            <td class="columStyle mdl-data-table__cell--non-numeric ticket"  routerLink="/tickets/ticketInfo/{{ticket.id}}">{{ticket.number}}</td>
                             <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.subject}}</td>
                             <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.dueDate |
                               date:'dd/MM/yyyy'}}
@@ -104,7 +104,7 @@
                         </thead>
                         <tbody>
                           <tr *ngFor="let ticket of this.ticketsVencidos">
-                            <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.number}}</td>
+                            <td class="columStyle mdl-data-table__cell--non-numeric ticket"  routerLink="/tickets/ticketInfo/{{ticket.id}}">{{ticket.number}}</td>
                             <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.subject}}</td>
                             <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.dueDate |
                               date:'dd/MM/yyyy'}}

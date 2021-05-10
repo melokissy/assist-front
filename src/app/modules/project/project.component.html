@@ -21,7 +21,7 @@
                   <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
-                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Código</th>
+                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Número</th>
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Nome</th>
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Descrição</th>
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Status</th>
@@ -30,7 +30,7 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let project of this.projectList">
-                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.id}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.number}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{project.name}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{project.description}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric" *ngIf="!project.status">Desativado</td>

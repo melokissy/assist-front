@@ -6,6 +6,54 @@
   color: #293846;
   margin-bottom: 20px;
 }
+.linha{
+  width: 95%;
+  margin-left: 26px;
+}
+.label-1{
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: 550;
+}
+.input-name{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 61px;
+  width: 650px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 30px;
+  border-radius: 5px;
+}
+.input-email{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 61px;
+  width: 350px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 30px;
+  border-radius: 5px;
+}
+.input-senha{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 61px;
+  width: 250px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 30px;
+  border-radius: 5px;
+}
+.selector-type{
+  z-index: 1000;
+  margin-left: -185px;
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  width: 200px;
+  border-radius: 5px;
+}
 section.user-form-card {
   max-width: 96%;
   width: 100%;
@@ -29,4 +77,3 @@ section.user-form-card {
 .btn-cadastrar{
   background-color: rgb(29, 116, 247);
 }
-

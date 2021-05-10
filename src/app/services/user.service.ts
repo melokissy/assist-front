@@ -43,7 +43,8 @@ export class UserService {
       email: userApi.email,
       status: userApi.status,
       id: userApi.id,
-      profile: userApi.profile
+      profile: userApi.profile,
+      password: userApi.password
     })
   }
 
