@@ -14,7 +14,7 @@ export class Ticket {
   responsible: User;
   createdAt: Date;
   editedAt: Date;
-  closeAt: Date;
+  closedAt: Date;
   dueDate: Date;
   number: string;
 

@@ -104,5 +104,11 @@ export class TicketInfoComponent implements OnInit {
       this.ticketService.delete(id);
     }
 
-
+    public resolverTicket(){
+      if(this.ticketId){
+        this.ticketService.resolverTicket(this.ticketId, this.ticket).subscribe(ticketResolvido => {
+          this.createFormGroup(ticketResolvido);
+        });
+      }
+    }
 }

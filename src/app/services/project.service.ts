@@ -81,24 +81,6 @@ export class ProjectService {
     return this.http.put<Project>(this.apiUrl+`${id}`, project);
   }
 
-  // PUT /user/:id
-  public update(id: number, values: {}) {
-    const project = this.get(id, this.projects);
-
-    if (!project) {
-      return null;
-    }
-
-    const updatedProject = new Project(values);
-    const alert = this.validate(updatedProject, true);
-
-    if (alert.isError()) {
-      return alert;
-    }
-
-    Object.assign(project, values);
-  }
-
   //DELETE
   public delete(id: number) {
     this.projects = this.projects.filter(project => project.id !== id);

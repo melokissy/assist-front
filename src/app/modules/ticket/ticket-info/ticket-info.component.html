@@ -10,8 +10,7 @@
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Anexar
           Arquivos</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Apropriar</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Fechar
-          Ticket</button>
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" (click)="resolverTicket()">Resolver Ticket</button>
       </div>
       <hr class="linha">
 
@@ -34,6 +33,14 @@
                 <td> <label class="label-1 label-titulo-1">Data de criação</label>
                 </td>
                 <td> <input class="data" value="{{ticket.createdAt |
+                  date:'dd/MM/yyyy'}}" disabled>
+                </td>
+              </tr>
+              <tr>
+                <!-- Fechamento  -->
+                <td> <label class="label-1 label-titulo-1">Data de fechamento</label>
+                </td>
+                <td> <input class="data" value="{{ticket.closedAt |
                   date:'dd/MM/yyyy'}}" disabled>
                 </td>
               </tr>

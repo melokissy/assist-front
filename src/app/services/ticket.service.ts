@@ -14,6 +14,7 @@ import { Counter } from '../models/counter';
 export class TicketService {
 
   apiUrl = `${environment.apiUrl}tickets/`;
+  apiUrlResolve = `${environment.apiUrl}tickets/ticket-resolve/`;
   apiUrlCadastro = `${environment.apiUrl}tickets`;
   apiUrlpendentes = `${environment.apiUrl}tickets/tickets-pendentes`;
   apiUrlVencidos = `${environment.apiUrl}tickets/tickets-vencidos`;
@@ -55,12 +56,18 @@ export class TicketService {
       responsible: ticketApi.responsible,
       createdAt: ticketApi.createdAt,
       editedAt: ticketApi.editedAt,
-      closeAt: ticketApi.closeAt,
+      closedAt: ticketApi.closedAt,
       dueDate: ticketApi.dueDate,
       id: ticketApi.id,
       number: ticketApi.number
     })
   }
+
+   // PUT /ticket/ticket-resolve/:id
+   public resolverTicket(id: number, ticket: Ticket) : Observable<Ticket>{
+    return this.http.put<Ticket>(this.apiUrlResolve+`${id}`, ticket);
+  }
+
 
   // GET /tickets/:id
   public get(id: number, projects: any): Ticket {
