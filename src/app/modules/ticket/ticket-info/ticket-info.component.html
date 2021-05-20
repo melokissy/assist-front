@@ -10,7 +10,8 @@
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Anexar
           Arquivos</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Apropriar</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" (click)="resolverTicket()">Resolver Ticket</button>
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
+          (click)="resolverTicket()">Resolver Ticket</button>
       </div>
       <hr class="linha">
 
@@ -78,13 +79,16 @@
               <!-- SOLICITANTE  -->
               <tr>
                 <td><label class="label-1 label-titulo-1">Solicitante</label> </td>
-                <td> <select class="mdl-textfield__input selector-requester" id="requester" name="requester"
-                    formControlName="requester" disabled>
-                    <option hidden>{{ticket.requester.name}}</option>
-                    <option *ngFor="let requester of userList" [ngValue]="requester">
-                      {{ requester.name }}
-                    </option>
-                  </select></td>
+                <td>
+                  <input class="data-2" value="{{ticket.requester.name}}" disabled>
+                </td>
+              </tr>
+              <!-- CONTATO  -->
+              <tr>
+                <td><label class="label-1 label-titulo-1">Contato</label> </td>
+                <td>
+                  <input class="data-3" value="{{ticket.requester.email}}" disabled>
+                </td>
               </tr>
               <tr>
                 <!-- RESPONSAVEL  -->

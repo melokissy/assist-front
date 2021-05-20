@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/project';
 import { Ticket } from 'src/app/models/ticket';
@@ -31,31 +31,33 @@ export class CadastroTicketComponent implements OnInit {
     private httpClient: HttpClient,
     private roteador: Router, private activatedRoute: ActivatedRoute,
     ticketService: TicketService, userService: UserService,
-    projectService: ProjectService) {
+    projectService: ProjectService, private fb: FormBuilder) {
     this.ticketService = ticketService;
     this.userService = userService;
     this.projectService = projectService;
+    this.createFormGroup();
   }
 
   ngOnInit(): void {
     this.getUsers();
   }
 
-  createFormGroup(data: any) {
-    return this.formCadastroTicket = new FormGroup({
-      subject: new FormControl( '', [Validators.required, Validators.minLength(3)]),
-      description: new FormControl('', [Validators.required]),
-      requester: new FormControl(this.userList),
-      type: new FormControl('', [Validators.required]),
-      priority: new FormControl('', [Validators.required]),
-      project: new FormControl('', [Validators.required])
+  createFormGroup() {
+    return this.formCadastroTicket = this.fb.group({
+      subject:  [ '', [Validators.required]],
+      description:  ['', [Validators.required]],
+      requester:  this.fb.group({
+        name:  ['', [Validators.required]],
+        email:  ['', [Validators.required]],
+        cpf:  ['', [Validators.required, Validators.minLength(11)]]
+      }),
+      type:  ['', [Validators.required]],
+      priority:  ['', [Validators.required]],
+      project:  ['', [Validators.required]]
     })
   }
   get subject(): any {
     return this.formCadastroTicket.get('subject');
-  }
-  setValue() {
-    this.formCadastroTicket.setValue({first: 'Carson', last: 'Drew'});
   }
 
   limparUsers(){
@@ -70,7 +72,10 @@ export class CadastroTicketComponent implements OnInit {
         this.ticket = data;
 
         this.formCadastroTicket.reset();
+        if(this.ticket != null){
+          alert('CADASTRADO COM SUCESSO');
 
+        }
         //após 1 segundo, redireciona para a rota de login
         setTimeout(() => {
           this.roteador.navigate(['/tickets']);
@@ -95,7 +100,7 @@ export class CadastroTicketComponent implements OnInit {
   getProjects(){
     this.projectService.listar().subscribe( projects => {
       this.projectList = projects;
-      this.createFormGroup(new Ticket);
+      this.createFormGroup();
     });
   }
 

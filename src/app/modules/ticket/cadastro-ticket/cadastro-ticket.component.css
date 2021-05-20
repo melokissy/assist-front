@@ -38,8 +38,8 @@ section.user-form-card {
 }
 .selector-requester{
   z-index: 1000;
-  margin-top: 15px;
-  margin-left: -185px;
+  margin-top: 10px;
+  margin-left: 15px;
   font-size: 15px;
   font-family: Roboto;
   border: 1px solid rgba(0, 0, 0, 0.336);
@@ -49,56 +49,86 @@ section.user-form-card {
 }
 .selector-priority{
   z-index: 1000;
-  margin-left: 28px;
+  margin-left: 15px;
   font-size: 15px;
   font-family: Roboto;
   border: 1px solid rgba(0, 0, 0, 0.336);
   width: 200px;
   border-radius: 5px;
+  margin-top: 10px;
+
 }
 .selector-project{
   z-index: 1000;
-  margin-left: -185px;
+  margin-left: 15px;
   font-size: 15px;
   font-family: Roboto;
   border: 1px solid rgba(0, 0, 0, 0.336);
   width: 300px;
   border-radius: 5px;
+  margin-top: 10px;
+
 }
 .selector-type{
   z-index: 1000;
-  margin-left: -185px;
+  margin-left: 15px;
   font-size: 15px;
   font-family: Roboto;
   border: 1px solid rgba(0, 0, 0, 0.336);
   width: 200px;
   border-radius: 5px;
+  margin-top: 10px;
+
 }
 .label-1{
   font-size: 16px;
   font-family: Roboto;
   font-weight: 550;
+  margin-bottom: 15px;
 }
 .input-layout{
   font-size: 15px;
   font-family: Roboto;
-  margin-left: 61px;
+  margin-left: 15px;
   width: 900px;
   color: black;
   border: 1px solid rgba(0, 0, 0, 0.336);
   height: 30px;
   border-radius: 5px;
+  margin-top: 10px;
 }
 .input-layout-2{
   font-size: 15px;
   font-family: Roboto;
-  margin-left: -185px;
+  margin-left: 15px;
   margin-top: 15px;
   width: 900px;
   height: 100px;
   border: 1px solid rgba(0, 0, 0, 0.336);
   border-radius: 5px;
-  margin-bottom: 25px;
+  margin-top: 10px;
+}
+.input-layout-3{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 15px;
+  width: 400px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 10px;
+
+}
+.input-layout-cpf{
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 25px;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-top: 10px;
+
 }
 .btn-cancelar{
   background-color: crimson;

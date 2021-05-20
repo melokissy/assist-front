@@ -108,6 +108,8 @@ export class TicketInfoComponent implements OnInit {
       if(this.ticketId){
         this.ticketService.resolverTicket(this.ticketId, this.ticket).subscribe(ticketResolvido => {
           this.createFormGroup(ticketResolvido);
+          alert('Ticket fechado com sucesso');
+
         });
       }
     }

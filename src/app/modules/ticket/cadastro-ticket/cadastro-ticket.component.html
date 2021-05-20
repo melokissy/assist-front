@@ -19,7 +19,6 @@
         <div class="mdl-grid">
           <form class="formStyle" [formGroup]="formCadastroTicket" (ngSubmit)="cadastrarTicket()">
             <table>
-              <assist-form-group [campo]="formCadastroTicket.get('Titulo')">
                 <tr>
                   <!-- TITULO  -->
                   <td> <label class="label-1 label-titulo-1">Título</label>
@@ -28,7 +27,6 @@
                   <td> <input formControlName="subject" autofocus required type="text" id="subject" name="subject"
                       class="input-layout"></td>
                 </tr>
-              </assist-form-group>
               <tr>
                 <!-- TIPO  -->
                 <td> <label class="label-1 label-titulo-1">Tipo</label>
@@ -42,7 +40,6 @@
                     <option value="Dúvida">Dúvida</option>
                   </select></td>
               </tr>
-              <assist-form-group [campo]="formCadastroTicket.get('priority')">
                 <tr>
                   <!-- PRIORIDADE  -->
                   <td> <label class="label-1 label-titulo-1">Prioridade</label>
@@ -56,8 +53,6 @@
                       <option value="Baixa">Baixa</option>
                     </select></td>
                 </tr>
-              </assist-form-group>
-
               <tr>
                 <!-- PROJETO  -->
                 <td><label class="label-1 label-titulo-1">Projeto</label> <label
@@ -70,8 +65,32 @@
                     </option>
                   </select></td>
               </tr>
-              <tr>
-                <!-- SOLICITANTE  -->
+
+                <tr [formGroup]="formCadastroTicket.get('requester')">
+                  <!-- NOME  -->
+                  <td> <label class="label-1 label-titulo-1">Nome</label>
+                    <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                  </td>
+                  <td> <input formControlName="name" autofocus required type="text" id="name" name="name"
+                      class="input-layout-3"></td>
+                </tr>
+                <tr [formGroup]="formCadastroTicket.get('requester')">
+                  <!-- NOME  -->
+                  <td> <label class="label-1 label-titulo-1">CPF</label>
+                    <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                  </td>
+                  <td> <input formControlName="cpf" autofocus required type="text" id="cpf" name="cpf"
+                      class="input-layout-cpf"></td>
+                </tr>
+                <tr [formGroup]="formCadastroTicket.get('requester')">
+                  <!-- NOME  -->
+                  <td> <label class="label-1 label-titulo-1">Email</label>
+                    <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                  </td>
+                  <td> <input formControlName="email" autofocus required type="email" id="email" name="email"
+                      class="input-layout-cpf"></td>
+                </tr>
+              <!-- <tr> SOLICITANTE
                 <td><label class="label-1 label-titulo-1">Solicitante</label> <label
                     style="color:red;padding-left:2px;vertical-align:central">*</label></td>
                 <td> <select class="mdl-textfield__input selector-requester" id="requester" name="requester"
@@ -81,7 +100,7 @@
                       {{ requester.name }}
                     </option>
                   </select></td>
-              </tr>
+              </tr> -->
               <tr>
                 <!-- DESCRIÇÃO  -->
                 <label class="label-1">Descrição</label>

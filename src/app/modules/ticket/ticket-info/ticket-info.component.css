@@ -52,6 +52,7 @@ section.user-form-card {
 .card-btn{
   padding-bottom: 30px;
 }
+
 .selector-requester{
   z-index: 1000;
   margin-left: 28px;
@@ -63,6 +64,7 @@ section.user-form-card {
   margin-bottom: 15px;
 
 }
+
 .selector-priority{
   z-index: 1000;
   margin-left: 28px;
@@ -92,6 +94,30 @@ section.user-form-card {
   font-family: Roboto;
   border: 1px solid rgba(0, 0, 0, 0.336);
   width: 195px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  height: 23px;
+}
+.data-2{
+  z-index: 1000;
+  margin-left: 28px;
+  margin-top: 14px;
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  width: 442px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  height: 23px;
+}
+.data-3{
+  z-index: 1000;
+  margin-left: 28px;
+  margin-top: 14px;
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  width: 300px;
   border-radius: 5px;
   margin-bottom: 15px;
   height: 23px;

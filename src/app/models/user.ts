@@ -6,6 +6,7 @@ export class User {
   status: boolean;
   password: string;
   profile: string;
+  cpf: string;
 
   constructor(values = {}) {
     Object.assign(this, values);

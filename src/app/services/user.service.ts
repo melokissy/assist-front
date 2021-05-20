@@ -44,7 +44,8 @@ export class UserService {
       status: userApi.status,
       id: userApi.id,
       profile: userApi.profile,
-      password: userApi.password
+      password: userApi.password,
+      cpf: userApi.cpf
     })
   }
 
