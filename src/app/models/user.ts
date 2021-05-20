@@ -7,6 +7,7 @@ export class User {
   password: string;
   profile: string;
   cpf: string;
+  setor: string;
 
   constructor(values = {}) {
     Object.assign(this, values);

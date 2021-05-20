@@ -49,7 +49,8 @@ export class CadastroTicketComponent implements OnInit {
       requester:  this.fb.group({
         name:  ['', [Validators.required]],
         email:  ['', [Validators.required]],
-        cpf:  ['', [Validators.required, Validators.minLength(11)]]
+        cpf:  ['', [Validators.required, Validators.minLength(11)]],
+        setor: ['', [Validators.required]]
       }),
       type:  ['', [Validators.required]],
       priority:  ['', [Validators.required]],

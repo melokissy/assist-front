@@ -90,6 +90,14 @@
                   <td> <input formControlName="email" autofocus required type="email" id="email" name="email"
                       class="input-layout-cpf"></td>
                 </tr>
+                <tr [formGroup]="formCadastroTicket.get('requester')">
+                  <!-- NOME  -->
+                  <td> <label class="label-1 label-titulo-1">Setor</label>
+                    <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                  </td>
+                  <td> <input formControlName="setor" autofocus required type="setor" id="setor" name="setor"
+                      class="input-layout-cpf"></td>
+                </tr>
               <!-- <tr> SOLICITANTE
                 <td><label class="label-1 label-titulo-1">Solicitante</label> <label
                     style="color:red;padding-left:2px;vertical-align:central">*</label></td>
