@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.services';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
+  user: User;
+
   mensagemErro: any;
 
   constructor(private loginService: LoginService
@@ -24,15 +27,15 @@ export class LoginComponent implements OnInit {
 
   handleLogin(formLogin: NgForm) {
     this.mensagemErro = null;
-    // if (formLogin.valid) {
-    //   this.loginService
-    //     .logar(this.login)
-    //     .subscribe(
-    //       () => this.roteador.navigate(['/inbox'])
-    //       , (responseError: HttpErrorResponse) => this.mensagemErro = responseError.error
+    if (formLogin.valid) {
+      this.loginService
+        .logar(this.login)
+        .subscribe(
+          () => this.roteador.navigate(['/inbox'])
+          , (responseError: HttpErrorResponse) => this.mensagemErro = responseError.error
 
-    //     )
-    // }
+        )
+    }
   }
 
 }

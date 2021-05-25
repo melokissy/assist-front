@@ -29,8 +29,10 @@ export class TicketInfoComponent implements OnInit {
   ticketId: number;
   userService: UserService;
   requester: User;
+  responsible: User;
   project: Project;
   userList: User[];
+  responsiblesList: User[];
   projectService: ProjectService;
   projectList: Project[];
   prioridades: string[];
@@ -52,7 +54,6 @@ export class TicketInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.prioridades =  ["Alta","Media","Baixa"];
-    // this.prioridades =  [ {value:"Alta", id:"Alta"},{value:"Alta", id:"Alta"},{value:"Alta", id:"Alta"}];
 
     this.ticketService.getById(this.ticketId).subscribe(data => {
       this.ticket = data;
@@ -64,6 +65,21 @@ export class TicketInfoComponent implements OnInit {
     this.userService.getById(id).subscribe(requester => {
       this.requester = requester;
       this.ticket.requester = requester;
+      this.getResponsible(this.ticket.responsible.id);
+    })
+  }
+
+  getResponsible(id){
+    this.userService.getById(id).subscribe(responsible => {
+      this.responsible = responsible;
+      this.ticket.responsible = responsible;
+      this.getResponsibleList();
+    })
+  }
+
+  getResponsibleList(){
+    this.userService.userByProfile().subscribe(responsible => {
+      this.responsiblesList = responsible;
       this.getProject(this.ticket.project.id);
     })
   }
@@ -82,6 +98,7 @@ export class TicketInfoComponent implements OnInit {
       subject: new FormControl( data.subject, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(data.description, [Validators.required]),
       requester: new FormControl(this.userList),
+      responsible: new FormControl(data.responsible.name),
       type: new FormControl(data.type, [Validators.required]),
       priority: new FormControl( data.priority),
       project: new FormControl(data.project.name, [Validators.required])

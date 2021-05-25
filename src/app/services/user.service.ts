@@ -14,6 +14,7 @@ export class UserService {
   // apiUrl = 'http://localhost:41124/AssistApi/resource/users';
 
   apiUrl = `${environment.apiUrl}users/`;
+  apiUrl_profile = `${environment.apiUrl}users/by-profile`;
 
   public lastId = 0;
 
@@ -36,6 +37,22 @@ export class UserService {
         )
       )
   }
+
+    // GET /users/by-profile
+    userByProfile() {
+      return this.http
+        .get(this.apiUrl_profile)
+        .pipe<User[]>(
+          map(
+            (response: any[]) => {
+              return response
+                .map(
+                  userApi => this.newUser(userApi)
+                )
+            }
+          )
+        )
+    }
 
   newUser(userApi) {
     return new User({

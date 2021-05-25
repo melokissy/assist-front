@@ -39,7 +39,7 @@ export class CadastroTicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUsersByProfile();
   }
 
   createFormGroup() {
@@ -91,8 +91,8 @@ export class CadastroTicketComponent implements OnInit {
     }
   }
 
-  getUsers(){
-    this.userService.listar().subscribe( users => {
+  getUsersByProfile(){
+    this.userService.userByProfile().subscribe( users => {
       this.userList = users;
       this.getProjects();
     });

@@ -6,12 +6,14 @@
     <section class="user-form-card demo-card-wide mdl-card mdl-shadow--2dp">
 
       <div class="mdl-card__actions card-btn">
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Editar</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Anexar
           Arquivos</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Apropriar</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
           (click)="resolverTicket()">Resolver Ticket</button>
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Editar
+          ticket</button>
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Salvar
+          alterações</button>
       </div>
       <hr class="linha">
 
@@ -27,7 +29,7 @@
 
       <div class="page-content">
         <div class="mdl-grid">
-          <form class="formStyle" [formGroup]="">
+          <form class="formStyle" [formGroup]="formTicket">
             <table>
               <tr>
                 <!-- ABERTURA  -->
@@ -95,8 +97,8 @@
                 <td><label class="label-1 label-titulo-1">Responsável</label> </td>
                 <td> <select class="mdl-textfield__input selector-requester" id="responsible" name="responsible"
                     formControlName="responsible">
-                    <option value="" disabled>{{ticket.responsible.name}}</option>
-                    <option *ngFor="let responsible of userList" [ngValue]="responsible">
+                    <option hidden>{{ticket.responsible.name}}</option>
+                    <option *ngFor="let responsible of responsiblesList" [ngValue]="responsible">
                       {{ responsible.name }}
                     </option>
                   </select></td>
@@ -105,7 +107,7 @@
                 <!-- PROJETO  -->
                 <td><label class="label-1 label-titulo-1">Projeto</label> </td>
                 <td> <select class="mdl-textfield__input selector-requester" id="project" name="project"
-                    formControlName="project" disabled>
+                    formControlName="project">
                     <option hidden>{{ticket.project.name}}</option>
                     <option *ngFor="let project of projectList" [ngValue]="project">
                       {{ project.name }}
@@ -123,17 +125,15 @@
 
             </table>
             <hr class="linha2">
-            <table>
-              <tr>
-                <!-- COMENTÁRIO  -->
-                <label class="label-1">Comentário</label>
 
-                <td>
-                  <textarea formControlName="comment" autofocus required type="text" name="comment"
-                    class="input-layout-3"></textarea>
-                </td>
-              </tr>
-            </table>
+            <!-- COMENTÁRIO  -->
+            <div>
+              <label class="label-2">Comentário</label>
+            </div>
+            <div>
+              <textarea formControlName="comment" autofocus required type="text" name="comment"
+                class="input-layout-3"></textarea>
+            </div>
 
             <!-- status -->
             <!-- <assist-form-group [campo]="formCadastroTicket.get('status')">

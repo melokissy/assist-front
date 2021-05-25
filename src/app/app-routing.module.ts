@@ -32,47 +32,47 @@ const rotas: Routes = [
   },
   {
     path: 'inbox',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/caixa-de-entrada/caixa-de-entrada.module').then(m => m.CaixaDeEntradaModule)
   },
   {
     path: 'users',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
   },
   {
     path: 'projects',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/project/project.module').then(m => m.ProjectModule)
   },
   {
     path: 'dashboard',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
     path: 'projectForm',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/project-form/project-form.module').then(m => m.ProjectFormModule)
   },
   {
     path: 'relatorios',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/relatorio/relatorio.module').then(m => m.RelatorioModule)
   },
   {
     path: 'tickets',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/ticket/ticket.module').then(m => m.TicketModule)
   },
   {
     path: 'tickets/ticketInfo',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/ticket/ticket-info/ticket-info.module').then(m => m.TicketInfoModule)
   },
   {
     path: 'tickets/cadastro-ticket',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/ticket/cadastro-ticket/cadastro-ticket.module').then(m => m.CadastroTicketModule)
   },
 
@@ -84,7 +84,7 @@ const rotas: Routes = [
 
   {
     path: '**',
-    redirectTo: '/dashboard',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ]
