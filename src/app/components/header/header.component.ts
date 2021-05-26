@@ -20,4 +20,8 @@ export class HeaderComponent {
     this._isMenuOpen = !this.isMenuOpen
   }
 
+  logout(){
+    localStorage.clear();
+  }
+
 }

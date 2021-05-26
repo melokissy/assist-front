@@ -45,7 +45,8 @@ export class ProjectService {
       status: projectApi.status,
       id: projectApi.id,
       createdAt: projectApi.createdAt,
-      number: projectApi.number
+      number: projectApi.number,
+      responsible: projectApi.responsible
     })
   }
 

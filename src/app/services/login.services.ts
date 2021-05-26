@@ -19,6 +19,7 @@ export class LoginService {
       .pipe(
         map((response: any) => {
           localStorage.setItem('assist-token', response.token);
+
           return response;
         })
       )

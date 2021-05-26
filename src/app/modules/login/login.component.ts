@@ -26,16 +26,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   handleLogin(formLogin: NgForm) {
-    this.mensagemErro = null;
     if (formLogin.valid) {
       this.loginService
         .logar(this.login)
         .subscribe(
-          () => this.roteador.navigate(['/inbox'])
+          () => this.roteador.navigate(['/dashboard'])
           , (responseError: HttpErrorResponse) => this.mensagemErro = responseError.error
 
         )
     }
+    this.mensagemErro.message = "Login inválido!";
   }
 
 }

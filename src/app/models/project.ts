@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Project {
   id: number;
   name: string;
@@ -5,6 +7,7 @@ export class Project {
   status: boolean;
   createdAt: Date;
   number: string;
+  responsible: User;
 
   constructor(values = {}) {
     Object.assign(this, values);

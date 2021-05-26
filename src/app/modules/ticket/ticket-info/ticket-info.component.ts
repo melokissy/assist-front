@@ -124,7 +124,7 @@ export class TicketInfoComponent implements OnInit {
     public resolverTicket(){
       if(this.ticketId){
         this.ticketService.resolverTicket(this.ticketId, this.ticket).subscribe(ticketResolvido => {
-          this.createFormGroup(ticketResolvido);
+          this.formTicket.reset();
           alert('Ticket fechado com sucesso');
 
         });

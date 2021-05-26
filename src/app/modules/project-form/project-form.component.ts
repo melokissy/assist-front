@@ -5,6 +5,9 @@ import { Project } from 'src/app/models/project';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 
 @Component({
@@ -20,17 +23,25 @@ export class ProjectFormComponent implements OnInit {
   mensagensErro: any;
   formProjeto: FormGroup;
   id: number;
+  userService: UserService;
   projectService: ProjectService;
   projeto: Project;
   projeto2: Observable <Project>;
   params: any = {};
   formCadastro: FormGroup;
+  userList: User[];
+  responsiblesList: User[];
+  responsible: User;
+  data: any;
+  projectNovo: Project;
+
 
   constructor(
     private httpClient: HttpClient,
     private roteador: Router, private activatedRoute: ActivatedRoute,
-    projectService: ProjectService) {
+    projectService: ProjectService, userService: UserService) {
       this.projectService = projectService;
+      this.userService = userService;
   }
 
   ngOnInit(): void {
@@ -39,22 +50,35 @@ export class ProjectFormComponent implements OnInit {
     if (this.params && this.params.value && this.params.value.id) {
       this.projectService.getById(this.params.value.id)
         .subscribe(response => {
+          this.responsiblesList = [response.responsible];
           this.createFormGroup(response);
           this.projeto = response;
         },
           errorResponse => alert("PROJETO NÃO EXISTE")
         );
     } else {
+      this.getResponsibles();
       this.createFormGroup(new Project);
     }
+
+
  }
+
+ getResponsibles(){
+  this.userService.listar().subscribe( users => {
+    this.responsiblesList = users;
+  });
+}
+
   createFormGroup(data: any) {
     return this.formProjeto = new FormGroup({
       name: new FormControl( data.name, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(data.description, [Validators.required]),
       status: new FormControl(data.status, []),
+      responsible: new FormControl( data.responsible?data.responsible:this.responsiblesList , [])
     })
   }
+
   handleCadastrarProjeto(){
     if (this.formProjeto.valid) {
       if (this.id) {
