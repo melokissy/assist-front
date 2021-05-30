@@ -26,6 +26,7 @@ export class CadastroTicketComponent implements OnInit {
   projectService: ProjectService;
   userList: User[];
   projectList: Project[];
+  mensagemErro: any;
 
   constructor(
     private httpClient: HttpClient,

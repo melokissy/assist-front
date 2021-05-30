@@ -128,6 +128,7 @@ export class ProjectFormComponent implements OnInit {
     }
     else {
       this.validaCampos(this.formProjeto);
+      alert("Preencher campos obrigatórios");
     }
   }
 

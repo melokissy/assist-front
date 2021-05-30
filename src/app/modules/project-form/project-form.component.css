@@ -11,6 +11,10 @@
   margin-top: 15px;
   margin-left: 20px;
 }
+.linha{
+  width: 95%;
+  margin-left: 26px;
+}
 
 section.project-form-card {
   max-width: 96%;
@@ -25,4 +29,70 @@ section.project-form-card {
 .card-btn{
   padding-bottom: 30px;
 }
+.label-1{
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: 550;
+}
+.label-titulo-1{
+  margin-bottom: 150px;
+}
+.input-name{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 51px;
+  width: px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 22px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 
+}
+.input-description{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 51px;
+  width: 400px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 22px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+
+}
+.input-responsible{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 51px;
+  width: 400px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+
+}
+.espaco{
+  border-color: white;
+  margin-bottom: -5px;
+}
+.status-label{
+  margin-bottom: 15px;
+  margin-left: 3px;
+}
+.label-status{
+  margin-top: 60px;
+  margin-left: 10px;
+}
+.btn-cancelar{
+  background-color: crimson;
+  margin-top: 25px;
+
+}
+.btn-cadastrar{
+  background-color: rgb(29, 116, 247);
+  margin-top: 25px;
+}

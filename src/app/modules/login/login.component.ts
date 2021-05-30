@@ -16,13 +16,17 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   }
+  currentUser: User;
+
 
   user: User;
 
   mensagemErro: any;
 
   constructor(private loginService: LoginService
-    , private roteador: Router) { }
+    , private roteador: Router) {
+    //  this.loginService.currentUser.subscribe(x => this.currentUser = x);
+  }
   ngOnInit() { }
 
   handleLogin(formLogin: NgForm) {
@@ -37,5 +41,22 @@ export class LoginComponent implements OnInit {
     }
     this.mensagemErro.message = "Login inválido!";
   }
+
+  get isAdmin() {
+    return this.currentUser && this.currentUser.profile === "Administrador";
+  }
+
+  get isCliente() {
+    return this.currentUser && this.currentUser.profile === "Cliente";
+  }
+
+  get isTecnico() {
+    return this.currentUser && this.currentUser.profile === "Tecnico";
+  }
+
+  // logout() {
+  //   this.loginService.logout();
+  //   this.roteador.navigate(['/login']);
+  // }
 
 }

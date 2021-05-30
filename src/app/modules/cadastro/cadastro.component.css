@@ -15,6 +15,23 @@
   font-family: Roboto;
   font-weight: 550;
 }
+.label-2{
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: 550;
+  margin-top: 20px;
+
+}
+.status-label{
+  margin-left: 2px;
+}
+.label-status{
+  margin-top: 60px;
+  margin-left: 10px;
+}
+.label-titulo-1{
+  margin-bottom: 150px;
+}
 .input-name{
   font-size: 15px;
   font-family: Roboto;
@@ -29,11 +46,36 @@
   font-size: 15px;
   font-family: Roboto;
   margin-left: 61px;
+  margin-top: 15px;
   width: 350px;
   color: black;
   border: 1px solid rgba(0, 0, 0, 0.336);
   height: 30px;
   border-radius: 5px;
+}
+.input-cpf{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 61px;
+  margin-top: 15px;
+  width: 350px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 30px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.input-password{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 61px;
+  margin-top: 0px;
+  width: 350px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 30px;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 .input-senha{
   font-size: 15px;
@@ -47,7 +89,8 @@
 }
 .selector-type{
   z-index: 1000;
-  margin-left: -185px;
+  margin-left: 61px;
+  margin-top: 15px;
   font-size: 15px;
   font-family: Roboto;
   border: 1px solid rgba(0, 0, 0, 0.336);
@@ -64,6 +107,7 @@ section.user-form-card {
   margin-top: 30px;
   padding-top: 0%;
 }
+
 .formStyle{
   margin-top: 15px;
   margin-left: 20px;
@@ -73,7 +117,14 @@ section.user-form-card {
 }
 .btn-cancelar{
   background-color: crimson;
+  margin-top: 25px;
+
 }
 .btn-cadastrar{
   background-color: rgb(29, 116, 247);
+  margin-top: 25px;
+}
+.espaco{
+  border-color: white;
+  margin-bottom: -5px;
 }

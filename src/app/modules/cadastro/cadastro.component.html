@@ -18,7 +18,6 @@
           <form class="formStyle" [formGroup]="formCadastro" (ngSubmit)="handleCadastrarUsuario()">
 
             <table>
-              <assist-form-group [campo]="formCadastro.get('Name')">
                 <tr>
                   <!-- NOME  -->
                   <td> <label class="label-1 label-titulo-1">Nome</label>
@@ -27,12 +26,10 @@
                   <td> <input formControlName="name" autofocus required type="text" id="name" name="name"
                       class="input-name"></td>
                 </tr>
-              </assist-form-group>
 
-              <assist-form-group [campo]="formCadastro.get('Email')">
                 <tr>
                   <!-- email  -->
-                  <td> <label class="label-1 label-titulo-1">Email</label>
+                  <td> <label class="label-2 label-titulo-1">Email</label>
                     <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                   </td>
                   <td> <input formControlName="email" autofocus required type="text" id="email" name="email"
@@ -40,7 +37,6 @@
                     <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
                   </td>
                 </tr>
-              </assist-form-group>
 
               <!-- password  -->
               <!-- <assist-form-group [campo]="formCadastro.get('Password')">
@@ -75,10 +71,18 @@
                   <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                 </td>
                 <td> <input formControlName="cpf" autofocus required type="cpf" id="cpf" name="cpf"
-                  class="input-email">
+                  class="input-cpf">
                 <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span></td>
               </tr>
-
+              <tr>
+                <!-- password  -->
+                <td> <label class="label-1 label-titulo-1">Senha</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td> <input formControlName="password" autofocus required type="password" id="password" name="password"
+                  class="input-password">
+                <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span></td>
+              </tr>
 
             </table>
 
@@ -100,16 +104,16 @@
             </span>
           </assist-form-group> -->
 
-
-
             <!-- status -->
-            <assist-form-group [campo]="formCadastro.get('status')">
-              <label class="label-1">Status</label>
+            <div>
+              <label class="label-1 status-label">Status</label>
+            </div>
+            <hr class="espaco">
+            <div>
+              <label class="label-status">Ativo</label>
+              <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" style="margin-left: -360px; margin-top: 10px;" assistFormField>
+            </div>
 
-              <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" assistFormField>
-              <label>Ativo</label>
-
-            </assist-form-group>
 
             <div class="mdl-card__actions card-btn">
               <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar">

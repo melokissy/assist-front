@@ -63,7 +63,8 @@ const rotas: Routes = [
   {
     path: 'tickets',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/ticket/ticket.module').then(m => m.TicketModule)
+    loadChildren: () => import('./modules/ticket/ticket.module').then(m => m.TicketModule),
+    data: { roles: ['Administrador','Tecnico'] }
   },
   {
     path: 'tickets/ticketInfo',
@@ -73,7 +74,9 @@ const rotas: Routes = [
   {
     path: 'tickets/cadastro-ticket',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/ticket/cadastro-ticket/cadastro-ticket.module').then(m => m.CadastroTicketModule)
+    loadChildren: () => import('./modules/ticket/cadastro-ticket/cadastro-ticket.module').then(m => m.CadastroTicketModule),
+    data: { roles: ['Administrador'] }
+
   },
 
 

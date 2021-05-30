@@ -7,70 +7,81 @@
       <div class="titulo-form">
         <label>Cadastrar Projeto</label>
       </div>
+
+      <hr class="linha">
+
       <div class="page-content">
         <div class="mdl-grid">
-          <div>
-            <form class="formStyle" [formGroup]="formProjeto" (ngSubmit)="handleCadastrarProjeto()">
-              <!-- nome -->
-              <assist-form-group [campo]="formProjeto.get('name')">
-                <input formControlName="name" autofocus required type="text" name="name" assistFormField>
-                <!-- se tiver erros, entao... -->
-                <div *ngIf="formProjeto.get('name').errors">
-                  <!-- errors.required... -->
-                  <span class="mdl-textfield__error" *ngIf="formProjeto.get('name').errors.required">
-                    Informar um nome é obrigatório!
-                  </span>
-                  <!-- errors.minlength... -->
-                  <span class="mdl-textfield__error" *ngIf="formProjeto.get('name').errors.minlength">
-                    Você preencheu {{ formProjeto.get('name').errors.minlength.actualLength }} caracteres
-                    de {{ formProjeto.get('name').errors.minlength.requiredLength }}
-                  </span>
-                </div>
-              </assist-form-group>
 
-              <!-- descrição -->
-              <assist-form-group [campo]="formProjeto.get('description')">
-                <input formControlName="description" required type="text" name="description" assistFormField>
-                <span class="mdl-textfield__error">Informar descrição é obrigatório!</span>
-              </assist-form-group>
+          <form class="formStyle" [formGroup]="formProjeto" (ngSubmit)="handleCadastrarProjeto()">
 
-              <!-- status -->
-              <assist-form-group [campo]="formProjeto.get('status')">
-                <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" assistFormField>
-              </assist-form-group>
+            <table>
+              <tr>
+                <!-- NOME  -->
+                <td> <label class="label-1 label-titulo-1">Nome</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td><input formControlName="name" autofocus required type="text" name="name" class="input-name" assistFormField>
+                </td>
+              </tr>
 
-              <!-- RESPONSIBLE -->
-              <label class="label-1 label-titulo-1">Responsável</label> <label
-                style="color:red;padding-left:2px;vertical-align:central">*</label>
-              <select class="mdl-textfield__input selector-project" id="responsible" name="responsible"
-                formControlName="responsible">
-                <option value="" disabled>Choose a Responsible</option>
-                <option *ngFor="let responsible of responsiblesList" [ngValue]="responsible">
-                  {{ responsible.name }}
-                </option>
-              </select>
+              <tr>
+                <!-- DESCRIÇÃO  -->
+                <td> <label class="label-1 label-titulo-1">Descrição</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td><input formControlName="description" required type="text" name="description" class="input-description" assistFormField>
+                </td>
+              </tr>
 
-              <div class="mdl-card__actions card-btn">
-                <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised">
-                  {{this.id? 'Editar' : 'Cadastrar'}}
-                </button>
+              <tr>
+                <!-- RESPONSÁVEL  -->
+                <td> <label class="label-1 label-titulo-1">Responsável</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td><select class="mdl-textfield__input selector-project" id="responsible" name="responsible"
+                    formControlName="responsible" class="input-responsible">
+                    <option value="" disabled>Choose a Responsible</option>
+                    <option *ngFor="let responsible of responsiblesList" [ngValue]="responsible">
+                      {{ responsible.name }}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </table>
 
-                <button [routerLink]="'/projects'" class="mdl-button mdl-button--colored mdl-button--raised"
-                  type="button" style="margin-left: 10px;">
-                  cancelar
-                </button>
-              </div>
+            <!-- status -->
 
-              <ul *ngIf="mensagensErro" class="mdl-textfield is-invalid">
-                <li *ngFor="let erro of mensagensErro" class="mdl-textfield__error">
-                  {{erro.message}}: {{erro.value}}
-                </li>
-              </ul>
+            <!-- style="margin-left: -115px; margin-top: 20px; margin-bottom: -15px;"  -->
+            <div>
+              <label class="label-1 status-label">Status</label>
+            </div>
+            <hr class="espaco">
+            <div>
+              <label class="label-status">Ativo</label>
+              <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" style="margin-left: -250px; margin-top: 10px;" assistFormField>
+            </div>
 
-            </form>
-          </div>
+            <div class="mdl-card__actions card-btn">
+              <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar">
+                {{this.id? 'Editar' : 'Cadastrar'}}
+              </button>
 
+              <button [routerLink]="'/projects'" class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar" type="button"
+                style="margin-left: 10px;">
+                cancelar
+              </button>
+            </div>
+
+            <ul *ngIf="mensagensErro" class="mdl-textfield is-invalid">
+              <li *ngFor="let erro of mensagensErro" class="mdl-textfield__error">
+                {{erro.message}}: {{erro.value}}
+              </li>
+            </ul>
+
+          </form>
         </div>
+
       </div>
     </section>
   </main>
