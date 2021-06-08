@@ -9,12 +9,6 @@
       <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button"
         routerLink="/tickets/cadastro-ticket">
         NOVO TICKET </button>
-
-      <input #myInput placeholder="Item name..." [(ngModel)]="number"  (input)="filterItem(myInput.value)">
-
-      <input #myInputuser placeholder="Item name..." [(ngModel)]="requester"  (input)="filterItemUser(myInputuser.value)">
-
-
       <br>
 
       <div class="page-content">
@@ -23,9 +17,17 @@
           <main class="mdl-layout__content">
             <div class="container-fluid">
               <div class="card mb-4">
-
                 <div class="card-header"><i class="fas fa-table mr-1"></i>Todos os tickets</div>
                 <div class="card-body">
+                  <!-- Filtros -->
+                  <label class="label-pesquisa">Filtrar tickets</label>
+                  <input class="input-busca" #myInput placeholder="Número do Ticket..." [(ngModel)]="number"
+                    (input)="filterItem(myInput.value)">
+                  <input class="input-busca-requester" #myInputuser placeholder="Solicitante..." [(ngModel)]="requester"
+                    (input)="filterItemUser(myInputuser.value)">
+                  <input class="input-busca" #myInputStatus placeholder="Status..." [(ngModel)]="status"
+                    (input)="filterItemStatus(myInputStatus.value)">
+
                   <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
@@ -39,12 +41,13 @@
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ações</th>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let ticket of this.filteredItems">
+                        <tr *ngFor="let ticket of this.filteredItems" >
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.number}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.subject}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.requester.name}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.priority}}</td>
-                          <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.status}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric"
+                            [ngClass]="{'greenClass': ticket.status === 'Resolvido', 'yellowClass' : ticket.status === 'Pendente', 'redClass' : ticket.status === 'Vencido'}">{{ticket.status}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.createdAt |
                             date:'dd/MM/yyyy'}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.dueDate |

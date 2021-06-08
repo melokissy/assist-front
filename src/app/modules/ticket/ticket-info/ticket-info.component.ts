@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user';
 import { ProjectService } from 'src/app/services/project.service';
 import { TicketService } from 'src/app/services/ticket.service';
 import { UserService } from 'src/app/services/user.service';
-import { TicketComponent } from '../ticket.component';
+import {CommentService} from 'src/app/services/comment.service';
 
 @Component({
   selector: 'assist-ticket-info',
@@ -35,11 +35,13 @@ export class TicketInfoComponent implements OnInit {
   userList: User[];
   responsiblesList: User[];
   projectService: ProjectService;
+  comentarioService: CommentService;
   projectList: Project[];
   prioridades: string[];
   selectedPriority :any;
   userLogado = {name: '', email: '', profile: ''};
   comments: any = [];
+  comentario:Comment;
 
   textAreas: { value: string }[] = [{value: ''}];
 
@@ -50,10 +52,11 @@ export class TicketInfoComponent implements OnInit {
     private roteador: Router,
     private route: ActivatedRoute,
     userService: UserService,
-    projectService: ProjectService
-    ) {
+    projectService: ProjectService,
+    commentService:CommentService    ) {
       this.userService = userService;
       this.projectService = projectService;
+      this.comentarioService = commentService;
       this.auxTicket = new Ticket();
       this.route.params.subscribe(params => this.ticketId = params['id'])
     }
@@ -71,7 +74,6 @@ export class TicketInfoComponent implements OnInit {
       if(data.comment){
         this.comments = data.comment
         for(let post of this.comments){
-
           this.addTextArea(post.createdAt + " " + post.user.name +"\n" + post.comment );
         }
       }
@@ -86,7 +88,11 @@ export class TicketInfoComponent implements OnInit {
   }
 
 
-  salvarComentario(){
+  salvarComentario(comment){
+    // this.comentario.user.email = this.userLogado.email;
+    // this.comentario.comment = comment;
+    // this.comentario.ticket = this.ticket;
+    // this
 
   }
 

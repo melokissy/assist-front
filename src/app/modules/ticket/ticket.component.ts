@@ -23,6 +23,7 @@ export class TicketComponent implements OnInit {
   filteredItems : any[];
   number: null;
   requester: null;
+  status: null;
 
   constructor(public ticketService: TicketService, private httpClient: HttpClient,
     private roteador: Router) {
@@ -78,5 +79,13 @@ filterItemUser(value){
   )
 }
 
+filterItemStatus(value){
+  if(!value){
+      this.assignCopy();
+  }
+  this.filteredItems = Object.assign([], this.ticketList).filter(
+     item => item.status.toLowerCase().indexOf(value.toLowerCase()) > -1
+  )
+}
 
 }

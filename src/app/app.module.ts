@@ -11,8 +11,7 @@ import { CommentComponent } from './modules/comment/comment.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CommentComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +19,6 @@ import { CommentComponent } from './modules/comment/comment.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
