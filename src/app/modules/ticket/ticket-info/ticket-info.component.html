@@ -9,10 +9,10 @@
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Anexar
           Arquivos</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
-          (click)="resolverTicket()">Resolver Ticket</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Editar
+          (click)="resolverTicket()" *ngIf="userLogado.profile!='Cliente'">Resolver Ticket</button>
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" *ngIf="userLogado.profile!='Cliente'">Editar
           ticket</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Salvar
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" *ngIf="userLogado.profile!='Cliente'">Salvar
           alterações</button>
       </div>
       <hr class="linha">
@@ -125,41 +125,35 @@
 
             </table>
             <hr class="linha2">
-
+                 <!-- COMENTÁRIO  -->
+                 <div>
+                  <label class="label-2">Comentário</label>
+                </div>
+                <div id="notes" *ngFor="let textArea of textAreas">
+                  <textarea autofocus disabled class="input-layout-3" >{{textArea.value}}</textarea>
+              </div>
+          </form>
+          <hr class="linha2">
             <!-- COMENTÁRIO  -->
             <div>
-              <label class="label-2">Comentário</label>
+              <label class="label-2">Novo Comentário</label>
             </div>
             <div>
-              <textarea formControlName="comment" autofocus required type="text" name="comment"
+              <textarea autofocus required type="text"
                 class="input-layout-3"></textarea>
             </div>
 
-            <!-- status -->
-            <!-- <assist-form-group [campo]="formCadastroTicket.get('status')">
-            <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" assistFormField>
-          </assist-form-group> -->
-
             <div class="mdl-card__actions card-btn">
-              <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar">
+              <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar" ngClick="salvarComentario()">
                 Salvar Comentário
               </button>
               <button [routerLink]="'/tickets'" class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar"
-                type="button" style="margin-left: 10px;" ngClick=limparUsers()>
+                type="button" style="margin-left: 10px;">
                 Voltar
               </button>
             </div>
-
-            <!--  <ul *ngIf="mensagensErro" class="mdl-textfield is-invalid">
-              <li *ngFor="let erro of mensagensErro" class="mdl-textfield__error">
-                {{erro.message}}: {{erro.value}}
-              </li>
-            </ul> -->
-
-          </form>
         </div>
       </div>
     </section>
-
   </main>
 </div>

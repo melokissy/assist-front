@@ -6,8 +6,15 @@
     <div class="container-fluid">
       <h1 class="mt-4 titulo-pagina">Tickets</h1>
 
-      <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button" routerLink="/tickets/cadastro-ticket">
+      <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button"
+        routerLink="/tickets/cadastro-ticket">
         NOVO TICKET </button>
+
+      <input #myInput placeholder="Item name..." [(ngModel)]="number"  (input)="filterItem(myInput.value)">
+
+      <input #myInputuser placeholder="Item name..." [(ngModel)]="requester"  (input)="filterItemUser(myInputuser.value)">
+
+
       <br>
 
       <div class="page-content">
@@ -32,7 +39,7 @@
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ações</th>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let ticket of this.ticketList">
+                        <tr *ngFor="let ticket of this.filteredItems">
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.number}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.subject}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.requester.name}}</td>
@@ -54,5 +61,5 @@
                 </div>
               </div>
             </div>
-        </main>
+          </main>
         </div>

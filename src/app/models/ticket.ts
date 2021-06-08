@@ -17,6 +17,7 @@ export class Ticket {
   closedAt: Date;
   dueDate: Date;
   number: string;
+  comment: Comment;
 
   constructor(values = {}) {
     Object.assign(this, values);

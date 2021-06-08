@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './modules/login/login.component';
-import { CaixaDeEntradaComponent } from './modules/caixa-de-entrada/caixa-de-entrada.component';
 import { CadastroComponent } from './modules/cadastro/cadastro.component';
 import { UsersComponent } from './modules/user/user.component';
 
@@ -18,64 +17,63 @@ import { UsersComponent } from './modules/user/user.component';
 //   ]
 
 const rotas: Routes = [
-  /*   {
-      path: 'editproject',
-      loadChildren: () => import('./modules/edit-project/edit-project.module').then(m => m.EditProjectModule)
-    }, */
+
   {
     path: 'cadastro',
-    loadChildren: () => import('./modules/cadastro/cadastro.module').then(m => m.CadastroModule)
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/cadastro/cadastro.module').then(m => m.CadastroModule),
+    data: { roles: ['Administrador','Tecnico'] }
   },
   {
     path: 'login',
-    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
-  },
-  {
-    path: 'inbox',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/caixa-de-entrada/caixa-de-entrada.module').then(m => m.CaixaDeEntradaModule)
+    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
   },
   {
     path: 'users',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule),
+    data: { roles: ['Administrador','Tecnico'] }
   },
   {
     path: 'projects',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/project/project.module').then(m => m.ProjectModule)
+    loadChildren: () => import('./modules/project/project.module').then(m => m.ProjectModule),
+    data: { roles: ['Administrador','Tecnico'] }
   },
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+    data: { roles: ['Administrador','Tecnico'] }
   },
   {
     path: 'projectForm',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/project-form/project-form.module').then(m => m.ProjectFormModule)
+    loadChildren: () => import('./modules/project-form/project-form.module').then(m => m.ProjectFormModule),
+    data: { roles: ['Administrador','Tecnico'] }
+
   },
   {
     path: 'relatorios',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/relatorio/relatorio.module').then(m => m.RelatorioModule)
-  },
-  {
-    path: 'tickets',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/ticket/ticket.module').then(m => m.TicketModule),
+    loadChildren: () => import('./modules/relatorio/relatorio.module').then(m => m.RelatorioModule),
     data: { roles: ['Administrador','Tecnico'] }
   },
   {
+    path: 'tickets',
+    loadChildren: () => import('./modules/ticket/ticket.module').then(m => m.TicketModule)  },
+  {
     path: 'tickets/ticketInfo',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/ticket/ticket-info/ticket-info.module').then(m => m.TicketInfoModule)
+    loadChildren: () => import('./modules/ticket/ticket-info/ticket-info.module').then(m => m.TicketInfoModule),
+    data: { roles: ['Administrador','Tecnico'] }
+
   },
   {
     path: 'tickets/cadastro-ticket',
     canActivate: [AuthGuard],
     loadChildren: () => import('./modules/ticket/cadastro-ticket/cadastro-ticket.module').then(m => m.CadastroTicketModule),
-    data: { roles: ['Administrador'] }
+    data: { roles: ['Administrador','Tecnico','Cliente'] }
 
   },
 

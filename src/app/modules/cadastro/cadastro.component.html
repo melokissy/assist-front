@@ -33,7 +33,7 @@
                     <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                   </td>
                   <td> <input formControlName="email" autofocus required type="text" id="email" name="email"
-                      class="input-email">
+                      class="input-email"  ngModel email="true">
                     <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
                   </td>
                 </tr>
@@ -109,10 +109,11 @@
               <label class="label-1 status-label">Status</label>
             </div>
             <hr class="espaco">
-            <div>
-              <label class="label-status">Ativo</label>
-              <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" style="margin-left: -360px; margin-top: 10px;" assistFormField>
-            </div>
+
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+              <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" style="margin-left: 5px; margin-right: 20px;">
+              <span class="mdl-checkbox__label">Ativo</span>
+            </label>
 
 
             <div class="mdl-card__actions card-btn">

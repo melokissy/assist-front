@@ -34,7 +34,12 @@ export class LoginComponent implements OnInit {
       this.loginService
         .logar(this.login)
         .subscribe(
-          () => this.roteador.navigate(['/dashboard'])
+          response => {
+            if(response.profile == "Cliente"){
+              this.roteador.navigate(['/tickets'])
+          } else{
+            this.roteador.navigate(['/dashboard'])}
+          }
           , (responseError: HttpErrorResponse) => this.mensagemErro = responseError.error
 
         )

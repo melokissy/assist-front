@@ -77,6 +77,10 @@ export class ProjectService {
     return this.http.get<Project>(this.apiUrl+`${id}`);
   }
 
+  // getComments(): Observable<Comment>{
+  //   return this.http.get<Comment>(this.apiUrl+`${id}`);
+  // }
+
 
   public atualizar(id: number, project:Project) : Observable<Project>{
     return this.http.put<Project>(this.apiUrl+`${id}`, project);

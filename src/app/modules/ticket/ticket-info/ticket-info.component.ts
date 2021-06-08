@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -37,6 +38,11 @@ export class TicketInfoComponent implements OnInit {
   projectList: Project[];
   prioridades: string[];
   selectedPriority :any;
+  userLogado = {name: '', email: '', profile: ''};
+  comments: any = [];
+
+  textAreas: { value: string }[] = [{value: ''}];
+
 
   constructor(
     public ticketService: TicketService,
@@ -55,10 +61,33 @@ export class TicketInfoComponent implements OnInit {
   ngOnInit(): void {
     this.prioridades =  ["Alta","Media","Baixa"];
 
+    this.userLogado.name = localStorage.getItem('user-autenticated-name');
+    this.userLogado.email = localStorage.getItem('user-autenticated-email');
+    this.userLogado.profile = localStorage.getItem('user-autenticated-profile');
+
+
     this.ticketService.getById(this.ticketId).subscribe(data => {
       this.ticket = data;
+      if(data.comment){
+        this.comments = data.comment
+        for(let post of this.comments){
+
+          this.addTextArea(post.createdAt + " " + post.user.name +"\n" + post.comment );
+        }
+      }
       this.getRequester(this.ticket.requester.id);
     });
+  }
+
+
+  addTextArea(comment) {
+    const textArea = { value: comment };
+    this.textAreas.push(textArea)
+  }
+
+
+  salvarComentario(){
+
   }
 
   getRequester(id){
@@ -70,10 +99,13 @@ export class TicketInfoComponent implements OnInit {
   }
 
   getResponsible(id){
+    if(id == 0 || id == null){
+      this.getResponsibleList();
+    }
     this.userService.getById(id).subscribe(responsible => {
       this.responsible = responsible;
       this.ticket.responsible = responsible;
-      this.getResponsibleList();
+      this.getProject(this.ticket.project.id);
     })
   }
 
@@ -84,6 +116,10 @@ export class TicketInfoComponent implements OnInit {
     })
   }
 
+  getComments(){
+
+  }
+
   getProject(idProject){
     this.projectService.getById(idProject).subscribe(project => {
       this.project = project;
@@ -92,16 +128,16 @@ export class TicketInfoComponent implements OnInit {
     });
   }
 
-
   createFormGroup(data: any) {
     return this.formTicket = new FormGroup({
       subject: new FormControl( data.subject, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(data.description, [Validators.required]),
       requester: new FormControl(this.userList),
-      responsible: new FormControl(data.responsible.name),
+      responsible: new FormControl(this.responsiblesList),
       type: new FormControl(data.type, [Validators.required]),
       priority: new FormControl( data.priority),
-      project: new FormControl(data.project.name, [Validators.required])
+      project: new FormControl(data.project.name, [Validators.required]),
+      comment: new FormControl(data.comment)
     })
   }
 

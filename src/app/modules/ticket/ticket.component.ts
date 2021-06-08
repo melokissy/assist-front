@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ticket } from 'src/app/models/ticket';
 import { TicketService } from 'src/app/services/ticket.service';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
@@ -17,6 +20,9 @@ export class TicketComponent implements OnInit {
   auxTicket: Ticket = null;
   ticketList = [];
   mensagemErro: any;
+  filteredItems : any[];
+  number: null;
+  requester: null;
 
   constructor(public ticketService: TicketService, private httpClient: HttpClient,
     private roteador: Router) {
@@ -25,10 +31,9 @@ export class TicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.tickets();
-
   }
 
-  tickets(){
+  tickets() {
     this.ticketService
       .listar()
       .subscribe(
@@ -36,6 +41,7 @@ export class TicketComponent implements OnInit {
         lista => {
           this.ticketList = lista;
           console.log(this.ticketList);
+          this.assignCopy();
         },
         //error
         (responseError: HttpErrorResponse) => {
@@ -49,4 +55,28 @@ export class TicketComponent implements OnInit {
         }
       )
   }
+
+  assignCopy(){
+    this.filteredItems = Object.assign([], this.ticketList);
+ }
+
+ filterItem(value){
+  if(!value){
+      this.assignCopy();
+  }
+  this.filteredItems = Object.assign([], this.ticketList).filter(
+     item => item.number.toLowerCase().indexOf(value.toLowerCase()) > -1
+  )
+}
+
+filterItemUser(value){
+  if(!value){
+      this.assignCopy();
+  }
+  this.filteredItems = Object.assign([], this.ticketList).filter(
+     item => item.requester.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+  )
+}
+
+
 }

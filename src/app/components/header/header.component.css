@@ -49,13 +49,13 @@
   pointer-events: all;
  }
  .mdl-layout-title{
-   background-color: #444444;
+   background-color: #008080;
    color: white;
    font-style: normal;
  }
 
  .headerGlobal__userInfo {
-  background-color: #444444 !important;
+  background-color: #008080 !important;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
