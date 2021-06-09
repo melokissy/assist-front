@@ -84,7 +84,7 @@ export class CadastroComponent implements OnInit {
         , (responseError: HttpErrorResponse) => {
           //resposta caso existam erros!
           this.mensagemErro = responseError.error;
-          this.handleAlert('danger','Erro ao cadastrar o usuário');
+          this.handleAlert('danger',this.mensagemErro);
         }
       )
   }
