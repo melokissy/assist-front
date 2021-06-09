@@ -44,18 +44,13 @@ export class CadastroTicketComponent implements OnInit {
   }
 
   createFormGroup() {
-    return this.formCadastroTicket = this.fb.group({
-      subject:  [ '', [Validators.required]],
-      description:  ['', [Validators.required]],
-      requester:  this.fb.group({
-        name:  ['', [Validators.required]],
-        email:  ['', [Validators.required]],
-        cpf:  ['', [Validators.required, Validators.minLength(11)]],
-        setor: ['', [Validators.required]]
-      }),
-      type:  ['', [Validators.required]],
-      priority:  ['', [Validators.required]],
-      project:  ['', [Validators.required]]
+    return this.formCadastroTicket = new FormGroup({
+      subject: new FormControl  ('', [Validators.required]),
+      description: new FormControl ('', [Validators.required]),
+      requester: new FormControl ('', [Validators.required]),
+      type: new FormControl ('', [Validators.required]),
+      priority: new FormControl ( '', [Validators.required]),
+      project: new FormControl  ('', [Validators.required])
     })
   }
   get subject(): any {
