@@ -5,7 +5,8 @@
     <div class="container-fluid">
       <h1 class="mt-4 titulo-pagina">Usuários</h1>
 
-      <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button" [routerLink]="'/cadastro'">
+      <button class="mdl-button mdl-button--colored mdl-button--raised btn-new-user" type="button"
+        [routerLink]="'/cadastro'">
         NOVO USUÁRIO </button>
       <br>
 
@@ -18,6 +19,14 @@
 
                 <div class="card-header"><i class="fas fa-table mr-1"></i>Todos os usuários</div>
                 <div class="card-body">
+
+                  <!-- Filtros -->
+                  <label class="label-pesquisa">Filtrar usuários</label>
+                  <input class="input-busca" #myInput placeholder="Nome do Usuário..." [(ngModel)]="name"
+                    (input)="filterItem(myInput.value)">
+                  <input class="input-busca" #myInputEmail placeholder="Email..." [(ngModel)]="email"
+                    (input)="filterItemEmail(myInputEmail.value)">
+
                   <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
@@ -30,20 +39,24 @@
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ações</th>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let user of this.userList">
-                          <td class="actions columStyle mdl-data-table__cell--non-numeric"><i class="material-icons mdl-list__item-icon">person</i></td>
+                        <tr *ngFor="let user of this.filteredItems">
+                          <td class="actions columStyle mdl-data-table__cell--non-numeric"><i
+                              class="material-icons mdl-list__item-icon">person</i></td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{user.id}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{user.name}}</td>
-                          <td  class="columStyle mdl-data-table__cell--non-numeric">{{user.email}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{user.email}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric" *ngIf="!user.status">Desativado</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric" *ngIf="user.status">Ativo</td>
-                          <td  class="columStyle mdl-data-table__cell--non-numeric">{{user.profile}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{user.profile}}</td>
                           <td class="actions columStyle mdl-data-table__cell--non-numeric">
 
-                            <button routerLink="/cadastro/{{user.id}}"  type="button"
+                            <button routerLink="/cadastro/{{user.id}}" type="button"
                               class="mdl-button mdl-button--raised mdl-button--colored"><i
-                              class="material-icons" >mode_edit</i></button>
-                            <button (click)="this.handleDeleteUsuario(user.id)" type="button" class="mdl-button mdl-button--raised" style="margin-left: 5px;" style="background-color: red;"><i class="material-icons" style="color: blanchedalmond;">delete</i></button>
+                                class="material-icons">mode_edit</i></button>
+                            <button (click)="this.handleDeleteUsuario(user.id)" type="button"
+                              class="mdl-button mdl-button--raised" style="margin-left: 5px;"
+                              style="background-color: red;"><i class="material-icons"
+                                style="color: blanchedalmond;">delete</i></button>
                           </td>
                         </tr>
                       </tbody>
@@ -53,5 +66,4 @@
               </div>
             </div>
           </main>
-</div>
-
+        </div>

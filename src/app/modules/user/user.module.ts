@@ -16,7 +16,7 @@ import { HeaderComponent } from '../../components/header/header.component';
   declarations: [UsersComponent],
   imports: [
     CommonModule,
-    // FormsModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     SharedComponentsModule,

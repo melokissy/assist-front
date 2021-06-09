@@ -20,7 +20,7 @@ export class TicketComponent implements OnInit {
   auxTicket: Ticket = null;
   ticketList = [];
   mensagemErro: any;
-  filteredItems : any[];
+  filteredItems: any[];
   number: null;
   requester: null;
   status: null;
@@ -57,35 +57,35 @@ export class TicketComponent implements OnInit {
       )
   }
 
-  assignCopy(){
+  assignCopy() {
     this.filteredItems = Object.assign([], this.ticketList);
- }
-
- filterItem(value){
-  if(!value){
-      this.assignCopy();
   }
-  this.filteredItems = Object.assign([], this.ticketList).filter(
-     item => item.number.toLowerCase().indexOf(value.toLowerCase()) > -1
-  )
-}
 
-filterItemUser(value){
-  if(!value){
+  filterItem(value) {
+    if (!value) {
       this.assignCopy();
+    }
+    this.filteredItems = Object.assign([], this.ticketList).filter(
+      item => item.number.toLowerCase().indexOf(value.toLowerCase()) > -1
+    )
   }
-  this.filteredItems = Object.assign([], this.ticketList).filter(
-     item => item.requester.name.toLowerCase().indexOf(value.toLowerCase()) > -1
-  )
-}
 
-filterItemStatus(value){
-  if(!value){
+  filterItemUser(value) {
+    if (!value) {
       this.assignCopy();
+    }
+    this.filteredItems = Object.assign([], this.ticketList).filter(
+      item => item.requester.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+    )
   }
-  this.filteredItems = Object.assign([], this.ticketList).filter(
-     item => item.status.toLowerCase().indexOf(value.toLowerCase()) > -1
-  )
-}
+
+  filterItemStatus(value) {
+    if (!value) {
+      this.assignCopy();
+    }
+    this.filteredItems = Object.assign([], this.ticketList).filter(
+      item => item.status.toLowerCase().indexOf(value.toLowerCase()) > -1
+    )
+  }
 
 }

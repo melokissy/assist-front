@@ -80,7 +80,8 @@ export class ProjectsComponent implements OnInit {
       }
       , (reponseError: HttpErrorResponse) => {
         this.mensagemErro = reponseError.error;
-        this.handleAlert('danger',this.mensagemErro);      }
+        this.handleAlert('danger',this.mensagemErro);
+      }
     )
   }
 

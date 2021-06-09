@@ -4,6 +4,8 @@ import { User } from 'src/app/models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../components/header/header.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
 
 
 @Component({
@@ -19,9 +21,13 @@ export class UsersComponent implements OnInit {
   userList = [];
   mensagemErro: any;
   editPress = false;
+  bsModalRef: BsModalRef;
+  filteredItems: any[];
+  name: null;
+  email: any;
 
   constructor(public userService: UserService, private httpClient: HttpClient,
-    private roteador: Router) {
+    private roteador: Router,private modalService: BsModalService) {
     this.auxUser = new User();
   }
 
@@ -37,6 +43,7 @@ export class UsersComponent implements OnInit {
         lista => {
           this.userList = lista;
           console.log(this.userList);
+          this.assignCopy();
         },
         //error
         (responseError: HttpErrorResponse) => {
@@ -58,18 +65,15 @@ export class UsersComponent implements OnInit {
       .delete('http://localhost:41124/AssistApi/resource/users/' + userData)
       .subscribe(
         () => {
-          console.log(`delete com sucesso`);
-
+          this.handleAlert('success','Excluído com sucesso');
           //após 1 segundo, redireciona para a rota de login
           setTimeout(() => {
             this.users();
           }, 1000);
         }
-        , (responseError: HttpErrorResponse) => {
-          //resposta caso existam erros!
-          this.mensagemErro = responseError.error.body
-          // this.mensagensErro = responseError
-        }
+        , (reponseError: HttpErrorResponse) => {
+          this.mensagemErro = reponseError.error;
+          this.handleAlert('danger',this.mensagemErro);      }
       )
   }
 
@@ -96,4 +100,37 @@ export class UsersComponent implements OnInit {
     this.auxUser = new User();
     this.toggleShowForm();
   }
+
+  onClose(){
+    this.bsModalRef.hide();
+  }
+
+  handleAlert(type,message){
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = type;
+    this.bsModalRef.content.message = message;
+  }
+
+  assignCopy() {
+    this.filteredItems = Object.assign([], this.userList);
+  }
+
+  filterItem(value) {
+    if (!value) {
+      this.assignCopy();
+    }
+    this.filteredItems = Object.assign([], this.userList).filter(
+      item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+    )
+  }
+
+  filterItemEmail(value) {
+    if (!value) {
+      this.assignCopy();
+    }
+    this.filteredItems = Object.assign([], this.userList).filter(
+      item => item.email.toLowerCase().indexOf(value.toLowerCase()) > -1
+    )
+  }
+
 }
