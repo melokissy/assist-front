@@ -18,28 +18,28 @@
             <table>
               <tr>
                 <!-- NOME  -->
-                <td> <label class="label-1 label-titulo-1">Nome</label>
+                <td> <label class="label-1 status-label">Nome</label>
                   <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                 </td>
-                <td><input formControlName="name" autofocus required type="text" name="name" class="input-name" assistFormField>
+                <td class="td-float"><input formControlName="name" autofocus required type="text" name="name" class="input-name-new" assistFormField>
                 </td>
               </tr>
 
               <tr>
                 <!-- DESCRIÇÃO  -->
-                <td> <label class="label-1 label-titulo-1">Descrição</label>
+                <td> <label class="label-1 status-label">Descrição</label>
                   <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                 </td>
-                <td><input formControlName="description" required type="text" name="description" class="input-description" assistFormField>
+                <td class="td-float"><input class="input-responsible" formControlName="description" required type="text" name="description" assistFormField>
                 </td>
               </tr>
 
               <tr>
                 <!-- RESPONSÁVEL  -->
-                <td> <label class="label-1 label-titulo-1">Responsável</label>
+                <td> <label class="label-1 status-label">Responsável</label>
                   <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                 </td>
-                <td><select class="mdl-textfield__input selector-project" id="responsible" name="responsible"
+                <td class="td-float"><select class="mdl-textfield__input selector-project" id="responsible" name="responsible"
                     formControlName="responsible" class="input-responsible">
                     <option value="" disabled>Choose a Responsible</option>
                     <option *ngFor="let responsible of responsiblesList" [ngValue]="responsible">
@@ -57,17 +57,19 @@
               <label class="label-1 status-label">Status</label>
             </div>
             <hr class="espaco">
-            <div>
-              <label class="label-status">Ativo</label>
-              <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo" style="margin-left: -250px; margin-top: 10px;" assistFormField>
-            </div>
+
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+              <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo"
+                style="margin-left: 5px; margin-right: 20px;">
+              <span class="mdl-checkbox__label">Ativo</span>
+            </label>
 
             <div class="mdl-card__actions card-btn">
               <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar">
                 {{this.id? 'Editar' : 'Cadastrar'}}
               </button>
 
-              <button [routerLink]="'/projects'" class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar" type="button"
+              <button (routerLink)="'/projects'" class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar" type="button"
                 style="margin-left: 10px;">
                 cancelar
               </button>

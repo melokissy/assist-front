@@ -6,7 +6,9 @@
   color: #293846;
   margin-bottom: 20px;
 }
-
+.td-float{
+  float: left !important;
+}
 .formStyle{
   margin-top: 15px;
   margin-left: 20px;
@@ -73,7 +75,18 @@ section.project-form-card {
   border-radius: 5px;
   margin-top: 5px;
   margin-bottom: 15px;
-
+}
+.input-name-new{
+  font-size: 15px;
+  font-family: Roboto;
+  margin-left: 51px;
+  width: 500px;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 .espaco{
   border-color: white;
