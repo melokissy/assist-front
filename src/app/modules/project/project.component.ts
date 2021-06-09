@@ -27,6 +27,8 @@ export class ProjectsComponent implements OnInit {
   projectform:  ProjectFormComponent;
   project = new Project;
   bsModalRef: BsModalRef;
+  filteredItems: any[];
+  number: any;
 
   constructor(public projectService: ProjectService, private httpClient: HttpClient,
     private roteador: Router,projectform: ProjectFormComponent,private modalService: BsModalService) {
@@ -50,6 +52,7 @@ export class ProjectsComponent implements OnInit {
         lista => {
           this.projectList = lista;
           console.log(this.projectList + 'lista dos projetos');
+          this.assignCopy();
         },
         (responseError: HttpErrorResponse) => {
           this.mensagemErro = '';
@@ -93,6 +96,19 @@ export class ProjectsComponent implements OnInit {
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = type;
     this.bsModalRef.content.message = message;
+  }
+
+  assignCopy() {
+    this.filteredItems = Object.assign([], this.projectList);
+  }
+
+  filterItem(value) {
+    if (!value) {
+      this.assignCopy();
+    }
+    this.filteredItems = Object.assign([], this.projectList).filter(
+      item => item.number.toLowerCase().indexOf(value.toLowerCase()) > -1
+    )
   }
 
 }

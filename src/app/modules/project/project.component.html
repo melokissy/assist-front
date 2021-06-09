@@ -18,6 +18,11 @@
 
                 <div class="card-header"><i class="fas fa-table mr-1"></i>Todos os projetos</div>
                 <div class="card-body">
+                    <!-- Filtros -->
+                    <label class="label-pesquisa">Filtrar usuários</label>
+                    <input class="input-busca" #myInput placeholder="Número do Projeto..." [(ngModel)]="number"
+                      (input)="filterItem(myInput.value)">
+
                   <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
@@ -29,7 +34,7 @@
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ações</th>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let project of this.projectList">
+                        <tr *ngFor="let project of this.filteredItems">
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{project.number}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{project.name}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{project.description}}</td>
