@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './modules/comment/comment.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CommentComponent } from './modules/comment/comment.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

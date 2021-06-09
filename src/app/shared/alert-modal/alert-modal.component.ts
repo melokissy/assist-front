@@ -4,9 +4,9 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'assist-alert-modal',
   templateUrl: './alert-modal.component.html',
-  styles: [
-  ]
+  styleUrls: ['./alert-modal.component.css']
 })
+
 export class AlertModalComponent implements OnInit {
 
   @Input() type: 'success';

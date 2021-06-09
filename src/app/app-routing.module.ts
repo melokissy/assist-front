@@ -76,16 +76,6 @@ const rotas: Routes = [
     data: { roles: ['Administrador','Tecnico','Cliente'] }
 
   },
-  {
-    path: 'modal',
-    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule),
-  },
-
-
-  // {
-  //   path: '**',
-  //   component: PaginaNaoEncontradaComponent
-  // }
 
   {
     path: '**',
