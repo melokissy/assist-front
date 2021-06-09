@@ -7,6 +7,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { map, catchError } from "rxjs/operators";
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
 
 
 @Component({
@@ -22,6 +24,9 @@ export class CadastroComponent implements OnInit {
   user: User;
   params: any = {};
   formCadastro: FormGroup;
+  bsModalRef: BsModalRef;
+  mensagemErro: any;
+
 
   createFormUser(data) {
 
@@ -41,7 +46,7 @@ export class CadastroComponent implements OnInit {
   constructor(private httpClient: HttpClient,
     private roteador: Router,
     private activatedRoute: ActivatedRoute,
-    userService: UserService) {
+    userService: UserService, private modalService: BsModalService) {
     this.userService = userService;
   }
 
@@ -68,7 +73,7 @@ export class CadastroComponent implements OnInit {
       .subscribe(
         () => {
           console.log(`Cadastrado com sucesso`);
-          this.formCadastro.reset()
+          this.formCadastro.reset();
 
           //após 1 segundo, redireciona para a rota de login
           setTimeout(() => {
@@ -77,8 +82,8 @@ export class CadastroComponent implements OnInit {
         }
         , (responseError: HttpErrorResponse) => {
           //resposta caso existam erros!
-          this.mensagensErro = responseError.error.body
-          // this.mensagensErro = responseError
+          this.mensagemErro = responseError.error;
+          this.handleError();
         }
       )
   }
@@ -101,7 +106,8 @@ export class CadastroComponent implements OnInit {
 
     }
     else {
-      this.validarTodosOsCamposDoFormulario(this.formCadastro);
+      //this.validarTodosOsCamposDoFormulario(this.formCadastro);
+      this.handleErrorForm();
     }
   }
 
@@ -125,6 +131,22 @@ export class CadastroComponent implements OnInit {
           return [{ urlInvalida: true }]
         })
       )
+  }
+
+  onClose(){
+    this.bsModalRef.hide();
+  }
+
+  handleError(){
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = 'danger';
+    this.bsModalRef.content.message = 'Erro ao cadastrar usuário';
+  }
+
+  handleErrorForm(){
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = 'danger';
+    this.bsModalRef.content.message = 'Preencher campos obrigatórios';
   }
 
 }

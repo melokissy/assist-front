@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
   ],
   imports: [
     CommonModule,
-    // FormsModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     SharedComponentsModule,
