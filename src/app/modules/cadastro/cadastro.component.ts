@@ -107,7 +107,6 @@ export class CadastroComponent implements OnInit {
 
     }
     else {
-      //this.validarTodosOsCamposDoFormulario(this.formCadastro);
       this.handleAlert('danger','Preencher todos os campos');
     }
   }

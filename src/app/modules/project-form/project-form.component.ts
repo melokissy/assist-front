@@ -8,6 +8,8 @@ import { ProjectService } from 'src/app/services/project.service';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
 
 
 @Component({
@@ -26,7 +28,7 @@ export class ProjectFormComponent implements OnInit {
   userService: UserService;
   projectService: ProjectService;
   projeto: Project;
-  projeto2: Observable <Project>;
+  projeto2: Observable<Project>;
   params: any = {};
   formCadastro: FormGroup;
   userList: User[];
@@ -34,14 +36,16 @@ export class ProjectFormComponent implements OnInit {
   responsible: User;
   data: any;
   projectNovo: Project;
-
+  bsModalRef: BsModalRef;
+  mensagemErro: any;
+  type: any;
 
   constructor(
     private httpClient: HttpClient,
     private roteador: Router, private activatedRoute: ActivatedRoute,
-    projectService: ProjectService, userService: UserService) {
-      this.projectService = projectService;
-      this.userService = userService;
+    projectService: ProjectService, userService: UserService, private modalService: BsModalService) {
+    this.projectService = projectService;
+    this.userService = userService;
   }
 
   ngOnInit(): void {
@@ -62,24 +66,24 @@ export class ProjectFormComponent implements OnInit {
     }
 
 
- }
+  }
 
- getResponsibles(){
-  this.userService.listar().subscribe( users => {
-    this.responsiblesList = users;
-  });
-}
+  getResponsibles() {
+    this.userService.listar().subscribe(users => {
+      this.responsiblesList = users;
+    });
+  }
 
   createFormGroup(data: any) {
     return this.formProjeto = new FormGroup({
-      name: new FormControl( data.name, [Validators.required, Validators.minLength(3)]),
+      name: new FormControl(data.name, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(data.description, [Validators.required]),
       status: new FormControl(data.status, []),
-      responsible: new FormControl( data.responsible?data.responsible:this.responsiblesList , [])
+      responsible: new FormControl(data.responsible ? data.responsible : this.responsiblesList, [])
     })
   }
 
-  handleCadastrarProjeto(){
+  handleCadastrarProjeto() {
     if (this.formProjeto.valid) {
       if (this.id) {
         this.projectService.atualizar(this.id, this.formProjeto.value).subscribe(projectEdited => {
@@ -97,6 +101,8 @@ export class ProjectFormComponent implements OnInit {
     }
     else {
       this.validaCampos(this.formProjeto);
+      this.handleAlert('danger','Preencher todos os campos');
+
     }
   }
 
@@ -108,10 +114,9 @@ export class ProjectFormComponent implements OnInit {
         .post('http://localhost:41124/AssistApi/resource/projects', projectData)
         .subscribe(
           () => {
-            console.log('Cadastrado com sucesso!');
-            alert("Cadastrado com sucesso!");
 
             this.formProjeto.reset();
+            this.handleAlert('success', 'Cadastrado com sucesso!');
 
             //após 1 segundo, redireciona para a rota de login
             setTimeout(() => {
@@ -120,15 +125,15 @@ export class ProjectFormComponent implements OnInit {
 
           }
           , (responseError: HttpErrorResponse) => {
-            //caso erros
-            this.mensagensErro = responseError.error.body;
+            this.mensagemErro = responseError.error;
+            this.handleAlert('danger', this.mensagemErro);
           }
         )
 
     }
     else {
       this.validaCampos(this.formProjeto);
-      alert("Preencher campos obrigatórios");
+      this.handleAlert('danger','Preencher todos os campos');
     }
   }
 
@@ -138,6 +143,12 @@ export class ProjectFormComponent implements OnInit {
       const control = form.get(field);
       control.markAsTouched({ onlySelf: true });
     })
+  }
+
+  handleAlert(type, message) {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = type;
+    this.bsModalRef.content.message = message;
   }
 
 }
