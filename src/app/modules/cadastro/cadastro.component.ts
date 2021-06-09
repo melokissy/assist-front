@@ -100,7 +100,6 @@ export class CadastroComponent implements OnInit {
         setTimeout(() => {
           this.roteador.navigate(['/users']);
         }, 100);
-        alert("Usuário atualizado com sucesso");
       } else {
         this.createUser();
       }
@@ -133,7 +132,7 @@ export class CadastroComponent implements OnInit {
       )
   }
 
-  onClose(){
+ onClose(){
     this.bsModalRef.hide();
   }
 

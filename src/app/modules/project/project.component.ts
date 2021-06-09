@@ -6,6 +6,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProjectFormComponent } from '../project-form/project-form.component';
 import { ProjectFormService } from 'src/app/services/project-form.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
 
 
 @Component({
@@ -24,9 +26,10 @@ export class ProjectsComponent implements OnInit {
   editPress = false;
   projectform:  ProjectFormComponent;
   project = new Project;
+  bsModalRef: BsModalRef;
 
   constructor(public projectService: ProjectService, private httpClient: HttpClient,
-    private roteador: Router,projectform: ProjectFormComponent) {
+    private roteador: Router,projectform: ProjectFormComponent,private modalService: BsModalService) {
     this.auxProj = new Project();
     this.projectform = projectform;
     }
@@ -68,7 +71,7 @@ export class ProjectsComponent implements OnInit {
     .delete('http://localhost:41124/AssistApi/resource/projects/' + projectData)
     .subscribe(
       () => {
-        console.log('deletado com sucesso');
+        this.handleAlert('success','Excluído com sucesso');
 
         //redirciona apos 1 s
          setTimeout(() => {
@@ -76,8 +79,19 @@ export class ProjectsComponent implements OnInit {
          }, 100);
       }
       , (reponseError: HttpErrorResponse) => {
-        this.mensagemErro = reponseError.error.body
-      }
+        this.mensagemErro = reponseError.error;
+        this.handleAlert('danger',this.mensagemErro);      }
     )
   }
+
+  onClose(){
+    this.bsModalRef.hide();
+  }
+
+  handleAlert(type,message){
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = type;
+    this.bsModalRef.content.message = message;
+  }
+
 }

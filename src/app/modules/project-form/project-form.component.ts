@@ -88,12 +88,17 @@ export class ProjectFormComponent implements OnInit {
       if (this.id) {
         this.projectService.atualizar(this.id, this.formProjeto.value).subscribe(projectEdited => {
           this.createFormGroup(projectEdited);
-        });
+          this.handleAlert('success', 'Atualizado com sucesso!');
+        }
+        , (responseError: HttpErrorResponse) => {
+          this.mensagemErro = responseError.error;
+          this.handleAlert('danger', this.mensagemErro);
+        }
+        );
         //após 1 segundo, redireciona para a rota de projetos
         setTimeout(() => {
           this.roteador.navigate(['/projects']);
         }, 100);
-        alert("Projeto atualizado com sucesso");
       } else {
         this.cadastrarProjeto();
       }
