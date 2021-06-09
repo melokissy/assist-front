@@ -74,7 +74,7 @@ export class CadastroComponent implements OnInit {
         () => {
           console.log(`Cadastrado com sucesso`);
           this.formCadastro.reset();
-          this.handleError('success','Cadastrado com sucesso!');
+          this.handleAlert('success','Cadastrado com sucesso!');
 
           //após 1 segundo, redireciona para a rota de login
           setTimeout(() => {
@@ -84,7 +84,7 @@ export class CadastroComponent implements OnInit {
         , (responseError: HttpErrorResponse) => {
           //resposta caso existam erros!
           this.mensagemErro = responseError.error;
-          this.handleError('danger','Erro ao cadastrar o usuário');
+          this.handleAlert('danger','Erro ao cadastrar o usuário');
         }
       )
   }
@@ -108,7 +108,7 @@ export class CadastroComponent implements OnInit {
     }
     else {
       //this.validarTodosOsCamposDoFormulario(this.formCadastro);
-      this.handleError('danger','Preencher todos os campos');
+      this.handleAlert('danger','Preencher todos os campos');
     }
   }
 
@@ -138,16 +138,10 @@ export class CadastroComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
-  handleError(type,message){
+  handleAlert(type,message){
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = type;
     this.bsModalRef.content.message = message;
   }
-
-  // handleErrorForm(){
-  //   this.bsModalRef = this.modalService.show(AlertModalComponent);
-  //   this.bsModalRef.content.type = 'danger';
-  //   this.bsModalRef.content.message = 'Preencher campos obrigatórios';
-  // }
 
 }

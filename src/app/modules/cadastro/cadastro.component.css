@@ -32,10 +32,14 @@
 .label-titulo-1{
   margin-bottom: 150px;
 }
+.td-float{
+  float: left !important;
+}
 .input-name{
   font-size: 15px;
   font-family: Roboto;
   margin-left: 61px;
+  margin-top: -200px;
   width: 650px;
   color: black;
   border: 1px solid rgba(0, 0, 0, 0.336);
@@ -128,3 +132,4 @@ section.user-form-card {
   border-color: white;
   margin-bottom: -5px;
 }
+
