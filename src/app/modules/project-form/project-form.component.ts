@@ -64,8 +64,6 @@ export class ProjectFormComponent implements OnInit {
       this.getResponsibles();
       this.createFormGroup(new Project);
     }
-
-
   }
 
   getResponsibles() {
@@ -73,6 +71,11 @@ export class ProjectFormComponent implements OnInit {
       this.responsiblesList = users;
     });
   }
+
+  limparUsers(){
+    this.userList = [];
+  }
+
 
   createFormGroup(data: any) {
     return this.formProjeto = new FormGroup({
