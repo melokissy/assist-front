@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/project';
@@ -10,12 +10,29 @@ import { ProjectService } from 'src/app/services/project.service';
 import { TicketService } from 'src/app/services/ticket.service';
 import { UserService } from 'src/app/services/user.service';
 import {CommentService} from 'src/app/services/comment.service';
+import {MatDialog,MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Overlay } from '@angular/cdk/overlay';
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'historico.html',
+  styleUrls: ['./ticket-info.component.css'],
+  providers: [MatDialog]
+})
+export class DialogDataExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogDataExampleDialog>
+  ) {}
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
 
 @Component({
   selector: 'assist-ticket-info',
   templateUrl: './ticket-info.component.html',
   styleUrls: ['./ticket-info.component.css'],
-  providers: []
+  providers: [MatDialog, Overlay]
 
 })
 export class TicketInfoComponent implements OnInit {
@@ -42,6 +59,7 @@ export class TicketInfoComponent implements OnInit {
   userLogado = {name: '', email: '', profile: ''};
   comments: any = [];
   comentario:Comment;
+  listHistorico: History[];
 
   textAreas: { value: string }[] = [{value: ''}];
 
@@ -53,12 +71,13 @@ export class TicketInfoComponent implements OnInit {
     private route: ActivatedRoute,
     userService: UserService,
     projectService: ProjectService,
-    commentService:CommentService    ) {
+    commentService:CommentService,public dialog: MatDialog    ) {
       this.userService = userService;
       this.projectService = projectService;
       this.comentarioService = commentService;
       this.auxTicket = new Ticket();
-      this.route.params.subscribe(params => this.ticketId = params['id'])
+      this.route.params.subscribe(params => this.ticketId = params['id']);
+      this.dialog = dialog;
     }
 
   ngOnInit(): void {
@@ -78,6 +97,19 @@ export class TicketInfoComponent implements OnInit {
         }
       }
       this.getRequester(this.ticket.requester.id);
+    });
+  }
+
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogDataExampleDialog,{
+      height: '400px',
+      width: '700px',
+      data:{list: this.listHistorico}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 

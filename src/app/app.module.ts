@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './modules/comment/comment.component';
 import { SharedModule } from './shared/shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -22,8 +23,10 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    SharedModule
+    SharedModule,
+    MatDialogModule
   ],
+  entryComponents:[MatDialogModule],
   providers: [],
   bootstrap: [AppComponent]
 })
