@@ -1,0 +1,32 @@
+<h2 class="mat-dialog-title">Histórico ticket</h2>
+<div class="mat-dialog-content">
+  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+      <th><label class="label-1">Histórico</label></th>
+      <th><label class="label-1">Status</label></th>
+      <th><label class="label-1">Titulo</label></th>
+      <th><label class="label-1">Descrição ticket</label></th>
+      <th><label class="label-1"></label></th>
+      <th><label class="label-1"></label></th>
+      <th><label class="label-1"></label></th>
+      <th><label class="label-1"></label></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let historico of data.list">
+        <td> <label> {{historico.description}} </label></td>
+        <td><label> {{historico.status}} </label></td>
+        <td><label> {{historico.subject}} </label></td>
+        <td><label>{{historico.ticket_description}}</label></td>
+        <td><label></label></td>
+        <td><label></label></td>
+        <td><label></label></td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+<div class="mat-dialog-actions aling='end'">
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>

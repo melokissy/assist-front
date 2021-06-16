@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './modules/comment/comment.component';
 import { SharedModule } from './shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { DialogDataModule } from './modules/ticket/dialog-data/dialog-data.module';
 
 
 @NgModule({
@@ -24,7 +26,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     ModalModule.forRoot(),
     SharedModule,
-    MatDialogModule
+    MatDialogModule,
+    CommonModule,
+    DialogDataModule
+
   ],
   entryComponents:[MatDialogModule],
   providers: [],

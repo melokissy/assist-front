@@ -1,9 +1,10 @@
-import { formatDate } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/project';
+import { Historic } from 'src/app/models/historic';
 import { Ticket } from 'src/app/models/ticket';
 import { User } from 'src/app/models/user';
 import { ProjectService } from 'src/app/services/project.service';
@@ -12,21 +13,14 @@ import { UserService } from 'src/app/services/user.service';
 import {CommentService} from 'src/app/services/comment.service';
 import {MatDialog,MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
+import { DialogDataComponent } from '../dialog-data/dialog-data.component';
 
-@Component({
-  selector: 'dialog-data-example-dialog',
-  templateUrl: 'historico.html',
-  styleUrls: ['./ticket-info.component.css'],
-  providers: [MatDialog]
-})
-export class DialogDataExampleDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DialogDataExampleDialog>
-  ) {}
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+
+
+export interface DialogData {
+  list: Historic[];
 }
+
 
 @Component({
   selector: 'assist-ticket-info',
@@ -59,7 +53,7 @@ export class TicketInfoComponent implements OnInit {
   userLogado = {name: '', email: '', profile: ''};
   comments: any = [];
   comentario:Comment;
-  listHistorico: History[];
+  listHistorico: Historic[];
 
   textAreas: { value: string }[] = [{value: ''}];
 
@@ -102,9 +96,9 @@ export class TicketInfoComponent implements OnInit {
 
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogDataExampleDialog,{
-      height: '400px',
-      width: '700px',
+    this.listHistorico = this.ticket.historic;
+    console.log(this.listHistorico);
+    const dialogRef = this.dialog.open(DialogDataComponent,{
       data:{list: this.listHistorico}
     });
 
