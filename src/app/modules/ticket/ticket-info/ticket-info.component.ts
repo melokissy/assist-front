@@ -15,6 +15,8 @@ import {MatDialog,MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
 import { Overlay } from '@angular/cdk/overlay';
 import { DialogDataComponent } from '../dialog-data/dialog-data.component';
 import { DialogDataCommentComponent } from '../dialog-data-comment/dialog-data-comment.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 
 export interface DialogData {
   list: Historic[];
@@ -50,11 +52,14 @@ export class TicketInfoComponent implements OnInit {
   comentarioService: CommentService;
   projectList: Project[];
   prioridades: string[];
+  bsModalRef: BsModalRef;
+  type: any;
   selectedPriority :any;
   userLogado = {name: '', email: '', profile: ''};
   comments: any = [];
   comentario:Comment;
   listHistorico: Historic[];
+  ticketSelecionado: Ticket;
 
   textAreas: { value: string }[] = [{value: ''}];
 
@@ -66,6 +71,7 @@ export class TicketInfoComponent implements OnInit {
     private route: ActivatedRoute,
     userService: UserService,
     projectService: ProjectService,
+    private modalService: BsModalService,
     commentService:CommentService,public dialog: MatDialog    ) {
       this.userService = userService;
       this.projectService = projectService;
@@ -189,11 +195,21 @@ export class TicketInfoComponent implements OnInit {
 
     public resolverTicket(){
       if(this.ticketId){
-        this.ticketService.resolverTicket(this.ticketId, this.ticket).subscribe(ticketResolvido => {
+        if(this.ticket.status == 'Resolvido'){
+          this.handleAlert('danger', 'Ticket já está resolvido');
+        }
+        if(this.ticket.status != 'Resolvido'){
+          this.ticketService.resolverTicket(this.ticketId, this.ticket).subscribe(ticketResolvido => {
+            this.handleAlert('success', 'Ticket resolvido com sucesso!');
+          });
           this.formTicket.reset();
-          alert('Ticket fechado com sucesso');
-
-        });
+        }
       }
+    }
+
+    handleAlert(type, message) {
+      this.bsModalRef = this.modalService.show(AlertModalComponent);
+      this.bsModalRef.content.type = type;
+      this.bsModalRef.content.message = message;
     }
 }

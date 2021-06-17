@@ -13,12 +13,8 @@
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
           *ngIf="userLogado.profile!='Cliente'">Editar
           ticket</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
-          *ngIf="userLogado.profile!='Cliente'">Salvar
-          alterações</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
           (click)="openComments()">Comentário</button>
-
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
           (click)="openDialog()">Histórico</button>
       </div>
@@ -129,8 +125,19 @@
                     class="input-layout-2" value="{{ticket.description}}" disabled>{{ticket.description}}</textarea>
                 </td>
               </tr>
+
             </table>
+
           </form>
+          <hr class="linha2">
+          <!-- COMENTÁRIO  -->
+          <div>
+            <label class="label-comment">Novo Comentário</label>
+          </div>
+          <div>
+            <textarea formControlName="comment" autofocus required type="text" name="comment"
+            class="input-layout-4"> </textarea>
+          </div>
 
           <div class="mdl-card__actions card-btn">
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar"
