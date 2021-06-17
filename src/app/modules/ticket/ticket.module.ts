@@ -11,11 +11,12 @@ import { TicketInfoComponent } from './ticket-info/ticket-info.component';
 import { CadastroTicketComponent } from './cadastro-ticket/cadastro-ticket.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { DialogDataComponent } from './dialog-data/dialog-data.component';
+import { DialogDataCommentComponent } from './dialog-data-comment/dialog-data-comment.component';
 
 
 
 @NgModule({
-  declarations: [TicketComponent, TicketInfoComponent, CadastroTicketComponent, DialogDataComponent],
+  declarations: [TicketComponent, TicketInfoComponent, CadastroTicketComponent, DialogDataComponent, DialogDataCommentComponent],
   imports: [
     CommonModule,
     FormsModule,

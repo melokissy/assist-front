@@ -14,13 +14,14 @@ import {CommentService} from 'src/app/services/comment.service';
 import {MatDialog,MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { DialogDataComponent } from '../dialog-data/dialog-data.component';
-
-
+import { DialogDataCommentComponent } from '../dialog-data-comment/dialog-data-comment.component';
 
 export interface DialogData {
   list: Historic[];
 }
-
+export interface DialogDataComment {
+  listComments: any[];
+}
 
 @Component({
   selector: 'assist-ticket-info',
@@ -101,12 +102,13 @@ export class TicketInfoComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogDataComponent,{
       data:{list: this.listHistorico}
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  }
+  openComments() {
+    console.log(this.comments);
+    const dialogRef = this.dialog.open(DialogDataCommentComponent,{
+      data:{listComments: this.comments}
     });
   }
-
 
   addTextArea(comment) {
     const textArea = { value: comment };
@@ -146,10 +148,6 @@ export class TicketInfoComponent implements OnInit {
       this.responsiblesList = responsible;
       this.getProject(this.ticket.project.id);
     })
-  }
-
-  getComments(){
-
   }
 
   getProject(idProject){

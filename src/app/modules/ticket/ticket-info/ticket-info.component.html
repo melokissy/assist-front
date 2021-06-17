@@ -10,12 +10,18 @@
           Arquivos</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
           (click)="resolverTicket()" *ngIf="userLogado.profile!='Cliente'">Resolver Ticket</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" *ngIf="userLogado.profile!='Cliente'">Editar
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
+          *ngIf="userLogado.profile!='Cliente'">Editar
           ticket</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" *ngIf="userLogado.profile!='Cliente'">Salvar
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
+          *ngIf="userLogado.profile!='Cliente'">Salvar
           alterações</button>
-        <button  class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button (click)="openDialog()">Histórico</button>
-        </div>
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
+          (click)="openComments()">Comentário</button>
+
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
+          (click)="openDialog()">Histórico</button>
+      </div>
       <hr class="linha">
 
       <div class="titulo-form">
@@ -123,36 +129,19 @@
                     class="input-layout-2" value="{{ticket.description}}" disabled>{{ticket.description}}</textarea>
                 </td>
               </tr>
-
             </table>
-            <hr class="linha2">
-                 <!-- COMENTÁRIO  -->
-                 <div>
-                  <label class="label-2">Comentário</label>
-                </div>
-                <div id="notes" *ngFor="let textArea of textAreas">
-                  <textarea autofocus disabled class="input-layout-3" >{{textArea.value}}</textarea>
-              </div>
           </form>
-          <hr class="linha2">
-            <!-- COMENTÁRIO  -->
-            <div>
-              <label class="label-2">Novo Comentário</label>
-            </div>
-            <div>
-              <textarea autofocus required type="text"
-                class="input-layout-3"></textarea>
-            </div>
 
-            <div class="mdl-card__actions card-btn">
-              <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar" ngClick="salvarComentario()">
-                Salvar Comentário
-              </button>
-              <button [routerLink]="'/tickets'" class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar"
-                type="button" style="margin-left: 10px;">
-                Voltar
-              </button>
-            </div>
+          <div class="mdl-card__actions card-btn">
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar"
+              ngClick="salvarComentario()">
+              Salvar Comentário
+            </button>
+            <button [routerLink]="'/tickets'" class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar"
+              type="button" style="margin-left: 10px;">
+              Voltar
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -14,16 +14,4 @@ export class DialogDataComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }
-
-
-// @Component({
-//   selector: 'dialog-data-example-dialog',
-//   templateUrl: 'historico.html',
-//   styleUrls: ['./ticket-info.component.css'],
-//   providers: [MatDialog]
-// })
-// export class DialogDataExampleDialog {
-
-// }
