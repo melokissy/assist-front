@@ -113,6 +113,7 @@ export class TicketInfoComponent implements OnInit {
     console.log(this.comments);
     const dialogRef = this.dialog.open(DialogDataCommentComponent,{
       data:{listComments: this.comments}
+
     });
   }
 

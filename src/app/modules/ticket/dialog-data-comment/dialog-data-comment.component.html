@@ -3,7 +3,7 @@
   <table class="table" id="dataTable" width="100%" cellspacing="0">
     <tbody>
         <tr *ngFor="let item of data.listComments">
-          <td> <label>{{item.createdAt | date:'dd/MM/yyyy'}} <br> {{item.comment}} </label></td>
+          <td> <label>{{item.createdAt | date:'dd/MM/yyyy'}} {{item.user.name}} <br> {{item.comment}} </label></td>
         </tr>
     </tbody>
   </table>
