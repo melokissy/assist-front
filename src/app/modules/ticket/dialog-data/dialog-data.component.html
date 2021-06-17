@@ -4,23 +4,25 @@
     <thead>
       <th><label class="label-1">Histórico</label></th>
       <th><label class="label-1">Data</label></th>
+      <th><label class="label-1">Usuário</label></th>
       <th><label class="label-1">Status</label></th>
       <th><label class="label-1">Titulo</label></th>
       <th><label class="label-1">Descrição ticket</label></th>
-      <th><label class="label-1">Responsável</label></th>
       <th><label class="label-1">Prioridade</label></th>
       <th><label class="label-1">Tipo</label></th>
+      <th><label class="label-1">Responsável</label></th>
     </thead>
     <tbody>
       <tr *ngFor="let historico of data.list">
         <td> <label> {{historico.description}} </label></td>
-        <td><label></label>{{historico.createdAt | date:'dd/MM/yyyy'}}</td>
+        <td><label>{{historico.createdAt | date:'dd/MM/yyyy'}}</label></td>
+        <td><label>{{historico.user.name}}</label></td>
         <td><label> {{historico.status}} </label></td>
         <td><label> {{historico.subject}} </label></td>
         <td><label>{{historico.ticket_description}}</label></td>
-        <td><label></label></td>
-        <td><label></label>{{historico.priority}}</td>
-        <td><label></label>{{historico.type}}</td>
+        <td><label>{{historico.priority}}</label></td>
+        <td><label>{{historico.type}}</label></td>
+        <td><label>{{historico.ticket_responsible.name}}</label></td>
       </tr>
     </tbody>
   </table>

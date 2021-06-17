@@ -1,6 +1,8 @@
+import { User } from "./user";
+
 export class Historic {
   id: number;
-  user_id: number;
+  user: User;
   ticket_id: number;
   description: String;
   createdAt: Date;
@@ -9,7 +11,7 @@ export class Historic {
   ticket_description: String;
   priority: String;
   type: String;
-  reponsible_id: number;
+  ticket_responsible: User;
 
   constructor(values = {}) {
     Object.assign(this, values);
