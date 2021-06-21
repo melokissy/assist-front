@@ -58,13 +58,6 @@ export class TicketInfoComponent implements OnInit {
   selectedPriority: any;
   userLogado = { name: '', email: '', profile: '', id: '' };
   comments: any = [];
-  comentario: Comment;
-  usuarioComentario: {
-    id: number,
-    name: string,
-    email: string,
-    profile: string
-  };
   listHistorico: Historic[];
   ticketSelecionado: Ticket;
   comentarioText: null;
@@ -127,13 +120,13 @@ export class TicketInfoComponent implements OnInit {
 
   salvarComentario() {
     if (this.comentarioText) {
-      const usuaer = new User(this.userLogado)
-      const comentarriozao = new Comment();
-      comentarriozao.user = usuaer;
-      comentarriozao.comment = this.comentarioText;
-      comentarriozao.ticket = new Ticket(this.ticket);
+      const usuarioComment = new User(this.userLogado)
+      const comentario = new Comment();
+      comentario.user = usuarioComment;
+      comentario.comment = this.comentarioText;
+      comentario.ticket = new Ticket(this.ticket);
 
-      this.comentarioService.novoComentario(comentarriozao).subscribe(
+      this.comentarioService.novoComentario(comentario).subscribe(
         () => {
           this.handleAlert('success', 'Comentário adicionado!');
           setTimeout(() => {
