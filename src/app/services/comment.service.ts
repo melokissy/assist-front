@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/internal/operators/map';
+import { Comment } from 'src/app/models/comment';
+
 
 
 

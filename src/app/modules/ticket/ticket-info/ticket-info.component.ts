@@ -7,11 +7,12 @@ import { Project } from 'src/app/models/project';
 import { Historic } from 'src/app/models/historic';
 import { Ticket } from 'src/app/models/ticket';
 import { User } from 'src/app/models/user';
+import { Comment } from 'src/app/models/comment';
 import { ProjectService } from 'src/app/services/project.service';
 import { TicketService } from 'src/app/services/ticket.service';
 import { UserService } from 'src/app/services/user.service';
-import {CommentService} from 'src/app/services/comment.service';
-import {MatDialog,MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { CommentService } from 'src/app/services/comment.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { DialogDataComponent } from '../dialog-data/dialog-data.component';
 import { DialogDataCommentComponent } from '../dialog-data-comment/dialog-data-comment.component';
@@ -54,14 +55,21 @@ export class TicketInfoComponent implements OnInit {
   prioridades: string[];
   bsModalRef: BsModalRef;
   type: any;
-  selectedPriority :any;
-  userLogado = {name: '', email: '', profile: ''};
+  selectedPriority: any;
+  userLogado = { name: '', email: '', profile: '', id: '' };
   comments: any = [];
-  comentario:Comment;
+  comentario: Comment;
+  usuarioComentario: {
+    id: number,
+    name: string,
+    email: string,
+    profile: string
+  };
   listHistorico: Historic[];
   ticketSelecionado: Ticket;
+  comentarioText: null;
 
-  textAreas: { value: string }[] = [{value: ''}];
+  textAreas: { value: string }[] = [{ value: '' }];
 
 
   constructor(
@@ -72,18 +80,21 @@ export class TicketInfoComponent implements OnInit {
     userService: UserService,
     projectService: ProjectService,
     private modalService: BsModalService,
-    commentService:CommentService,public dialog: MatDialog    ) {
-      this.userService = userService;
-      this.projectService = projectService;
-      this.comentarioService = commentService;
-      this.auxTicket = new Ticket();
-      this.route.params.subscribe(params => this.ticketId = params['id']);
-      this.dialog = dialog;
-    }
+    commentService: CommentService,
+    public dialog: MatDialog
+     ) {
+    this.userService = userService;
+    this.projectService = projectService;
+    this.comentarioService = commentService;
+    this.auxTicket = new Ticket();
+    this.route.params.subscribe(params => this.ticketId = params['id']);
+    this.dialog = dialog;
+  }
 
   ngOnInit(): void {
-    this.prioridades =  ["Alta","Media","Baixa"];
+    this.prioridades = ["Alta", "Media", "Baixa"];
 
+    this.userLogado.id = localStorage.getItem('user-autenticated-idUser');
     this.userLogado.name = localStorage.getItem('user-autenticated-name');
     this.userLogado.email = localStorage.getItem('user-autenticated-email');
     this.userLogado.profile = localStorage.getItem('user-autenticated-profile');
@@ -91,11 +102,8 @@ export class TicketInfoComponent implements OnInit {
 
     this.ticketService.getById(this.ticketId).subscribe(data => {
       this.ticket = data;
-      if(data.comment){
+      if (data.comment) {
         this.comments = data.comment
-        for(let post of this.comments){
-          this.addTextArea(post.createdAt + " " + post.user.name +"\n" + post.comment );
-        }
       }
       this.getRequester(this.ticket.requester.id);
     });
@@ -105,33 +113,40 @@ export class TicketInfoComponent implements OnInit {
   openDialog() {
     this.listHistorico = this.ticket.historic;
     console.log(this.listHistorico);
-    const dialogRef = this.dialog.open(DialogDataComponent,{
-      data:{list: this.listHistorico}
+    const dialogRef = this.dialog.open(DialogDataComponent, {
+      data: { list: this.listHistorico }
     });
   }
   openComments() {
     console.log(this.comments);
-    const dialogRef = this.dialog.open(DialogDataCommentComponent,{
-      data:{listComments: this.comments}
+    const dialogRef = this.dialog.open(DialogDataCommentComponent, {
+      data: { listComments: this.comments }
 
     });
   }
 
-  addTextArea(comment) {
-    const textArea = { value: comment };
-    this.textAreas.push(textArea)
+  salvarComentario() {
+    if (this.comentarioText) {
+      const usuaer = new User(this.userLogado)
+      const comentarriozao = new Comment();
+      comentarriozao.user = usuaer;
+      comentarriozao.comment = this.comentarioText;
+      comentarriozao.ticket = new Ticket(this.ticket);
+
+      this.comentarioService.novoComentario(comentarriozao).subscribe(
+        () => {
+          this.handleAlert('success', 'Comentário adicionado!');
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+
+        },
+
+      )
+    }
   }
 
-
-  salvarComentario(comment){
-    // this.comentario.user.email = this.userLogado.email;
-    // this.comentario.comment = comment;
-    // this.comentario.ticket = this.ticket;
-    // this
-
-  }
-
-  getRequester(id){
+  getRequester(id) {
     this.userService.getById(id).subscribe(requester => {
       this.requester = requester;
       this.ticket.requester = requester;
@@ -139,8 +154,8 @@ export class TicketInfoComponent implements OnInit {
     })
   }
 
-  getResponsible(id){
-    if(id == 0 || id == null){
+  getResponsible(id) {
+    if (id == 0 || id == null) {
       this.getResponsibleList();
     }
     this.userService.getById(id).subscribe(responsible => {
@@ -150,14 +165,14 @@ export class TicketInfoComponent implements OnInit {
     })
   }
 
-  getResponsibleList(){
+  getResponsibleList() {
     this.userService.userByProfile().subscribe(responsible => {
       this.responsiblesList = responsible;
       this.getProject(this.ticket.project.id);
     })
   }
 
-  getProject(idProject){
+  getProject(idProject) {
     this.projectService.getById(idProject).subscribe(project => {
       this.project = project;
       this.ticket.project = project;
@@ -167,14 +182,14 @@ export class TicketInfoComponent implements OnInit {
 
   createFormGroup(data: any) {
     return this.formTicket = new FormGroup({
-      subject: new FormControl( data.subject, [Validators.required, Validators.minLength(3)]),
+      subject: new FormControl(data.subject, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(data.description, [Validators.required]),
       requester: new FormControl(this.userList),
       responsible: new FormControl(this.responsiblesList),
       type: new FormControl(data.type, [Validators.required]),
-      priority: new FormControl( data.priority),
+      priority: new FormControl(data.priority),
       project: new FormControl(data.project.name, [Validators.required]),
-      comment: new FormControl(data.comment)
+      // comment: new FormControl(data.comment)
     })
   }
 
@@ -188,29 +203,29 @@ export class TicketInfoComponent implements OnInit {
 
     this.editPress = true;
 
-    }
+  }
 
-    public deleteTicket(id: number) {
-      this.ticketService.delete(id);
-    }
+  public deleteTicket(id: number) {
+    this.ticketService.delete(id);
+  }
 
-    public resolverTicket(){
-      if(this.ticketId){
-        if(this.ticket.status == 'Resolvido'){
-          this.handleAlert('danger', 'Ticket já está resolvido');
-        }
-        if(this.ticket.status != 'Resolvido'){
-          this.ticketService.resolverTicket(this.ticketId, this.ticket).subscribe(ticketResolvido => {
-            this.handleAlert('success', 'Ticket resolvido com sucesso!');
-          });
-          this.formTicket.reset();
-        }
+  public resolverTicket() {
+    if (this.ticketId) {
+      if (this.ticket.status == 'Resolvido') {
+        this.handleAlert('danger', 'Ticket já está resolvido');
+      }
+      if (this.ticket.status != 'Resolvido') {
+        this.ticketService.resolverTicket(this.ticketId, this.ticket).subscribe(ticketResolvido => {
+          this.handleAlert('success', 'Ticket resolvido com sucesso!');
+        });
+        this.formTicket.reset();
       }
     }
+  }
 
-    handleAlert(type, message) {
-      this.bsModalRef = this.modalService.show(AlertModalComponent);
-      this.bsModalRef.content.type = type;
-      this.bsModalRef.content.message = message;
-    }
+  handleAlert(type, message) {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = type;
+    this.bsModalRef.content.message = message;
+  }
 }

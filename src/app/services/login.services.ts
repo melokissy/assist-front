@@ -32,6 +32,7 @@ export class LoginService {
         map((response: any) => {
           localStorage.setItem('currentUser', JSON.stringify(response));
 
+          localStorage.setItem('user-autenticated-idUser', response.idUser);
           localStorage.setItem('user-autenticated-email', response.email);
           localStorage.setItem('user-autenticated-name', response.name);
           localStorage.setItem('user-autenticated-profile', response.profile);

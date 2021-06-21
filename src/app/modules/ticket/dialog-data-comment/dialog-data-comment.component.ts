@@ -4,8 +4,7 @@ import { DialogDataComment } from '../ticket-info/ticket-info.component';
 @Component({
   selector: 'assist-dialog-data-comment',
   templateUrl: './dialog-data-comment.component.html',
-  styles: [
-  ]
+  styleUrls: ['./dialog-data-comment.component.css'],
 })
 export class DialogDataCommentComponent{
   constructor(

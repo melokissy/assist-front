@@ -78,7 +78,16 @@
                 <!-- STATUS  -->
                 <td> <label class="label-1 label-titulo-1">Status</label>
                 </td>
-                <td> <input class="status-input" value="{{ticket.status}}" disabled>
+                <td>  <select class="mdl-textfield__input selector-priority" id="status" name="status" formControlName="status"
+                  [disabled]="!editPress">
+                  <option hidden>{{ticket.status}}</option>
+                  <option>Resolvido</option>
+                  <option>Em andamento</option>
+                  <option>Pendente</option>
+                  <option>Duplicado</option>
+                  <option>Fechado</option>
+                  <option>Aguardando Retorno</option>
+                </select>
                 </td>
               </tr>
               <!-- SOLICITANTE  -->
@@ -135,13 +144,13 @@
             <label class="label-comment">Novo Comentário</label>
           </div>
           <div>
-            <textarea formControlName="comment" autofocus required type="text" name="comment"
+            <textarea autofocus type="text" name="comment" [(ngModel)]="comentarioText"
             class="input-layout-4"> </textarea>
           </div>
 
           <div class="mdl-card__actions card-btn">
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar"
-              ngClick="salvarComentario()">
+            (click)="salvarComentario()">
               Salvar Comentário
             </button>
             <button [routerLink]="'/tickets'" class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar"
