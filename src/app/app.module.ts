@@ -14,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import { DialogDataModule } from './modules/ticket/dialog-data/dialog-data.module';
 import { DialogDataCommentModule } from './modules/ticket/dialog-data-comment/dialog-data-comment.module';
 
-
 @NgModule({
   declarations: [
     AppComponent

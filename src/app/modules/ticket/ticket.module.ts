@@ -9,9 +9,9 @@ import { TicketService } from 'src/app/services/ticket.service';
 import { TicketComponent } from './ticket.component';
 import { TicketInfoComponent } from './ticket-info/ticket-info.component';
 import { CadastroTicketComponent } from './cadastro-ticket/cadastro-ticket.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { DialogDataComponent } from './dialog-data/dialog-data.component';
 import { DialogDataCommentComponent } from './dialog-data-comment/dialog-data-comment.component';
+import { AttachmentService } from 'src/app/services/attachment.service';
 
 
 
@@ -26,6 +26,6 @@ import { DialogDataCommentComponent } from './dialog-data-comment/dialog-data-co
     AssistFormModule,
     TicketRoutingModule
     ],
-  providers: [TicketService]
+  providers: [TicketService, AttachmentService]
 })
 export class TicketModule { }

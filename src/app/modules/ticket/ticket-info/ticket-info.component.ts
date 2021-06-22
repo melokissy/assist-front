@@ -9,6 +9,7 @@ import { Ticket } from 'src/app/models/ticket';
 import { User } from 'src/app/models/user';
 import { Comment } from 'src/app/models/comment';
 import { ProjectService } from 'src/app/services/project.service';
+import { AttachmentService } from 'src/app/services/attachment.service';
 import { TicketService } from 'src/app/services/ticket.service';
 import { UserService } from 'src/app/services/user.service';
 import { CommentService } from 'src/app/services/comment.service';
@@ -18,6 +19,9 @@ import { DialogDataComponent } from '../dialog-data/dialog-data.component';
 import { DialogDataCommentComponent } from '../dialog-data-comment/dialog-data-comment.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
+import { environment } from 'src/environments/environment';
+import { Attachment } from 'src/app/models/attachment';
+
 
 export interface DialogData {
   list: Historic[];
@@ -50,6 +54,7 @@ export class TicketInfoComponent implements OnInit {
   userList: User[];
   responsiblesList: User[];
   projectService: ProjectService;
+  anexoService: AttachmentService;
   comentarioService: CommentService;
   projectList: Project[];
   prioridades: string[];
@@ -61,9 +66,9 @@ export class TicketInfoComponent implements OnInit {
   listHistorico: Historic[];
   ticketSelecionado: Ticket;
   comentarioText: null;
+  anexo: Attachment;
 
   textAreas: { value: string }[] = [{ value: '' }];
-
 
   constructor(
     public ticketService: TicketService,
@@ -71,12 +76,14 @@ export class TicketInfoComponent implements OnInit {
     private roteador: Router,
     private route: ActivatedRoute,
     userService: UserService,
+    anexoService: AttachmentService,
     projectService: ProjectService,
     private modalService: BsModalService,
     commentService: CommentService,
     public dialog: MatDialog
-     ) {
+  ) {
     this.userService = userService;
+    this.anexoService = anexoService;
     this.projectService = projectService;
     this.comentarioService = commentService;
     this.auxTicket = new Ticket();
@@ -102,7 +109,6 @@ export class TicketInfoComponent implements OnInit {
     });
   }
 
-
   openDialog() {
     this.listHistorico = this.ticket.historic;
     console.log(this.listHistorico);
@@ -118,6 +124,19 @@ export class TicketInfoComponent implements OnInit {
     });
   }
 
+  uploadAnexo(event, anexo) {
+    const files = event.target.files;
+    if (files) {
+      const foto = files[0];
+      const formData: FormData = new FormData();
+      formData.append('anexo', foto);
+
+      this.anexoService
+        .upload(this.ticketId, formData)
+        .subscribe(response => console.log("arquivo anexado"));
+    }
+  }
+
   salvarComentario() {
     if (this.comentarioText) {
       const usuarioComment = new User(this.userLogado)
@@ -129,10 +148,7 @@ export class TicketInfoComponent implements OnInit {
       this.comentarioService.novoComentario(comentario).subscribe(
         () => {
           this.handleAlert('success', 'Comentário adicionado!');
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-
+          this.reloadPage();
         },
 
       )
@@ -210,10 +226,16 @@ export class TicketInfoComponent implements OnInit {
       if (this.ticket.status != 'Resolvido') {
         this.ticketService.resolverTicket(this.ticketId, this.ticket).subscribe(ticketResolvido => {
           this.handleAlert('success', 'Ticket resolvido com sucesso!');
+          this.reloadPage();
         });
-        this.formTicket.reset();
       }
     }
+  }
+
+  reloadPage() {
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
   handleAlert(type, message) {

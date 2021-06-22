@@ -35,7 +35,7 @@
 }
 
 .linha2{
-  width: 600%;
+  width: 98%;
   margin-bottom: 25px;
 }
 section.user-form-card {
@@ -167,6 +167,9 @@ section.user-form-card {
   border: 1px solid rgba(0, 0, 0, 0.336);
   height: 30px;
   border-radius: 5px;
+}
+.inputArquivos{
+  margin-left: 30px;
 }
 .input-layout-2{
   font-size: 15px;

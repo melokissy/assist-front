@@ -4,18 +4,13 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/internal/operators/map';
 import { Comment } from 'src/app/models/comment';
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
   apiUrl = `${environment.apiUrl}comments/`;
 
-
   constructor(private http: HttpClient) { }
-
 
   // POST /tickets
   novoComentario(comment: Comment) {

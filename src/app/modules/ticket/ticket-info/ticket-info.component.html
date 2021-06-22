@@ -6,8 +6,6 @@
     <section class="user-form-card demo-card-wide mdl-card mdl-shadow--2dp">
 
       <div class="mdl-card__actions card-btn">
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top">Anexar
-          Arquivos</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
           (click)="resolverTicket()" *ngIf="userLogado.profile!='Cliente'">Resolver Ticket</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
@@ -138,6 +136,11 @@
             </table>
 
           </form>
+
+          <hr class="linha2">
+          <!-- INPUT DE ARQUIVOS -->
+          <input type="file" name="foto" class="inputArquivos" (change)="uploadAnexo($event, anexo)">
+
           <hr class="linha2">
           <!-- COMENTÁRIO  -->
           <div>
