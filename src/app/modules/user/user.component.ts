@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.compon
   selector: 'app-users',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
-  providers:[]
+  providers: []
 })
 export class UsersComponent implements OnInit {
 
@@ -25,9 +25,12 @@ export class UsersComponent implements OnInit {
   filteredItems: any[];
   name: null;
   email: any;
+  deleteModalRef: BsModalRef;
+  @ViewChild('deleteModal') deleteModal;
+  usuarioSelecionado: number;
 
   constructor(public userService: UserService, private httpClient: HttpClient,
-    private roteador: Router,private modalService: BsModalService) {
+    private roteador: Router, private modalService: BsModalService) {
     this.auxUser = new User();
   }
 
@@ -58,23 +61,30 @@ export class UsersComponent implements OnInit {
       )
   }
 
-  handleDeleteUsuario(id: number) {
-    let userData = id
-    console.log(userData);
-    this.httpClient
-      .delete('http://localhost:41124/AssistApi/resource/users/' + userData)
-      .subscribe(
-        () => {
-          this.handleAlert('success','Excluído com sucesso');
-          //após 1 segundo, redireciona para a rota de login
-          setTimeout(() => {
-            this.users();
-          }, 1000);
-        }
-        , (reponseError: HttpErrorResponse) => {
-          this.mensagemErro = reponseError.error;
-          this.handleAlert('danger',this.mensagemErro);      }
-      )
+  onDelete(id: number) {
+    this.usuarioSelecionado = id;
+    this.deleteModalRef = this.modalService.show(this.deleteModal, { class: 'modal-sm' });
+  }
+
+  onConfirmDelete() {
+    this.userService.deleteUser(this.usuarioSelecionado).subscribe(
+      () => {
+        this.deleteModalRef.hide();
+
+        this.handleAlert('success', 'Excluído com sucesso');
+        //após 1 segundo, redireciona para a rota de login
+        setTimeout(() => {
+          this.users();
+        }, 1000);
+      }
+      , (reponseError: HttpErrorResponse) => {
+        this.mensagemErro = reponseError.error;
+        this.handleAlert('danger', this.mensagemErro);
+      })
+  }
+
+  onDeclineDelete() {
+    this.deleteModalRef.hide();
   }
 
   public editUser(id: number, name: string, email: string) {
@@ -101,11 +111,11 @@ export class UsersComponent implements OnInit {
     this.toggleShowForm();
   }
 
-  onClose(){
+  onClose() {
     this.bsModalRef.hide();
   }
 
-  handleAlert(type,message){
+  handleAlert(type, message) {
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = type;
     this.bsModalRef.content.message = message;

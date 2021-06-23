@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +63,8 @@ export class UserService {
       id: userApi.id,
       profile: userApi.profile,
       password: userApi.password,
-      cpf: userApi.cpf
+      cpf: userApi.cpf,
+      setor: userApi.setor
     })
   }
 
@@ -119,6 +121,10 @@ export class UserService {
   public delete(id: number) {
     this.users = this.users.filter(user => user.id !== id);
     return this;
+  }
+
+  public deleteUser(id: number){
+    return this.http.delete(this.apiUrl+`${id}`).pipe(take(1));
   }
 
   private validate(user: User, update = false): Alert {

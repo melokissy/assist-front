@@ -37,7 +37,8 @@ export class CadastroComponent implements OnInit {
       userIcon: new FormControl(data ? data.userIcon : ''),
       profile: new FormControl(data ? data.profile : ''),
       status: new FormControl(data ? data.status  : '', [Validators.nullValidator]),
-      cpf: new FormControl(data ? data.cpf : '', [Validators.required, Validators.minLength(11)])
+      cpf: new FormControl(data ? data.cpf : '', [Validators.required, Validators.minLength(11)]),
+      setor: new FormControl(data ? data.setor : '', [Validators.required])
     })
 
   }
