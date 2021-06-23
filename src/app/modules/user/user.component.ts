@@ -78,6 +78,8 @@ export class UsersComponent implements OnInit {
         }, 1000);
       }
       , (reponseError: HttpErrorResponse) => {
+        this.deleteModalRef.hide();
+
         this.mensagemErro = reponseError.error;
         this.handleAlert('danger', this.mensagemErro);
       })

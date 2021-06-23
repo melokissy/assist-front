@@ -46,7 +46,7 @@
                             <button routerLink="/projectForm/{{project.id}}" type="button"
                               class="mdl-button mdl-button--raised mdl-button--colored"><i
                                 class="material-icons">mode_edit</i></button>
-                            <button (click)="this.deleteProject(project.id)" type="button" class="mdl-button mdl-button--raised"
+                            <button (click)="this.onDelete(project.id)" type="button" class="mdl-button mdl-button--raised"
                               style="margin-left: 5px;" style="background-color: red;"><i class="material-icons"
                                 style="color: blanchedalmond;">delete</i></button>
                           </td>
@@ -59,3 +59,10 @@
             </div>
           </main>
       </div>
+      <ng-template #deleteModal>
+        <div class="modal-body text-center">
+          <p>Confirma exclusão do usuário?</p>
+          <button type="button" class="btn btn-default" (click)="onConfirmDelete()">Sim</button>
+          <button type="button" class="btn btn-primary" (click)="onDeclineDelete()">Não</button>
+        </div>
+      </ng-template>

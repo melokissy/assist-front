@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { Project } from '../models/project';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 
 @Injectable({
@@ -90,6 +91,10 @@ export class ProjectService {
   public delete(id: number) {
     this.projects = this.projects.filter(project => project.id !== id);
     return this;
+  }
+
+  public deleteProject(id: number){
+    return this.http.delete(this.apiUrl+`${id}`).pipe(take(1));
   }
 
   private validate(project: Project, update = false): Alert {

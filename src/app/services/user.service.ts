@@ -117,7 +117,6 @@ export class UserService {
     Object.assign(user, values);
   }
 
-  //DELETE
   public delete(id: number) {
     this.users = this.users.filter(user => user.id !== id);
     return this;

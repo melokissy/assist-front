@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -30,6 +30,10 @@ export class ProjectsComponent implements OnInit {
   bsModalRef: BsModalRef;
   filteredItems: any[];
   number: any;
+  projetoSelecionado: number;
+  deleteModalRef: BsModalRef;
+  @ViewChild('deleteModal') deleteModal;
+
 
   constructor(public projectService: ProjectService, private httpClient: HttpClient,
     private roteador: Router,projectform: ProjectFormComponent,private modalService: BsModalService) {
@@ -66,26 +70,35 @@ export class ProjectsComponent implements OnInit {
       )
   }
 
-  deleteProject(id: number){
+  onDelete(id: number) {
+    this.projetoSelecionado = id;
+    this.deleteModalRef = this.modalService.show(this.deleteModal, { class: 'modal-sm' });
+  }
+
+  onConfirmDelete(id: number){
     let projectData = id
     console.log(projectData);
 
-    this.httpClient
-    .delete('http://localhost:41124/AssistApi/resource/projects/' + projectData)
-    .subscribe(
+    this.projectService.deleteProject(this.projetoSelecionado).subscribe(
       () => {
-        this.handleAlert('success','Excluído com sucesso');
+        this.deleteModalRef.hide();
 
-        //redirciona apos 1 s
-         setTimeout(() => {
-           this.projects();
-         }, 100);
+        this.handleAlert('success', 'Excluído com sucesso');
+        //após 1 segundo, redireciona para a rota de login
+        setTimeout(() => {
+          this.projects();
+        }, 1000);
       }
       , (reponseError: HttpErrorResponse) => {
+        this.deleteModalRef.hide();
+
         this.mensagemErro = reponseError.error;
-        this.handleAlert('danger',this.mensagemErro);
-      }
-    )
+        this.handleAlert('danger', this.mensagemErro);
+      })
+  }
+
+  onDeclineDelete() {
+    this.deleteModalRef.hide();
   }
 
   onClose(){
