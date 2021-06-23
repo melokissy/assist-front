@@ -87,12 +87,6 @@ export class ProjectService {
     return this.http.put<Project>(this.apiUrl+`${id}`, project);
   }
 
-  //DELETE
-  public delete(id: number) {
-    this.projects = this.projects.filter(project => project.id !== id);
-    return this;
-  }
-
   public deleteProject(id: number){
     return this.http.delete(this.apiUrl+`${id}`).pipe(take(1));
   }
