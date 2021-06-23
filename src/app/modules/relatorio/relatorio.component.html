@@ -1,32 +1,67 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
   <assist-header></assist-header>
   <main class="mdl-layout__content">
-    <div class="page-content">
-      <div class="mdl-grid">
+    <div class="container-fluid">
+      <div class="page-content">
+        <div class="mdl-grid">
 
-        <section class="relatorio-card demo-card-wide mdl-card mdl-shadow--2dp">
+          <main class="mdl-layout__content">
+            <div class="container-fluid layout">
+              <div class="card mb-4">
 
-        <!-- PAGINA EM CONSTRUÇÃO -->
-        <div class="titulo-pagina" >
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Relatório de ticket por projeto</div>
+                <div class="card-body">
+                    <!-- Filtros -->
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Número</th>
+                          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Nome</th>
+                          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Descrição</th>
+                          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ação</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let project of this.projectList">
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.number}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.name}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.description}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">
+                            <button type="button" class="mdl-button mdl-button--raised btn-view" mat-button
+                            (click)="openDialog(project.id, project.name)"><i class="material-icons">visibility</i></button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+
+          <!-- <div class="relatorio-card mdl-card mdl-shadow--2dp">
+
+          </div> -->
+
+          <!-- TITULO DA PAGINA -->
+          <!-- <div class="titulo-pagina" >
           <label>Relatórios de Tickets</label>
         </div>
         <hr class="linha">
 
         <div>
           <button class="mdl-button mdl-button--raised btn-print" (click)="printComponent('component1')">Imprimir</button>
-          <label class="label-titulo">Tickets do mês</label>
+
           <div  id="component1">
             <label for=""> CONTEUDO DA TABELA AQUI</label>
 
           </div>
+        </div> -->
+
         </div>
-
-        </section>
-
       </div>
     </div>
-
-
   </main>
 
 </div>

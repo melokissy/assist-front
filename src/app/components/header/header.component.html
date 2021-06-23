@@ -11,8 +11,8 @@
     <!-- Search -->
     <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
          mdl-textfield--floating-label mdl-textfield--align-right is-focused mdl-cell--hide-phone "> -->
-      <!--Para fechar remover is-focused-->
-      <!-- <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+    <!--Para fechar remover is-focused-->
+    <!-- <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
         <span class="material-icons">search</span>
       </label>
       <div class="mdl-textfield__expandable-holder">
@@ -40,7 +40,8 @@
   </header>
 
   <nav class="mdl-navigation">
-    <a [routerLink]="'/dashboard'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link" *ngIf="userLogado.profile!='Cliente'">
+    <a [routerLink]="'/dashboard'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link"
+      *ngIf="userLogado.profile!='Cliente'">
       <span class="material-icons">dashboard</span> Dashboard
     </a>
     <a [routerLink]="'/tickets'" class="mdl-navigation__link">
@@ -49,14 +50,36 @@
     <!-- <a [routerLink]="'/cadastro'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
       <span class="material-icons">person</span> Cadastro
     </a> -->
-    <a [routerLink]="'/users'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link" *ngIf="userLogado.profile=='Administrador'">
+    <a [routerLink]="'/users'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link"
+      *ngIf="userLogado.profile=='Administrador'">
       <span class="material-icons">person</span> Usuários
     </a>
-    <a [routerLink]="'/projects'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link"  *ngIf="userLogado.profile!='Cliente'">
+    <a [routerLink]="'/projects'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link"
+      *ngIf="userLogado.profile!='Cliente'">
       <span class="material-icons">description</span> Projetos
     </a>
-    <a [routerLink]="'/relatorios'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link" *ngIf="userLogado.profile=='Administrador'">
+    <a (click)="showSubmenu()"
+      class="mdl-navigation__link"
+      *ngIf="userLogado.profile=='Administrador'"
+      >
       <span class="material-icons">article</span> Relatórios
+      <!-- sub menu only visible when clicked on the link above -->
+      <div *ngIf="relatorioclicked" style="margin-left: 25px;">
+        <div style="margin-bottom: 5px; margin-top: 5px;">
+          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Ticket do mês</a><br>
+        </div>
+        <div style="margin-bottom: 5px;">
+          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Ticket por projeto</a><br>
+        </div>
+        <div style="margin-bottom: 5px;">
+          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" disabled  [routerLink]="'/relatorios'">Ticket por status</a><br>
+        </div>
+        <div>
+          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Histórico de ticket</a>
+        </div>
+
+      </div>
+
     </a>
     <a [routerLink]="'/configuracao'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
       <span class="material-icons">build</span> Configuração
@@ -65,6 +88,8 @@
       <span class="material-icons">logout</span> Logout
     </a>
   </nav>
+
+
 </section>
 <!-- FECHAR MENU EM QUALQUER LUGAR DA TELA -->
 <div class="headerGlobal__menuOverlay" (click)="toggleMenu()"></div>

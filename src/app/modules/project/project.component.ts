@@ -10,6 +10,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
 
 
+
 @Component({
   selector: 'app-projects',
   templateUrl: './project.component.html',
@@ -39,7 +40,6 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.projects();
   }
-
 
   getById(idProjeto){
     this.project = this.projectService.get(idProjeto,this.projectList);

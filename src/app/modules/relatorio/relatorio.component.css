@@ -4,13 +4,68 @@
   margin-left: 20px;
   color: #494949;
 }
-
 .mdl-grid{
   display: flex;
   margin: 0 auto;
   align-items: stretch;
 }
-
+.table-responsive{
+  overflow-x: 0;
+}
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+.btn-view{
+  color: aliceblue;
+  background-color: rgb(56, 209, 56);
+}
+.table-3{
+  margin-right: 20px;
+}
+.mdl-card-layout{
+  margin-left: 30px;
+}
+.layout{
+  margin-top: 30px!important;
+}
+.titulo {
+  font-size: 13px;
+}
+.table-1{
+  width: 650px;
+  height: 200px;
+}
+.table-2{
+  overflow-x: 0;
+  overflow-y: 0;
+  display: block;
+    width: 100%;
+}
+.btn-menu-rel{
+  margin-left: -10px;
+  text-align: left;
+  color: #494949;
+  font-family: Roboto;
+}
+.mdl-card-menu{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  overflow-x: 0;
+}
+.table th, .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
 section.relatorio-card {
   max-width: 98%;
   width: 100%;

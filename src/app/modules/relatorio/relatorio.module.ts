@@ -8,11 +8,12 @@ import { ProjectFormRoutingModule } from '../project-form/project-form-routing.m
 import { RelatorioService } from 'src/app/services/relatorio.service';
 import { RelatorioComponent } from './relatorio.component';
 import { RelatorioRoutingModule } from './relatorio-routing.module';
+import { DialogticketbyprojectComponent } from './dialogticketbyproject/dialogticketbyproject.component';
 
 
 
 @NgModule({
-  declarations: [RelatorioComponent],
+  declarations: [RelatorioComponent, DialogticketbyprojectComponent],
   imports: [
     CommonModule,
     // FormsModule,

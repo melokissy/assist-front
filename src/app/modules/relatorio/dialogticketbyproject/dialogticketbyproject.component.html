@@ -1,0 +1,47 @@
+<h2 class="mat-dialog-title">Relatório</h2>
+<div class="modal-comment mat-dialog-content" *ngIf="data.list.length <= 0">
+  <label>Relatório não possui tickets</label>
+</div>
+<div id="component1" class="mat-dialog-content" *ngIf="data.list.length > 0">
+  <h2>Lista de tickets do projeto: {{data.nameProject}}</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <thead>
+        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Número</th>
+        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Assunto</th>
+        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Solicitante</th>
+        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Prioridade</th>
+        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Status</th>
+        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Responsável</th>
+        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Abertura</th>
+        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Vencimento</th>
+        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Fechamento</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of data.list">
+          <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.number}}</td>
+          <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.subject}}</td>
+          <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.requester.name}}</td>
+          <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.priority}}</td>
+          <td class="columStyle mdl-data-table__cell--non-numeric"
+            [ngClass]="{'greenClass': ticket.status === 'Resolvido', 'yellowClass' : ticket.status === 'Pendente', 'redClass' : ticket.status === 'Vencido'}">
+            {{ticket.status}}</td>
+          <td class="columStyle mdl-data-table__cell--non-numeric titulo">{{ticket.responsible.name}}</td>
+          <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.createdAt |
+            date:'dd/MM/yyyy'}}</td>
+          <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.dueDate |
+            date:'dd/MM/yyyy'}}</td>
+          <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.closedAt |
+            date:'dd/MM/yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="mat-dialog-actions aling='end'">
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button class="mdl-button mdl-button--raised btn-print" (click)="printComponent('component1')">Imprimir</button>
+
+</div>

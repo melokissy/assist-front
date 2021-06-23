@@ -17,6 +17,8 @@ export class HeaderComponent implements OnInit{
   paginaAtual: String;
   userLogado = {name: '', email: '', profile: ''};
   currentUser: User;
+  relatorioclicked = false;
+  relatorioLink = false;
 
 //   constructor(
 //     private authenticationService: LoginService
@@ -40,6 +42,21 @@ export class HeaderComponent implements OnInit{
 
   logout(){
     localStorage.clear();
+  }
+  showSubmenu(){
+    if(this.relatorioclicked == true && this.relatorioLink == false){
+      this.relatorioclicked = false;
+      return;
+    }else if(this.relatorioclicked == false &&  this.relatorioLink == false){
+      this.relatorioclicked = true;
+      return;
+    }else if( this.relatorioLink == true){
+      this.relatorioLink = false;
+      return;
+    }
+  }
+  notToggleSubmenu(){
+    this.relatorioLink = true;
   }
 
 }
