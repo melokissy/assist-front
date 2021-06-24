@@ -21,6 +21,7 @@ import { UserService } from 'src/app/services/user.service';
     AssistFormModule,
     CadastroRoutingModule
   ],
+  exports: [CadastroComponent],
   providers: [UserService]
 
 })

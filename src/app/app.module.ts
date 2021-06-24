@@ -4,7 +4,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './modules/comment/comment.component';
@@ -13,6 +13,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { DialogDataModule } from './modules/ticket/dialog-data/dialog-data.module';
 import { DialogDataCommentModule } from './modules/ticket/dialog-data-comment/dialog-data-comment.module';
+import { CadastroComponent } from './modules/cadastro/cadastro.component';
+import { CadastroModule } from './modules/cadastro/cadastro.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,6 @@ import { DialogDataCommentModule } from './modules/ticket/dialog-data-comment/di
     CommonModule,
     DialogDataModule,
     DialogDataCommentModule
-
   ],
   entryComponents:[MatDialogModule],
   providers: [],

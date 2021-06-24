@@ -56,7 +56,6 @@ export class TicketInfoComponent implements OnInit {
   projectService: ProjectService;
   anexoService: AttachmentService;
   comentarioService: CommentService;
-  projectList: Project[];
   prioridades: string[];
   bsModalRef: BsModalRef;
   type: any;
@@ -67,6 +66,12 @@ export class TicketInfoComponent implements OnInit {
   ticketSelecionado: Ticket;
   comentarioText: null;
   anexo: Attachment;
+  editable = false;
+  positionResponsible = 0;
+  listProjects: Project[];
+  positionProject = 0;
+  listStatus = [{value:"Resolvido"},{value:"Em andamento"},{value:"Pendente"},{value:"Duplicado"},{value:"Fechado"},{value:"Aguardando Retorno"}]
+  status : string;
 
   textAreas: { value: string }[] = [{ value: '' }];
 
@@ -108,6 +113,24 @@ export class TicketInfoComponent implements OnInit {
       this.getRequester(this.ticket.requester.id);
     });
   }
+
+  editarTicket(){
+    if(this.formTicket.valid){
+      if(this.ticketId){
+        this.ticketService.updateTicket(this.ticketId, this.formTicket.value).subscribe(
+          () => {
+            this.handleAlert('success', 'Atualizado com sucesso!');
+            this.reloadPage();
+          },
+          (responseError: HttpErrorResponse) => {
+            this.mensagemErro = responseError.error;
+            this.handleAlert('danger', "this.mensagemErro");
+          }
+        );
+      }
+    }
+  }
+
 
   openDialog() {
     this.listHistorico = this.ticket.historic;
@@ -159,45 +182,52 @@ export class TicketInfoComponent implements OnInit {
     this.userService.getById(id).subscribe(requester => {
       this.requester = requester;
       this.ticket.requester = requester;
-      this.getResponsible(this.ticket.responsible.id);
+      this.getResponsibleList(this.ticket.responsible.id);
     })
   }
 
-  getResponsible(id) {
-    if (id == 0 || id == null) {
-      this.getResponsibleList();
-    }
-    this.userService.getById(id).subscribe(responsible => {
-      this.responsible = responsible;
-      this.ticket.responsible = responsible;
-      this.getProject(this.ticket.project.id);
-    })
-  }
-
-  getResponsibleList() {
+  getResponsibleList(id) {
     this.userService.userByProfile().subscribe(responsible => {
       this.responsiblesList = responsible;
-      this.getProject(this.ticket.project.id);
-    })
+      if (id == 0 || id == null) {
+        this.positionResponsible = 0;
+        this.getProject(this.ticket.project.id);
+      } else {
+        for (let index = 0; index < responsible.length; index++) {
+          if (responsible[index].id == id) {
+            this.ticket.responsible = responsible[index];
+            this.positionResponsible = index;
+          }
+        }
+        this.getProject(this.ticket.project.id);
+      }
+    }
+    )
   }
 
   getProject(idProject) {
-    this.projectService.getById(idProject).subscribe(project => {
-      this.project = project;
-      this.ticket.project = project;
-      this.createFormGroup(this.ticket);
+    this.projectService.listar().subscribe(project => {
+      this.listProjects = project;
+      for (let index = 0; index < project.length; index++) {
+        if (project[index].id == idProject) {
+          this.ticket.project = project[index];
+          this.positionProject = index;
+        }
+      }
     });
+    this.createFormGroup(this.ticket);
   }
 
   createFormGroup(data: any) {
     return this.formTicket = new FormGroup({
       subject: new FormControl(data.subject, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(data.description, [Validators.required]),
-      requester: new FormControl(this.userList),
-      responsible: new FormControl(this.responsiblesList),
+      requester: new FormControl(data.requester.name),
+      responsible: new FormControl(data.responsible.name),
       type: new FormControl(data.type, [Validators.required]),
       priority: new FormControl(data.priority),
       project: new FormControl(data.project.name, [Validators.required]),
+      status: new FormControl(data.status,  [Validators.required])
       // comment: new FormControl(data.comment)
     })
   }
@@ -243,4 +273,9 @@ export class TicketInfoComponent implements OnInit {
     this.bsModalRef.content.type = type;
     this.bsModalRef.content.message = message;
   }
+
+
+onChange(statusValue) {
+  //  this.status = "Em Andamento" ;
+}
 }

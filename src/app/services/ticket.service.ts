@@ -63,6 +63,11 @@ export class TicketService {
     })
   }
 
+  //PUT
+  public updateTicket(id:number,ticket: Ticket) : Observable<Ticket>{
+    return this.http.put<Ticket>(this.apiUrl+`${id}`, ticket);
+  }
+
    // PUT /ticket/ticket-resolve/:id
    public resolverTicket(id: number, ticket: Ticket) : Observable<Ticket>{
     return this.http.put<Ticket>(this.apiUrlResolve+`${id}`, ticket);

@@ -36,14 +36,14 @@ export class CadastroTicketComponent implements OnInit {
     this.ticketService = ticketService;
     this.userService = userService;
     this.projectService = projectService;
-    this.createFormGroup();
+    this.createFormNewTicket();
   }
 
   ngOnInit(): void {
     this.getUsersByProfile();
   }
 
-  createFormGroup() {
+  createFormNewTicket() {
     return this.formCadastroTicket = new FormGroup({
       subject: new FormControl  ('', [Validators.required]),
       description: new FormControl ('', [Validators.required]),
@@ -97,7 +97,7 @@ export class CadastroTicketComponent implements OnInit {
   getProjects(){
     this.projectService.listar().subscribe( projects => {
       this.projectList = projects;
-      this.createFormGroup();
+      this.createFormNewTicket();
     });
   }
 

@@ -121,12 +121,12 @@ section.user-form-card {
 }
 .btn-cancelar{
   background-color: crimson;
-  margin-top: 25px;
+  margin-top: 10px;
 
 }
 .btn-cadastrar{
   background-color: rgb(29, 116, 247);
-  margin-top: 25px;
+  margin-top: 10px;
 }
 .espaco{
   border-color: white;

@@ -65,18 +65,18 @@
       <span class="material-icons">article</span> Relatórios
       <!-- sub menu only visible when clicked on the link above -->
       <div *ngIf="relatorioclicked" style="margin-left: 25px;">
-        <div style="margin-bottom: 5px; margin-top: 5px;">
+        <!-- <div style="margin-bottom: 5px; margin-top: 5px;">
           <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Ticket do mês</a><br>
-        </div>
+        </div> -->
         <div style="margin-bottom: 5px;">
           <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Ticket por projeto</a><br>
         </div>
-        <div style="margin-bottom: 5px;">
+        <!-- <div style="margin-bottom: 5px;">
           <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" disabled  [routerLink]="'/relatorios'">Ticket por status</a><br>
         </div>
         <div>
           <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Histórico de ticket</a>
-        </div>
+        </div> -->
 
       </div>
 

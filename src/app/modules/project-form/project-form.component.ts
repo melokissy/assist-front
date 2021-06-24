@@ -55,14 +55,14 @@ export class ProjectFormComponent implements OnInit {
       this.projectService.getById(this.params.value.id)
         .subscribe(response => {
           this.responsiblesList = [response.responsible];
-          this.createFormGroup(response);
+          this.createFormProject(response);
           this.projeto = response;
         },
           errorResponse => alert("PROJETO NÃO EXISTE")
         );
     } else {
       this.getResponsibles();
-      this.createFormGroup(new Project);
+      this.createFormProject(new Project);
     }
   }
 
@@ -77,7 +77,7 @@ export class ProjectFormComponent implements OnInit {
   }
 
 
-  createFormGroup(data: any) {
+  createFormProject(data: any) {
     return this.formProjeto = new FormGroup({
       name: new FormControl(data.name, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(data.description, [Validators.required]),
@@ -90,7 +90,7 @@ export class ProjectFormComponent implements OnInit {
     if (this.formProjeto.valid) {
       if (this.id) {
         this.projectService.atualizar(this.id, this.formProjeto.value).subscribe(projectEdited => {
-          this.createFormGroup(projectEdited);
+          this.createFormProject(projectEdited);
           this.handleAlert('success', 'Atualizado com sucesso!');
         }
         , (responseError: HttpErrorResponse) => {

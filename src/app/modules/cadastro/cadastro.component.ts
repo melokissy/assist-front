@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { User } from './../../models/user';
 import { HttpResponseBase } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { map, catchError } from "rxjs/operators";
 import { Router, ActivatedRoute } from '@angular/router';
@@ -27,7 +27,6 @@ export class CadastroComponent implements OnInit {
   bsModalRef: BsModalRef;
   mensagemErro: any;
 
-
   createFormUser(data) {
 
     return this.formCadastro = new FormGroup({
@@ -42,7 +41,6 @@ export class CadastroComponent implements OnInit {
     })
 
   }
-
 
   constructor(private httpClient: HttpClient,
     private roteador: Router,

@@ -9,8 +9,7 @@
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
           (click)="resolverTicket()" *ngIf="userLogado.profile!='Cliente'">Resolver Ticket</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
-          *ngIf="userLogado.profile!='Cliente'">Editar
-          ticket</button>
+          (click)="editarTicket()" *ngIf="userLogado.profile!='Cliente'">Salvar Alterações</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
           (click)="openComments()">Comentário</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
@@ -52,8 +51,7 @@
                 <!-- PRIORIDADE  -->
                 <td> <label class="label-1 label-titulo-1">Prioridade</label>
                 </td>
-                <td> <select class="mdl-textfield__input selector-priority" id="priority" name="priority"
-                    formControlName="priority" disabled>
+                <td> <select class="mdl-textfield__input selector-priority" id="priority" name="priority" formControlName="priority" >
                     <option hidden>{{ticket.priority}}</option>
                     <option>Alta</option>
                     <option>Média</option>
@@ -64,27 +62,25 @@
                 <!-- TIPO  -->
                 <td> <label class="label-1 label-titulo-1">Tipo</label>
                 </td>
-                <td> <select class="mdl-textfield__input selector-priority" id="type" name="type" formControlName="type"
-                    disabled>
+                <td>
+                  <select class="mdl-textfield__input selector-priority" id="type" name="type" formControlName="type">
                     <option hidden>{{ticket.type}}</option>
                     <option>Solicitação</option>
                     <option>Dúvida</option>
                     <option>Problema</option>
-                  </select></td>
+                  </select>
+                </td>
               </tr>
               <tr>
                 <!-- STATUS  -->
                 <td> <label class="label-1 label-titulo-1">Status</label>
                 </td>
-                <td>  <select class="mdl-textfield__input selector-priority" id="status" name="status" formControlName="status"
-                  [disabled]="!editPress">
+                <td>  <select class="mdl-textfield__input selector-priority" id="status" name="status" formControlName="status"  (change)="onChange($event.target.value)">
                   <option hidden>{{ticket.status}}</option>
-                  <option>Resolvido</option>
-                  <option>Em andamento</option>
-                  <option>Pendente</option>
-                  <option>Duplicado</option>
-                  <option>Fechado</option>
-                  <option>Aguardando Retorno</option>
+                  <option *ngFor="let item of listStatus" [ngValue]="status">
+                    {{item.value}}
+                  </option>
+
                 </select>
                 </td>
               </tr>
@@ -92,7 +88,7 @@
               <tr>
                 <td><label class="label-1 label-titulo-1">Solicitante</label> </td>
                 <td>
-                  <input class="data-2" value="{{ticket.requester.name}}" disabled>
+                  <input id="requester" class="data-2" value="{{ticket.requester.name}}" disabled>
                 </td>
               </tr>
               <!-- CONTATO  -->
@@ -108,7 +104,7 @@
                 <td> <select class="mdl-textfield__input selector-requester" id="responsible" name="responsible"
                     formControlName="responsible">
                     <option hidden>{{ticket.responsible.name}}</option>
-                    <option *ngFor="let responsible of responsiblesList" [ngValue]="responsible">
+                    <option *ngFor="let responsible of responsiblesList" [ngValue]="responsible" >
                       {{ responsible.name }}
                     </option>
                   </select></td>
@@ -116,13 +112,16 @@
               <tr>
                 <!-- PROJETO  -->
                 <td><label class="label-1 label-titulo-1">Projeto</label> </td>
-                <td> <select class="mdl-textfield__input selector-requester" id="project" name="project"
+                <td>
+                  <input id="project" class="data-3" value="{{ticket.project.name}}" disabled>
+                  <!-- <select class="mdl-textfield__input selector-requester" id="project" name="project"
                     formControlName="project">
                     <option hidden>{{ticket.project.name}}</option>
-                    <option *ngFor="let project of projectList" [ngValue]="project">
+                    <option *ngFor="let project of listProjects" [ngValue]="project">
                       {{ project.name }}
                     </option>
-                  </select></td>
+                  </select> -->
+                </td>
               </tr>
               <tr>
                 <!-- DESCRIÇÃO  -->

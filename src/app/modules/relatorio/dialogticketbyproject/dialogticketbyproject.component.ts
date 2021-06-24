@@ -5,10 +5,11 @@ import { DialogRelatorioByProject } from '../relatorio.component';
 @Component({
   selector: 'assist-dialogticketbyproject',
   templateUrl: './dialogticketbyproject.component.html',
-  styles: [
-  ]
+  styleUrls: ['./dialogticketbyproject.component.css']
 })
 export class DialogticketbyprojectComponent {
+
+  hoje: number = Date.now();
 
   constructor(
     public dialogRef: MatDialogRef<DialogticketbyprojectComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogRelatorioByProject

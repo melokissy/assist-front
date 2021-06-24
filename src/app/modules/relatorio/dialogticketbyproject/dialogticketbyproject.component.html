@@ -4,6 +4,7 @@
 </div>
 <div id="component1" class="mat-dialog-content" *ngIf="data.list.length > 0">
   <h2>Lista de tickets do projeto: {{data.nameProject}}</h2>
+  <label>Data emissão: {{ hoje | date:'dd/MM/yyyy HH:mm:ss' }}</label>
 
   <div class="table-responsive">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -41,7 +42,7 @@
 </div>
 
 <div class="mat-dialog-actions aling='end'">
-  <button mat-button (click)="onNoClick()">Close</button>
+  <button class="mdl-button mdl-button--raised btn-close" mat-button (click)="onNoClick()">Close</button>
   <button class="mdl-button mdl-button--raised btn-print" (click)="printComponent('component1')">Imprimir</button>
 
 </div>
