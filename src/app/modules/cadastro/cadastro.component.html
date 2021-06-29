@@ -21,8 +21,9 @@
                 <td> <label class="label-1 status-label">Nome</label>
                   <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                 </td>
-                <td class="td-float"> <input formControlName="name" autofocus required type="text" id="name" name="name"
-                    class="input-name"></td>
+                <td class="td-float"> <input [formControlName]="'name'" autofocus required type="text" id="name" name="name"
+                    class="input-name" >
+                  </td>
               </tr>
 
               <tr>
@@ -30,8 +31,8 @@
                 <td> <label class="label-1 status-label">Email</label>
                   <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                 </td>
-                <td class="td-float"> <input formControlName="email" autofocus required type="text" id="email" name="email"
-                    class="input-email" ngModel email="true">
+                <td class="td-float"> <input formControlName="email" autofocus required type="email" id="email" name="email"
+                    class="input-email">
                   <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
                 </td>
               </tr>
@@ -76,27 +77,7 @@
                 <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
               </td>
               </tr>
-
             </table>
-
-            <!-- <assist-form-group [campo]="formCadastro.get('userIcon')">
-            <input formControlName="userIcon" type="text" name="Avatar" assistFormField>
-            <span class="mdl-textfield__error" *ngIf="formCadastro.get('userIcon').hasError('required')">
-              Informar uma url com um avatar é obrigatório!
-            </span>
-            <span class="mdl-textfield__error mdl-textfield__checking"
-              *ngIf="formCadastro.get('userIcon').status === 'PENDING'">
-              Validação pendente....
-            </span>
-            <span class="mdl-textfield__error mdl-textfield__valid"
-              *ngIf="formCadastro.get('userIcon').status === 'VALID'">
-              URL Válida 😃
-            </span>
-            <span class="mdl-textfield__error" *ngIf="formCadastro.get('userIcon').hasError('urlInvalida')">
-              Erro na URL informada 😧
-            </span>
-          </assist-form-group> -->
-
             <!-- status -->
             <div>
               <label class="label-1 status-label">Status</label>

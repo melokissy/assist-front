@@ -51,7 +51,7 @@
                 <!-- PRIORIDADE  -->
                 <td> <label class="label-1 label-titulo-1">Prioridade</label>
                 </td>
-                <td> <select class="mdl-textfield__input selector-priority" id="priority" name="priority" formControlName="priority" >
+                <td> <select #mySelectPriority class="mdl-textfield__input selector-priority" id="priority" name="priority" formControlName="priority" (change)="setPriority(mySelectPriority.value)">
                     <option hidden>{{ticket.priority}}</option>
                     <option>Alta</option>
                     <option>Média</option>
@@ -63,7 +63,7 @@
                 <td> <label class="label-1 label-titulo-1">Tipo</label>
                 </td>
                 <td>
-                  <select class="mdl-textfield__input selector-priority" id="type" name="type" formControlName="type">
+                  <select #mySelectType class="mdl-textfield__input selector-priority" id="type" name="type" formControlName="type" (change)="setType(mySelectType.value)">
                     <option hidden>{{ticket.type}}</option>
                     <option>Solicitação</option>
                     <option>Dúvida</option>
@@ -75,12 +75,16 @@
                 <!-- STATUS  -->
                 <td> <label class="label-1 label-titulo-1">Status</label>
                 </td>
-                <td>  <select class="mdl-textfield__input selector-priority" id="status" name="status" formControlName="status"  (change)="onChange($event.target.value)">
+                <td>  <select #mySelectStatus class="mdl-textfield__input selector-priority" id="status" name="status" formControlName="status"  (change)="setStatus(mySelectStatus.value)">
                   <option hidden>{{ticket.status}}</option>
-                  <option *ngFor="let item of listStatus" [ngValue]="status">
-                    {{item.value}}
-                  </option>
-
+                  <option>Resolvido</option>
+                  <option>Em andamento</option>
+                  <option>Pendente</option>
+                  <option>Duplicado</option>
+                  <option>Fechado</option>
+                  <!-- <option *ngFor="let item of listStatus" value="{{item.name}}">
+                    {{item.name}}
+                  </option> -->
                 </select>
                 </td>
               </tr>

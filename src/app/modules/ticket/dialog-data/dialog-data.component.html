@@ -4,7 +4,7 @@
     <thead>
       <th><label class="label-1">Histórico</label></th>
       <th><label class="label-1">Data</label></th>
-      <th><label class="label-1">Usuário</label></th>
+      <th><label class="label-1">Editor</label></th>
       <th><label class="label-1">Status</label></th>
       <th><label class="label-1">Titulo</label></th>
       <th><label class="label-1">Descrição ticket</label></th>
@@ -22,7 +22,7 @@
         <td><label>{{historico.ticket_description}}</label></td>
         <td><label>{{historico.priority}}</label></td>
         <td><label>{{historico.type}}</label></td>
-        <td><label>{{historico.ticket_responsible.name}}</label></td>
+        <td><label *ngIf="historico.ticket_responsible">{{historico.ticket_responsible.name}}</label></td>
       </tr>
     </tbody>
   </table>

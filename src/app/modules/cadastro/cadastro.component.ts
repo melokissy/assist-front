@@ -28,16 +28,17 @@ export class CadastroComponent implements OnInit {
   mensagemErro: any;
 
   createFormUser(data) {
+    console.log(this.user.name);
 
     return this.formCadastro = new FormGroup({
-      name: new FormControl(data ? data.name : '', [Validators.required, Validators.minLength(3)]),
-      email: new FormControl(data ? data.email : '', [Validators.required]),
-      password: new FormControl(data ? data.password : '',[Validators.nullValidator]),
-      userIcon: new FormControl(data ? data.userIcon : ''),
-      profile: new FormControl(data ? data.profile : ''),
-      status: new FormControl(data ? data.status  : '', [Validators.nullValidator]),
-      cpf: new FormControl(data ? data.cpf : '', [Validators.required, Validators.minLength(11)]),
-      setor: new FormControl(data ? data.setor : '', [Validators.required])
+      name: new FormControl(this.user.name ? this.user.name :'', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl(data.email, [Validators.required]),
+      password: new FormControl(data.password,[Validators.nullValidator]),
+      userIcon: new FormControl(data.userIcon),
+      profile: new FormControl(data.profile),
+      status: new FormControl(data.status , [Validators.nullValidator]),
+      cpf: new FormControl(data.cpf, [Validators.required, Validators.minLength(11)]),
+      setor: new FormControl(data.setor, [Validators.required])
     })
 
   }
@@ -55,8 +56,8 @@ export class CadastroComponent implements OnInit {
     if (this.params && this.params.value && this.params.value.id) {
       this.userService.getById(this.params.value.id)
         .subscribe(response => {
-          this.createFormUser(response);
           this.user = response;
+          this.createFormUser(response);
         },
           errorResponse => alert("CLIENTE NÃO EXISTE")
         );
@@ -93,7 +94,6 @@ export class CadastroComponent implements OnInit {
       if (this.id) {
         this.userService.atualizar(this.id, this.formCadastro.value).subscribe(userEdited => {
           this.createFormUser(userEdited);
-          console.log(userEdited);
         });
         //após 1 segundo, redireciona para a rota de login
         setTimeout(() => {

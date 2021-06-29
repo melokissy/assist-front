@@ -22,6 +22,7 @@ export class CadastroTicketComponent implements OnInit {
   ticketService: TicketService;
   ticket: Ticket;
   mensagensErro: any;
+  userLogado = { name: '', email: '', profile: '', id: '' };
   userService: UserService;
   projectService: ProjectService;
   userList: User[];
@@ -40,6 +41,11 @@ export class CadastroTicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userLogado.id = localStorage.getItem('user-autenticated-idUser');
+    this.userLogado.name = localStorage.getItem('user-autenticated-name');
+    this.userLogado.email = localStorage.getItem('user-autenticated-email');
+    this.userLogado.profile = localStorage.getItem('user-autenticated-profile');
+
     this.getUsersByProfile();
   }
 
@@ -65,7 +71,7 @@ export class CadastroTicketComponent implements OnInit {
     if (this.formCadastroTicket.valid) {
       const ticketData = new Ticket(this.formCadastroTicket.value);
       console.log("TICKET INSERIDO:" + ticketData.subject);
-      this.ticketService.cadastrarTicket(ticketData).subscribe(data => {
+      this.ticketService.cadastrarTicket(ticketData, this.userLogado.id ).subscribe(data => {
         this.ticket = data;
 
         this.formCadastroTicket.reset();

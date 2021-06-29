@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Alert } from '../models/alert';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from 'src/environments/environment';
 import { Ticket } from '../models/ticket';
@@ -19,6 +19,7 @@ export class TicketService {
   apiUrlpendentes = `${environment.apiUrl}tickets/tickets-pendentes`;
   apiUrlVencidos = `${environment.apiUrl}tickets/tickets-vencidos`;
   apiUrlVencendo = `${environment.apiUrl}tickets/tickets-vencendo`;
+
 
 
   public lastId = 0;
@@ -64,8 +65,11 @@ export class TicketService {
   }
 
   //PUT
-  public updateTicket(id:number,ticket: Ticket) : Observable<Ticket>{
-    return this.http.put<Ticket>(this.apiUrl+`${id}`, ticket);
+  public updateTicket(id:number,ticket: Ticket, idUser: string) : Observable<Ticket>{
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
+    }
+    return this.http.put<Ticket>(this.apiUrl+`${id}/ticket/${idUser}`, ticket, httpOptions);
   }
 
    // PUT /ticket/ticket-resolve/:id
@@ -86,9 +90,12 @@ export class TicketService {
   }
 
   // POST /tickets
-  cadastrarTicket(ticket: Ticket) {
+  cadastrarTicket(ticket: Ticket, idUser: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
+    }
     return this.http
-      .post(this.apiUrlCadastro, ticket)
+      .post(this.apiUrlCadastro+`/${idUser}`, ticket, httpOptions)
       .pipe<Ticket>(
         map(
           (ticket: any) => {

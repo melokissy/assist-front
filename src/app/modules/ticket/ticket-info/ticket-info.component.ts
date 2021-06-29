@@ -70,7 +70,9 @@ export class TicketInfoComponent implements OnInit {
   positionResponsible = 0;
   listProjects: Project[];
   positionProject = 0;
-  listStatus = [{value:"Resolvido"},{value:"Em andamento"},{value:"Pendente"},{value:"Duplicado"},{value:"Fechado"},{value:"Aguardando Retorno"}]
+  listStatus = [{id: 0,name:"Resolvido"},{id: 1,name:"Em andamento"},{id: 2,name:"Pendente"},{id: 3,name:"Duplicado"},{id: 4,name:"Fechado"},{id: 5,name:"Aguardando Retorno"}]
+  // listStatus = ["Resolvido","Em andamento","Pendente","Duplicado","Fechado","Aguardando Retorno"]
+
   status : string;
 
   textAreas: { value: string }[] = [{ value: '' }];
@@ -115,12 +117,17 @@ export class TicketInfoComponent implements OnInit {
   }
 
   editarTicket(){
+    if(this.formTicket.value.responsible == null){
+      this.handleAlert('danger', 'Para edição, obrigatório informar responsável');
+      return;
+    }
     if(this.formTicket.valid){
       if(this.ticketId){
-        this.ticketService.updateTicket(this.ticketId, this.formTicket.value).subscribe(
-          () => {
+        this.ticketService.updateTicket(this.ticketId, this.formTicket.value, this.userLogado.id).subscribe(
+          response => {
             this.handleAlert('success', 'Atualizado com sucesso!');
             this.reloadPage();
+            this.createFormGroup(response);
           },
           (responseError: HttpErrorResponse) => {
             this.mensagemErro = responseError.error;
@@ -131,6 +138,17 @@ export class TicketInfoComponent implements OnInit {
     }
   }
 
+  setStatus(value:string){
+    this.formTicket.patchValue({status: value});
+  }
+
+  setPriority(value:string){
+    this.formTicket.patchValue({priority: value});
+  }
+
+  setType(value:string){
+    this.formTicket.patchValue({type: value});
+  }
 
   openDialog() {
     this.listHistorico = this.ticket.historic;
@@ -222,13 +240,12 @@ export class TicketInfoComponent implements OnInit {
     return this.formTicket = new FormGroup({
       subject: new FormControl(data.subject, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(data.description, [Validators.required]),
-      requester: new FormControl(data.requester.name),
-      responsible: new FormControl(data.responsible.name),
+      requester: new FormControl(data.requester),
+      responsible: new FormControl(data.responsible),
       type: new FormControl(data.type, [Validators.required]),
       priority: new FormControl(data.priority),
       project: new FormControl(data.project.name, [Validators.required]),
       status: new FormControl(data.status,  [Validators.required])
-      // comment: new FormControl(data.comment)
     })
   }
 
@@ -275,7 +292,5 @@ export class TicketInfoComponent implements OnInit {
   }
 
 
-onChange(statusValue) {
-  //  this.status = "Em Andamento" ;
-}
+
 }
