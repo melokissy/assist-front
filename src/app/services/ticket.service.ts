@@ -20,8 +20,6 @@ export class TicketService {
   apiUrlVencidos = `${environment.apiUrl}tickets/tickets-vencidos`;
   apiUrlVencendo = `${environment.apiUrl}tickets/tickets-vencendo`;
 
-
-
   public lastId = 0;
 
   private tickets: Ticket[] = [];

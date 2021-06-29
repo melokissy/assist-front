@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Alert } from '../models/alert';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
@@ -37,6 +37,13 @@ export class UserService {
           }
         )
       )
+  }
+
+  createUser(userData: User)  : Observable<User>{
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
+    }
+    return this.http.post<User>('http://localhost:41124/AssistApi/resource/users', userData, httpOptions);
   }
 
     // GET /users/by-profile
@@ -78,9 +85,11 @@ export class UserService {
   // POST /users
 
   cadastrar(user: User) {
-
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
+    }
     return this.http
-      .post(this.apiUrl, user)
+      .post(this.apiUrl, user,httpOptions)
       .pipe<User>(
         map(
           (user: any) => {
@@ -96,7 +105,10 @@ export class UserService {
 
 
   public atualizar(id: number, user:User) : Observable<User>{
-    return this.http.put<User>(this.apiUrl+`${id}`, user);
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
+    }
+    return this.http.put<User>(this.apiUrl+`${id}`, user,httpOptions);
   }
 
   // PUT /user/:id

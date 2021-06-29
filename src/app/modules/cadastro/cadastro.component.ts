@@ -28,10 +28,8 @@ export class CadastroComponent implements OnInit {
   mensagemErro: any;
 
   createFormUser(data) {
-    console.log(this.user.name);
-
     return this.formCadastro = new FormGroup({
-      name: new FormControl(this.user.name ? this.user.name :'', [Validators.required, Validators.minLength(3)]),
+      name: new FormControl(data.name, [Validators.minLength(3)]),
       email: new FormControl(data.email, [Validators.required]),
       password: new FormControl(data.password,[Validators.nullValidator]),
       userIcon: new FormControl(data.userIcon),
@@ -68,8 +66,7 @@ export class CadastroComponent implements OnInit {
 
   createUser() {
     const userData = new User(this.formCadastro.value);
-    this.httpClient
-      .post('http://localhost:41124/AssistApi/resource/users', userData)
+    this.userService.createUser(userData)
       .subscribe(
         () => {
           console.log(`Cadastrado com sucesso`);
@@ -94,6 +91,8 @@ export class CadastroComponent implements OnInit {
       if (this.id) {
         this.userService.atualizar(this.id, this.formCadastro.value).subscribe(userEdited => {
           this.createFormUser(userEdited);
+          this.handleAlert('success','Cadastrado atualizado com sucesso!');
+
         });
         //após 1 segundo, redireciona para a rota de login
         setTimeout(() => {

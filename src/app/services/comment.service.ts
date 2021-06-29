@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/internal/operators/map';
@@ -14,8 +14,11 @@ export class CommentService {
 
   // POST /tickets
   novoComentario(comment: Comment) {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
+    }
     return this.http
-      .post(this.apiUrl, comment)
+      .post(this.apiUrl, comment,httpOptions)
       .pipe<Comment>(
         map(
           (response: any) => {

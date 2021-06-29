@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Alert } from '../models/alert';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { Project } from '../models/project';
 import { Observable } from 'rxjs';
@@ -59,11 +59,12 @@ export class ProjectService {
   }
 
   // POST /projects
-
   cadastrar(project: Project) {
-
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
+    }
     return this.http
-      .post(this.apiUrl, project)
+      .post(this.apiUrl, project, httpOptions)
       .pipe<Project>(
         map(
           (user: any) => {
@@ -84,7 +85,10 @@ export class ProjectService {
 
 
   public atualizar(id: number, project:Project) : Observable<Project>{
-    return this.http.put<Project>(this.apiUrl+`${id}`, project);
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'})
+    }
+    return this.http.put<Project>(this.apiUrl+`${id}`, project, httpOptions);
   }
 
   public deleteProject(id: number){
