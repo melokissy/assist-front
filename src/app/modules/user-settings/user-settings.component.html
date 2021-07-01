@@ -1,0 +1,106 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <assist-header></assist-header>
+
+  <main class="mdl-layout__content">
+
+    <section class="user-form-card demo-card-wide mdl-card mdl-shadow--2dp">
+
+      <div class="titulo-form">
+        <label>Cadastrar Usuário</label>
+      </div>
+      <hr class="linha">
+
+      <div class="page-content">
+        <div class="mdl-grid">
+
+          <form class="formStyle" >
+
+            <table>
+              <tr>
+                <!-- NOME  -->
+                <td> <label class="label-1 status-label">Nome</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td class="td-float"> <input formControlName="name" autofocus  type="text" id="name" name="name"
+                    class="input-name" >
+                  </td>
+              </tr>
+
+              <tr>
+                <!-- email  -->
+                <td> <label class="label-1 status-label">Email</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td class="td-float"> <input formControlName="email" autofocus required type="email" id="email" name="email"
+                    class="input-email">
+                  <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
+                </td>
+              </tr>
+              <tr>
+                <!-- Perfil  -->
+                <td> <label class="label-1 status-label">Perfil</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td class="td-float"> <select class="mdl-textfield__input selector-type" id="profile" name="profile"
+                    formControlName="profile" disabled>
+                    <option hidden>{{user.profile}}</option>
+                  </select></td>
+              </tr>
+              <tr>
+                <!-- cpf  -->
+                <td> <label class="label-1 status-label">CPF</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td class="td-float"> <input formControlName="cpf" autofocus required type="cpf" id="cpf" name="cpf" class="input-cpf">
+                  <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
+                </td>
+              </tr>
+              <tr>
+                <!-- setor  -->
+                <td> <label class="label-1 status-label">Setor</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td class="td-float"> <label formControlName="setor" autofocus required type="text" id="setor" name="setor"
+                    class="input-password" > {{user.setor}} </label>
+                </td>
+              </tr>
+              <tr>
+                <!-- password  -->
+                <td> <label class="label-1 status-label">Senha</label>
+                  <label style="color:red;padding-left:2px;vertical-align:central">*</label>
+                </td>
+                <td class="td-float"> <input formControlName="password" autofocus required type="password" id="password" name="password"
+                  class="input-password">
+                <span class="mdl-textfield__error">Informar um nome de email é obrigatório!</span>
+              </td>
+              </tr>
+            </table>
+            <!-- status -->
+            <div>
+              <label class="label-1 status-label">Status</label>
+            </div>
+            <hr class="espaco">
+
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+              <input formControlName="status" type="checkbox" id="statusCheckbox" name="Ativo"
+                style="margin-left: 5px; margin-right: 20px;">
+              <span class="mdl-checkbox__label">Ativo</span>
+            </label>
+
+
+            <div class="mdl-card__actions card-btn">
+              <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised btn-cadastrar">Salvar</button>
+
+              <button class="mdl-button mdl-button--colored mdl-button--raised btn-cancelar"
+                type="button" style="margin-left: 10px;">
+                cancelar
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>

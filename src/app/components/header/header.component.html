@@ -31,7 +31,7 @@
   </span>
 
   <header class="headerGlobal__userInfo">
-    <img src="http://placehold.it/48x48" class="headerGlobal__userInfoAvatar">
+    <!-- <img src="" class="headerGlobal__userInfoAvatar"> -->
     <div class="headerGlobal__userInfoData">
       <h5 class="headerGlobal__userInfoDataName">{{userLogado.name}}</h5>
       <span>{{userLogado.email}}</span>
@@ -47,9 +47,9 @@
     <a [routerLink]="'/tickets'" class="mdl-navigation__link">
       <span class="material-icons">assignment</span> Tickets
     </a>
-    <!-- <a [routerLink]="'/cadastro'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
-      <span class="material-icons">person</span> Cadastro
-    </a> -->
+    <a routerLink="/tickets/meus-tickets" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
+      <span class="material-icons">fact_check</span> Meus Tickets
+    </a>
     <a [routerLink]="'/users'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link"
       *ngIf="userLogado.profile=='Administrador'">
       <span class="material-icons">person</span> Usuários
@@ -58,10 +58,7 @@
       *ngIf="userLogado.profile!='Cliente'">
       <span class="material-icons">description</span> Projetos
     </a>
-    <a (click)="showSubmenu()"
-      class="mdl-navigation__link"
-      *ngIf="userLogado.profile=='Administrador'"
-      >
+    <a (click)="showSubmenu()" class="mdl-navigation__link" *ngIf="userLogado.profile=='Administrador'">
       <span class="material-icons">article</span> Relatórios
       <!-- sub menu only visible when clicked on the link above -->
       <div *ngIf="relatorioclicked" style="margin-left: 25px;">
@@ -69,7 +66,8 @@
           <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Ticket do mês</a><br>
         </div> -->
         <div style="margin-bottom: 5px;">
-          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Ticket por projeto</a><br>
+          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink"
+            [routerLink]="'/relatorios'">Ticket por projeto</a><br>
         </div>
         <!-- <div style="margin-bottom: 5px;">
           <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" disabled  [routerLink]="'/relatorios'">Ticket por status</a><br>
@@ -81,9 +79,9 @@
       </div>
 
     </a>
-    <a [routerLink]="'/configuracao'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
+    <!-- <a routerLink="'/user-settings/{{userLogado.idUser}}'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
       <span class="material-icons">build</span> Configuração
-    </a>
+    </a> -->
     <a [routerLink]="'/login'" class="mdl-navigation__link" (click)="logout()">
       <span class="material-icons">logout</span> Logout
     </a>

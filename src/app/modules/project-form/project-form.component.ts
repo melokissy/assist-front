@@ -117,31 +117,25 @@ export class ProjectFormComponent implements OnInit {
   cadastrarProjeto() {
     if (this.formProjeto.valid) {
       const projectData = new Project(this.formProjeto.value);
-      console.log('PROJETO INSERIDO' + projectData.name);
-      this.httpClient
-        .post('http://localhost:41124/AssistApi/resource/projects', projectData)
-        .subscribe(
-          () => {
 
-            this.formProjeto.reset();
-            this.handleAlert('success', 'Cadastrado com sucesso!');
+      this.projectService.cadastrar(projectData).subscribe(data => {
+        this.projeto = data;
+        this.formProjeto.reset();
 
-            //após 1 segundo, redireciona para a rota de login
-            setTimeout(() => {
-              this.roteador.navigate(['/projects']);
-            }, 100);
-
-          }
-          , (responseError: HttpErrorResponse) => {
-            this.mensagemErro = responseError.error;
-            this.handleAlert('danger', this.mensagemErro);
-          }
-        )
-
-    }
-    else {
-      this.validaCampos(this.formProjeto);
-      this.handleAlert('danger','Preencher todos os campos');
+        if(this.projeto != null){
+          this.handleAlert('success', 'Cadastrado com sucesso!');
+        }
+        //após 1 segundo, redireciona para a rota de login
+        setTimeout(() => {
+          this.roteador.navigate(['/projects']);
+        }, 100);
+      },
+      (responseError: HttpErrorResponse) => {
+        this.mensagemErro = responseError.error;
+        this.handleAlert('danger', this.mensagemErro);
+      })
+    } else{
+      this.handleAlert('danger', 'Preencher campos obrigatórios');
     }
   }
 

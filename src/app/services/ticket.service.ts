@@ -14,6 +14,7 @@ import { Counter } from '../models/counter';
 export class TicketService {
 
   apiUrl = `${environment.apiUrl}tickets/`;
+  apiUrlByUser = `${environment.apiUrl}tickets/ticket-by-user/`;
   apiUrlResolve = `${environment.apiUrl}tickets/ticket-resolve/`;
   apiUrlCadastro = `${environment.apiUrl}tickets`;
   apiUrlpendentes = `${environment.apiUrl}tickets/tickets-pendentes`;
@@ -60,6 +61,10 @@ export class TicketService {
       id: ticketApi.id,
       number: ticketApi.number
     })
+  }
+
+  ticketByUser(idUser: string)  : Observable<Ticket[]> {
+     return this.http.get<Ticket[]>(this.apiUrlByUser+`${idUser}`);
   }
 
   //PUT

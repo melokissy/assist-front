@@ -19,17 +19,6 @@
  section .columStyle {
 	 padding-left: 35px;
 }
-.input-busca{
-  margin-left: 15px;
-  z-index: 1000;
-  font-size: 15px;
-  font-family: Roboto;
-  border: 1px solid rgba(0, 0, 0, 0.336);
-  width: 200px;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  height: 25px;
-}
  .btn-new-user {
 	 float: right;
 	 margin-right: 50px;
@@ -69,6 +58,31 @@
 }
  .card-concluidos {
 	 background: #3cb371;
+}
+.input-busca{
+  margin-left: 15px;
+  z-index: 1000;
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  width: 195px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  height: 25px;
+}
+.input-busca-requester{
+  margin-left: 15px;
+  z-index: 1000;
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  width: 300px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  height: 25px;
+}
+.label-pesquisa{
+  margin-left: 5px;
 }
  .card-total {
 	 background: #4169e1;
@@ -515,6 +529,15 @@
 	 padding-left: 0.75rem;
 	 margin-right: auto;
 	 margin-left: auto;
+}
+.greenClass{
+  background-color: #d2ffd2;
+}
+.yellowClass{
+  background-color: #fcf4d4;
+}
+.redClass{
+  background-color: #f1d9d9;
 }
  .row {
 	 display: flex;
@@ -1495,6 +1518,7 @@
 	}
 }
  .table-responsive {
+   margin-top: 10px;
 	 display: block;
 	 width: 100%;
 	 overflow-x: auto;
@@ -8061,4 +8085,3 @@
 .mdl-button--raised.mdl-button--colored:hover {
     background: rgb(1, 150, 1);
 }
-

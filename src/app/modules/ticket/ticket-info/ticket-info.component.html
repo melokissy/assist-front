@@ -6,14 +6,14 @@
     <section class="user-form-card demo-card-wide mdl-card mdl-shadow--2dp">
 
       <div class="mdl-card__actions card-btn">
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
+        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
+          (click)="openDialog()">Histórico</button>
+          <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
+          (click)="openComments()">Comentário</button>
+          <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
           (click)="resolverTicket()" *ngIf="userLogado.profile!='Cliente'">Resolver Ticket</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
           (click)="editarTicket()" *ngIf="userLogado.profile!='Cliente'">Salvar Alterações</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
-          (click)="openComments()">Comentário</button>
-        <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
-          (click)="openDialog()">Histórico</button>
       </div>
       <hr class="linha">
 
@@ -29,7 +29,7 @@
 
       <div class="page-content">
         <div class="mdl-grid">
-          <form class="formStyle" [formGroup]="formTicket">
+          <form class="formStyle" [formGroup]="formTicket" disabled="statusResolvido">
             <table>
               <tr>
                 <!-- ABERTURA  -->
@@ -142,7 +142,12 @@
 
           <hr class="linha2">
           <!-- INPUT DE ARQUIVOS -->
-          <input type="file" name="foto" class="inputArquivos" (change)="uploadAnexo($event, anexo)">
+          <div class="row">
+            <div class="col-12 mx-auto" style="width: 18rem;">
+              <input type="file" name="foto" class="inputArquivos" #file (change)="uploadAnexo($event, file.files)">
+              <img [src]="imgUrl" class="card-img" *ngIf="imgUrl">
+            </div>
+          </div>
 
           <hr class="linha2">
           <!-- COMENTÁRIO  -->

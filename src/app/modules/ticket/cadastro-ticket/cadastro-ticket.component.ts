@@ -2,12 +2,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Project } from 'src/app/models/project';
 import { Ticket } from 'src/app/models/ticket';
 import { User } from 'src/app/models/user';
 import { ProjectService } from 'src/app/services/project.service';
 import { TicketService } from 'src/app/services/ticket.service';
 import { UserService } from 'src/app/services/user.service';
+import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 import { TicketComponent } from '../ticket.component';
 
 @Component({
@@ -28,12 +30,13 @@ export class CadastroTicketComponent implements OnInit {
   userList: User[];
   projectList: Project[];
   mensagemErro: any;
+  bsModalRef: BsModalRef;
 
   constructor(
     private httpClient: HttpClient,
     private roteador: Router, private activatedRoute: ActivatedRoute,
     ticketService: TicketService, userService: UserService,
-    projectService: ProjectService, private fb: FormBuilder) {
+    projectService: ProjectService, private fb: FormBuilder,private modalService: BsModalService) {
     this.ticketService = ticketService;
     this.userService = userService;
     this.projectService = projectService;
@@ -70,31 +73,30 @@ export class CadastroTicketComponent implements OnInit {
   cadastrarTicket() {
     if (this.formCadastroTicket.valid) {
       const ticketData = new Ticket(this.formCadastroTicket.value);
-      console.log("TICKET INSERIDO:" + ticketData.subject);
       this.ticketService.cadastrarTicket(ticketData, this.userLogado.id ).subscribe(data => {
         this.ticket = data;
 
         this.formCadastroTicket.reset();
         if(this.ticket != null){
-          alert('CADASTRADO COM SUCESSO');
+          this.handleAlert('success', 'Ticket cadastrado com sucesso!');
 
         }
         //após 1 segundo, redireciona para a rota de login
         setTimeout(() => {
           this.roteador.navigate(['/tickets']);
         }, 100);
-      }
-      , (responseError: HttpErrorResponse) => {
-        //caso erros
-        this.mensagensErro = responseError.error.body;
+      },
+      (responseError: HttpErrorResponse) => {
+        this.mensagemErro = responseError.error;
+        this.handleAlert('danger', this.mensagemErro);
       })
     } else{
-      alert('PREENCHER CAMPOS OBRIGATÓRIOS');
+      this.handleAlert('danger', 'Preencher campos obrigatórios');
     }
   }
 
   getUsersByProfile(){
-    this.userService.userByProfile().subscribe( users => {
+    this.userService.listar().subscribe( users => {
       this.userList = users;
       this.getProjects();
     });
@@ -105,6 +107,12 @@ export class CadastroTicketComponent implements OnInit {
       this.projectList = projects;
       this.createFormNewTicket();
     });
+  }
+
+  handleAlert(type, message) {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = type;
+    this.bsModalRef.content.message = message;
   }
 
 }

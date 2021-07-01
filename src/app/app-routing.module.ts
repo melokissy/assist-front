@@ -76,6 +76,18 @@ const rotas: Routes = [
     data: { roles: ['Administrador','Tecnico','Cliente'] }
 
   },
+  {
+    path: 'user-settings',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/user-settings/user-settings.module').then(m => m.UserSettingsModule),
+    data: { roles: ['Administrador','Tecnico','Cliente'] }
+  },
+  {
+    path: 'tickets/meus-tickets',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/ticket/meus-tickets/meus-tickets.module').then(m => m.MeusTicketsModule),
+    data: { roles: ['Administrador','Tecnico','Cliente'] }
+  },
 
   {
     path: '**',

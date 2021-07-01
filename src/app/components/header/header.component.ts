@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit{
 
   private _isMenuOpen = false
   paginaAtual: String;
-  userLogado = {name: '', email: '', profile: ''};
+  userLogado = {idUser: '', name: '', email: '', profile: ''};
   currentUser: User;
   relatorioclicked = false;
   relatorioLink = false;
@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit{
 //     this.currentUser = this.authenticationService.currentUserValue;
 // }
   ngOnInit(): void {
+    this.userLogado.idUser = localStorage.getItem('user-autenticated-idUser');
     this.userLogado.name = localStorage.getItem('user-autenticated-name');
     this.userLogado.email = localStorage.getItem('user-autenticated-email');
     this.userLogado.profile = localStorage.getItem('user-autenticated-profile');

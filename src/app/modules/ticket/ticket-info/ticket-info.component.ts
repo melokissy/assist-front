@@ -70,8 +70,10 @@ export class TicketInfoComponent implements OnInit {
   positionResponsible = 0;
   listProjects: Project[];
   positionProject = 0;
-  listStatus = [{id: 0,name:"Resolvido"},{id: 1,name:"Em andamento"},{id: 2,name:"Pendente"},{id: 3,name:"Duplicado"},{id: 4,name:"Fechado"},{id: 5,name:"Aguardando Retorno"}]
-  // listStatus = ["Resolvido","Em andamento","Pendente","Duplicado","Fechado","Aguardando Retorno"]
+  statusResolvido: boolean = false;
+  imagePath;
+  imgUrl;
+
 
   status : string;
 
@@ -114,6 +116,8 @@ export class TicketInfoComponent implements OnInit {
       }
       this.getRequester(this.ticket.requester.id);
     });
+
+    this.verificaStatus();
   }
 
   editarTicket(){
@@ -131,7 +135,7 @@ export class TicketInfoComponent implements OnInit {
           },
           (responseError: HttpErrorResponse) => {
             this.mensagemErro = responseError.error;
-            this.handleAlert('danger', "this.mensagemErro");
+            this.handleAlert('danger', this.mensagemErro);
           }
         );
       }
@@ -167,15 +171,32 @@ export class TicketInfoComponent implements OnInit {
 
   uploadAnexo(event, anexo) {
     const files = event.target.files;
+
+    let mimeType = files[0].type;
+    if(mimeType.match(/image\/*/) != null){
+      let reader = new FileReader();
+      this.imagePath = files;
+      reader.readAsDataURL(files[0]);
+      reader.onload = (_event)=>{
+        this.imgUrl = reader.result;
+      }
+
+    }
+
     if (files) {
       const foto = files[0];
-      const formData: FormData = new FormData();
-      formData.append('anexo', foto);
+      const formData = new FormData();
+    //   formData.append('anexo', new Blob([JSON.stringify({
+    //     foto
+    // })], {
+    //     type: "application/json"
+    // }));
 
       this.anexoService
-        .upload(this.ticketId, formData)
+        .upload(formData, foto)
         .subscribe(response => console.log("arquivo anexado"));
     }
+
   }
 
   salvarComentario() {
@@ -258,6 +279,14 @@ export class TicketInfoComponent implements OnInit {
     console.log("this.auxTicket", this.auxTicket);
 
     this.editPress = true;
+
+  }
+
+  verificaStatus(){
+    if(this.ticket.status == 'Resolvido') {
+      this.statusResolvido = true;
+      console.log(this.statusResolvido);
+    }
 
   }
 

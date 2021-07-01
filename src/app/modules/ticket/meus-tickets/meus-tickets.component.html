@@ -1,0 +1,51 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <assist-header></assist-header>
+
+  <main class="mdl-layout__content ">
+    <div class="container-fluid">
+      <h1 class="mt-4 titulo-pagina">Meus Tickets</h1>
+      <div class="mdl-grid">
+
+        <main class="mdl-layout__content">
+          <div class="container-fluid">
+            <div class="card mb-4">
+              <div class="card-header"><i class="fas fa-table mr-1"></i>Todos os tickets</div>
+              <div class="card-body">
+
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <th class="columStyle mdl-data-table__cell--non-numeric titulo">Número</th>
+                      <th class="columStyle mdl-data-table__cell--non-numeric titulo">Assunto</th>
+                      <th class="columStyle mdl-data-table__cell--non-numeric titulo">Solicitante</th>
+                      <th class="columStyle mdl-data-table__cell--non-numeric titulo">Prioridade</th>
+                      <th class="columStyle mdl-data-table__cell--non-numeric titulo">Status</th>
+                      <th class="columStyle mdl-data-table__cell--non-numeric titulo">Abertura</th>
+                      <th class="columStyle mdl-data-table__cell--non-numeric titulo">Responsável</th>
+                      <th class="columStyle mdl-data-table__cell--non-numeric titulo">Visualizar</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let ticket of this.ticketList" >
+                        <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.number}}</td>
+                        <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.subject}}</td>
+                        <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.requester.name}}</td>
+                        <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.priority}}</td>
+                        <td class="columStyle mdl-data-table__cell--non-numeric"
+                          [ngClass]="{'greenClass': ticket.status === 'Resolvido', 'yellowClass' : ticket.status === 'Pendente', 'redClass' : ticket.status === 'Vencido'}">{{ticket.status}}</td>
+                        <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.createdAt |
+                          date:'dd/MM/yyyy'}}</td>
+                        <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.responsible.name}}</td>
+                        <td class="actions columStyle mdl-data-table__cell--non-numeric">
+                          <button routerLink="/tickets/ticketInfo/{{ticket.id}}" type="button"
+                            class="mdl-button mdl-button--raised mdl-button--colored"><i
+                              class="material-icons">search</i></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+    </div>
+  </main>
+</div>

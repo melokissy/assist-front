@@ -57,7 +57,7 @@ export class CadastroComponent implements OnInit {
           this.user = response;
           this.createFormUser(response);
         },
-          errorResponse => alert("CLIENTE NÃO EXISTE")
+          errorResponse => this.handleAlert('danger','Usuário não existe!'),
         );
     } else {
       this.createFormUser(new User);

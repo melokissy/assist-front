@@ -12,11 +12,12 @@ import { CadastroTicketComponent } from './cadastro-ticket/cadastro-ticket.compo
 import { DialogDataComponent } from './dialog-data/dialog-data.component';
 import { DialogDataCommentComponent } from './dialog-data-comment/dialog-data-comment.component';
 import { AttachmentService } from 'src/app/services/attachment.service';
+import { MeusTicketsComponent } from './meus-tickets/meus-tickets.component';
 
 
 
 @NgModule({
-  declarations: [TicketComponent, TicketInfoComponent, CadastroTicketComponent, DialogDataComponent, DialogDataCommentComponent],
+  declarations: [TicketComponent, TicketInfoComponent, MeusTicketsComponent, CadastroTicketComponent, DialogDataComponent, DialogDataCommentComponent, MeusTicketsComponent],
   imports: [
     CommonModule,
     FormsModule,
