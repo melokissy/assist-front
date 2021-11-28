@@ -46,6 +46,7 @@ export class ProjectFormComponent implements OnInit {
     projectService: ProjectService, userService: UserService, private modalService: BsModalService) {
     this.projectService = projectService;
     this.userService = userService;
+    this.formProjeto = this.createFormProject(new Project);
   }
 
   ngOnInit(): void {
