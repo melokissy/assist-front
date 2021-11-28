@@ -8085,3 +8085,6 @@
 .mdl-button--raised.mdl-button--colored:hover {
     background: rgb(1, 150, 1);
 }
+.label-1{
+  font-weight: 500;
+}

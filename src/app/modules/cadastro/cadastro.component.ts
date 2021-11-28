@@ -22,12 +22,14 @@ export class CadastroComponent implements OnInit {
   id: number;
   userService: UserService;
   user: User;
+  nameUser: string;
   params: any = {};
   formCadastro: FormGroup;
   bsModalRef: BsModalRef;
   mensagemErro: any;
 
   createFormUser(data) {
+
     return this.formCadastro = new FormGroup({
       name: new FormControl(data.name, [Validators.minLength(3)]),
       email: new FormControl(data.email, [Validators.required]),
@@ -46,15 +48,18 @@ export class CadastroComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     userService: UserService, private modalService: BsModalService) {
     this.userService = userService;
+    this.formCadastro = this.createFormUser(new User);
   }
 
   ngOnInit() {
     this.params = this.activatedRoute.params
     this.id = this.params.value.id;
+    this.nameUser = '';
     if (this.params && this.params.value && this.params.value.id) {
       this.userService.getById(this.params.value.id)
         .subscribe(response => {
           this.user = response;
+          this.nameUser = this.user.name;
           this.createFormUser(response);
         },
           errorResponse => this.handleAlert('danger','Usuário não existe!'),

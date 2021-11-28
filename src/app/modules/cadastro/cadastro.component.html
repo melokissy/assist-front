@@ -21,8 +21,10 @@
                 <td> <label class="label-1 status-label">Nome</label>
                   <label style="color:red;padding-left:2px;vertical-align:central">*</label>
                 </td>
-                <td class="td-float"> <input formControlName="name" autofocus  type="text" id="name" name="name"
-                    class="input-name" >
+
+                <td class="td-float">
+                  <input formControlName="name" autofocus  type="text" id="name" name="name"
+                    class="input-name" [value]="this.user.name">
                   </td>
               </tr>
 

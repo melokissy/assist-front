@@ -82,6 +82,7 @@
                   <option>Pendente</option>
                   <option>Duplicado</option>
                   <option>Fechado</option>
+                  <option>Cancelado</option>
                   <!-- <option *ngFor="let item of listStatus" value="{{item.name}}">
                     {{item.name}}
                   </option> -->
@@ -139,15 +140,6 @@
             </table>
 
           </form>
-
-          <hr class="linha2">
-          <!-- INPUT DE ARQUIVOS -->
-          <div class="row">
-            <div class="col-12 mx-auto" style="width: 18rem;">
-              <input type="file" name="foto" class="inputArquivos" #file (change)="uploadAnexo($event, file.files)">
-              <img [src]="imgUrl" class="card-img" *ngIf="imgUrl">
-            </div>
-          </div>
 
           <hr class="linha2">
           <!-- COMENTÁRIO  -->
