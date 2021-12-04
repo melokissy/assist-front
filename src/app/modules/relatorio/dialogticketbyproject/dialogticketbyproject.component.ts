@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogRelatorioByProject } from '../relatorio.component';
 
 @Component({
@@ -13,16 +13,16 @@ export class DialogticketbyprojectComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DialogticketbyprojectComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogRelatorioByProject
-  ) {}
+  ) { }
   onNoClick(): void {
     this.dialogRef.close();
   }
   printComponent(cmpName) {
-    let printContents = document.getElementById(cmpName).innerHTML;
-    let originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
+
+    let w = window.open();
+    w.document.write(document.getElementById(cmpName).innerHTML);
+    w.print();
+    w.close();
 
     window.location.reload();
   }

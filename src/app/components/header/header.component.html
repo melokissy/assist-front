@@ -7,20 +7,6 @@
     <span class="headerGlobal__title mdl-layout-title">Assist Support </span>
 
     <div class="mdl-layout-spacer"></div>
-
-    <!-- Search -->
-    <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-         mdl-textfield--floating-label mdl-textfield--align-right is-focused mdl-cell--hide-phone "> -->
-    <!--Para fechar remover is-focused-->
-    <!-- <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
-        <span class="material-icons">search</span>
-      </label>
-      <div class="mdl-textfield__expandable-holder">
-        <input class="headerSearch__input mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp"
-          placeholder="Filtrar Tickets...">
-      </div>
-    </div> -->
-    <!--./Search-->
   </div>
 </header>
 <section class="headerGlobal__menuArea mdl-layout__drawer" [ngClass]="{ 'headerGlobal__menuArea--active': isMenuOpen }">
@@ -31,7 +17,6 @@
   </span>
 
   <header class="headerGlobal__userInfo">
-    <!-- <img src="" class="headerGlobal__userInfoAvatar"> -->
     <div class="headerGlobal__userInfoData">
       <h5 class="headerGlobal__userInfoDataName">{{userLogado.name}}</h5>
       <span>{{userLogado.email}}</span>
@@ -62,26 +47,19 @@
       <span class="material-icons">article</span> Relatórios
       <!-- sub menu only visible when clicked on the link above -->
       <div *ngIf="relatorioclicked" style="margin-left: 25px;">
-        <!-- <div style="margin-bottom: 5px; margin-top: 5px;">
-          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Ticket do mês</a><br>
-        </div> -->
         <div style="margin-bottom: 5px;">
-          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink"
+          <a style="color: rgb(56, 56, 56);" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink"
             [routerLink]="'/relatorios'">Ticket por projeto</a><br>
         </div>
-        <!-- <div style="margin-bottom: 5px;">
-          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" disabled  [routerLink]="'/relatorios'">Ticket por status</a><br>
+         <div style="margin-bottom: 5px;">
+          <a style="color: rgb(56, 56, 56);" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink"
+            [routerLink]="'/relatorios/usuarios'">Ticket por usuário</a><br>
         </div>
-        <div>
-          <a routerLinkActive="mdl-navigation__link--current" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink" [routerLink]="'/relatorios'">Histórico de ticket</a>
-        </div> -->
 
       </div>
 
     </a>
-    <!-- <a routerLink="'/user-settings/{{userLogado.idUser}}'" routerLinkActive="mdl-navigation__link--current" class="mdl-navigation__link">
-      <span class="material-icons">build</span> Configuração
-    </a> -->
+
     <a [routerLink]="'/login'" class="mdl-navigation__link" (click)="logout()">
       <span class="material-icons">logout</span> Logout
     </a>

@@ -14,4 +14,13 @@ export class DialogDataComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
+  printComponent(cmpName) {
+
+    let w = window.open();
+    w.document.write(document.getElementById(cmpName).innerHTML);
+    w.print();
+    w.close();
+
+    window.location.reload();
+  }
 }

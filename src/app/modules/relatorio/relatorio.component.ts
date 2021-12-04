@@ -26,6 +26,7 @@ export class RelatorioComponent implements OnInit {
   projectService: ProjectService;
   projectList: any[];
   listTickets: Ticket[];
+  listTicketsUser: Ticket[];
   relatorioService: RelatorioService;
 
 
@@ -53,15 +54,6 @@ export class RelatorioComponent implements OnInit {
 
   }
 
-  printComponent(cmpName) {
-    let printContents = document.getElementById(cmpName).innerHTML;
-    let originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-
-    window.location.reload();
-  }
 
 
   projects(){
@@ -79,7 +71,5 @@ export class RelatorioComponent implements OnInit {
     this.projects();
     console.log(this.projectList);
   }
-
-
 
 }

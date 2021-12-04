@@ -10,11 +10,16 @@ import { Ticket } from '../models/ticket';
 export class RelatorioService {
 
   apiUrl = `${environment.apiUrl}reports/ticket-by-project/`;
+  apiUrlByUser = `${environment.apiUrl}tickets/ticket-by-user/`;
 
   constructor(private http: HttpClient) { }
 
   ticketByProject(projectId: number)  : Observable<Ticket[]> {
     return this.http.get<Ticket[]>(this.apiUrl+`${projectId}`);
   }
+
+  ticketByUser(idUser: string)  : Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(this.apiUrlByUser+`${idUser}`);
+ }
 
 }

@@ -60,6 +60,12 @@ const rotas: Routes = [
     data: { roles: ['Administrador','Tecnico'] }
   },
   {
+    path: 'relatorios/usuarios',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/relatorio-usuario/relatorio-usuario.module').then(m => m.RelatorioUsuarioModule),
+    data: { roles: ['Administrador','Tecnico'] }
+  },
+  {
     path: 'tickets',
     loadChildren: () => import('./modules/ticket/ticket.module').then(m => m.TicketModule)  },
   {

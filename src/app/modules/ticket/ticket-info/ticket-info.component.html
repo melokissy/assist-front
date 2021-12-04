@@ -11,9 +11,9 @@
           <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top" mat-button
           (click)="openComments()">Comentário</button>
           <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
-          (click)="resolverTicket()" *ngIf="userLogado.profile!='Cliente'">Resolver Ticket</button>
+          (click)="resolverTicket()" *ngIf="userLogado.profile!='Cliente' && ticket.status!='Resolvido'">Resolver Ticket</button>
         <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised buttons-top"
-          (click)="editarTicket()" *ngIf="userLogado.profile!='Cliente'">Salvar Alterações</button>
+          (click)="editarTicket()" *ngIf="userLogado.profile!='Cliente' && ticket.status!='Resolvido'">Salvar Alterações</button>
       </div>
       <hr class="linha">
 

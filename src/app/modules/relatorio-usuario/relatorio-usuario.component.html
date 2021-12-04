@@ -9,27 +9,29 @@
             <div class="container-fluid layout">
               <div class="card mb-4">
 
-                <div class="card-header"><i class="fas fa-table mr-1"></i>Relatório de ticket por projeto</div>
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Relatório de ticket por usuários</div>
                 <div class="card-body">
                     <!-- Filtros -->
+                    <label class="label-pesquisa">Filtrar usuários</label>
+                    <input class="input-busca" #myInput placeholder="Nome do Usuário..." [(ngModel)]="name"
+                    (input)="filterItem(myInput.value)">
+
                   <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Número</th>
                           <th class="columStyle mdl-data-table__cell--non-numeric titulo">Nome</th>
-                          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Descrição</th>
+                          <th class="columStyle mdl-data-table__cell--non-numeric titulo">Função</th>
                           <th class="columStyle mdl-data-table__cell--non-numeric titulo">Visualizar</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let project of this.projectList">
-                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.number}}</td>
-                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.name}}</td>
-                          <td class="columStyle mdl-data-table__cell--non-numeric">{{project.description}}</td>
+                        <tr *ngFor="let user of this.filteredItems">
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{user.name}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{user.profile}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">
                             <button type="button" class="mdl-button mdl-button--raised btn-view" mat-button
-                            (click)="openDialog(project.id, project.name)"><i class="material-icons">visibility</i></button>
+                            (click)="openDialog(user.id, user.name)"><i class="material-icons">visibility</i></button>
                           </td>
                         </tr>
                       </tbody>

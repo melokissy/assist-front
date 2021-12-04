@@ -98,6 +98,8 @@ export class TicketInfoComponent implements OnInit {
     this.auxTicket = new Ticket();
     this.route.params.subscribe(params => this.ticketId = params['id']);
     this.dialog = dialog;
+    // this.formTicket = this.createFormGroup(new Ticket);
+
   }
 
   ngOnInit(): void {
@@ -169,43 +171,6 @@ export class TicketInfoComponent implements OnInit {
     });
   }
 
-  public uploadAnexo(event) {
-    const elem = event.target;
-    if (elem.files.length > 0) {
-        console.log(elem.files[0]);
-    }
-    // ...
-}
-
-  // uploadAnexo(event, anexo) {
-  //   const files = event.target.files;
-
-  //   let mimeType = files[0].type;
-  //   if(mimeType.match(/image\/*/) != null){
-  //     let reader = new FileReader();
-  //     this.imagePath = files;
-  //     reader.readAsDataURL(files[0]);
-  //     reader.onload = (_event)=>{
-  //       this.imgUrl = reader.result;
-  //     }
-
-  //   }
-
-  //   if (files) {
-  //     const foto = files[0];
-  //     const formData = new FormData();
-  //   //   formData.append('anexo', new Blob([JSON.stringify({
-  //   //     foto
-  //   // })], {
-  //   //     type: "application/json"
-  //   // }));
-
-  //     this.anexoService
-  //       .upload(formData, foto)
-  //       .subscribe(response => console.log("arquivo anexado"));
-  //   }
-
-  // }
 
   salvarComentario() {
     if (this.comentarioText) {
