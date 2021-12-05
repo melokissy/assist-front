@@ -31,23 +31,23 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo"></th>
-                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Código</th>
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Nome</th>
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">E-mail</th>
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Status</th>
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Perfil</th>
+                        <th class="columStyle mdl-data-table__cell--non-numeric titulo">Setor</th>
                         <th class="columStyle mdl-data-table__cell--non-numeric titulo">Ações</th>
                       </thead>
                       <tbody>
                         <tr *ngFor="let user of this.filteredItems">
                           <td class="actions columStyle mdl-data-table__cell--non-numeric"><i
                               class="material-icons mdl-list__item-icon">person</i></td>
-                          <td class="columStyle mdl-data-table__cell--non-numeric">{{user.id}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{user.name}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{user.email}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric" *ngIf="!user.status">Desativado</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric" *ngIf="user.status">Ativo</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{user.profile}}</td>
+                          <td class="columStyle mdl-data-table__cell--non-numeric">{{user.setor}}</td>
                           <td class="actions columStyle mdl-data-table__cell--non-numeric">
 
                             <button routerLink="/cadastro/{{user.id}}" type="button"

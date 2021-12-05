@@ -7,7 +7,7 @@
     <tbody>
         <tr *ngFor="let item of data.listComments">
           <td>
-            <label class="titulo">{{item.createdAt | date:'dd/MM/yyyy'}} {{item.user.name}}</label> <br>
+            <label class="titulo">{{item.createdAt | date:'dd/MM/yyyy HH:mm'}} {{item.user.name}}</label> <br>
            <label>{{item.comment}}</label>
           </td>
         </tr>
