@@ -12,6 +12,10 @@
                 <div class="card-header"><i class="fas fa-table mr-1"></i>Relatório de ticket por projeto</div>
                 <div class="card-body">
                     <!-- Filtros -->
+                    <label class="label-pesquisa">Gerar relatório do mês </label>
+                    <input class="input-busca-data" #myInputData placeholder="Data..." [(ngModel)]="dataCriado"
+                    (input)="filterItemData(myInputData.value)" type="month">
+
                   <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>

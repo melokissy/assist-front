@@ -70,10 +70,8 @@ export class MeusTicketsComponent implements OnInit {
     this.filteredItems = Object.assign([], this.ticketList);
   }
 
-
   filterItemData(value) {
     if (!value) {
-      console.log('ararasncicna', this.ticketList);
       this.assignCopy();
     }
     this.filteredItems = Object.assign([], this.ticketList).filter(

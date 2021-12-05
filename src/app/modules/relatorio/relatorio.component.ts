@@ -28,7 +28,8 @@ export class RelatorioComponent implements OnInit {
   listTickets: Ticket[];
   listTicketsUser: Ticket[];
   relatorioService: RelatorioService;
-
+  filteredItems: any[];
+  dataCriado: null;
 
   constructor(private httpClient: HttpClient,   public dialog: MatDialog, projectService: ProjectService,relatorioService: RelatorioService,
     private roteador: Router) {
@@ -46,15 +47,18 @@ export class RelatorioComponent implements OnInit {
     this.relatorioService.ticketByProject(projectId).subscribe(
       listaTickets => {
         this.listTickets = listaTickets;
+        if(this.filtroDate == undefined || this.filtroDate == null){
+          this.assignCopy();
+        }else{
+          this.filtraTicketData(this.filtroDate);
+        }
         const dialogRef = this.dialog.open(DialogticketbyprojectComponent, {
-          data: { list: this.listTickets, nameProject: projectName }
+          data: { list: this.filteredItems, nameProject: projectName }
         });
       }
     );
 
   }
-
-
 
   projects(){
     this.projectService
@@ -69,7 +73,25 @@ export class RelatorioComponent implements OnInit {
 
   listarProjects(){
     this.projects();
-    console.log(this.projectList);
+  }
+
+  assignCopy() {
+    this.filteredItems = Object.assign([], this.listTickets);
+  }
+
+  filtroDate: any;
+
+  filterItemData(value) {
+    this.filtroDate = value;
+  }
+
+  filtraTicketData(value){
+    if (!value) {
+      this.assignCopy();
+    }
+    this.filteredItems = Object.assign([], this.listTickets).filter(
+      item => item.createdAt.toLowerCase().indexOf(value.toLowerCase()) > -1
+    )
   }
 
 }

@@ -93,7 +93,8 @@
               <tr>
                 <td><label class="label-1 label-titulo-1">Solicitante</label> </td>
                 <td>
-                  <input id="requester" class="data-2" value="{{ticket.requester.name}}" disabled>
+                  <input id="requester" class="data-2" *ngIf="ticket.requester.status"  value="{{ticket.requester.name}}" disabled>
+                  <input id="requester" class="data-2" *ngIf="!ticket.requester.status" value="{{ticket.requester.name}} (Inativo)" disabled>
                 </td>
               </tr>
               <!-- CONTATO  -->
