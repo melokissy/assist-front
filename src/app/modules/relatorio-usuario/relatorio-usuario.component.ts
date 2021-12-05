@@ -28,6 +28,8 @@ export class RelatorioUsuarioComponent implements OnInit {
   name: null;
   relatorioService: RelatorioService;
   listTickets: Ticket[];
+  filtroDate: any;
+  dataCriado: null;
 
 
   constructor(public userService: UserService, private httpClient: HttpClient,public dialog: MatDialog,relatorioService: RelatorioService,
@@ -46,14 +48,18 @@ export class RelatorioUsuarioComponent implements OnInit {
     this.relatorioService.ticketByUser(userId).subscribe(
       listaTickets => {
         this.listTickets = listaTickets;
+        if(this.filtroDate == undefined || this.filtroDate == null){
+          this.assignCopy();
+        }else{
+          this.filtraTicketData(this.filtroDate);
+        }
         const dialogRef = this.dialog.open(DialogTicketbyUserComponent, {
-          data: { list: this.listTickets, nameUser: userName }
+          data: { list: this.filteredItems, nameUser: userName }
         });
       }
     );
 
   }
-
 
   users() {
     this.userService
@@ -63,21 +69,24 @@ export class RelatorioUsuarioComponent implements OnInit {
         lista => {
           this.userList = lista;
           console.log(this.userList);
-          this.assignCopy();
         }
       )
   }
 
   assignCopy() {
-    this.filteredItems = Object.assign([], this.userList);
+    this.filteredItems = Object.assign([], this.listTickets);
   }
 
-  filterItem(value) {
+  filterItemData(value) {
+    this.filtroDate = value;
+  }
+
+  filtraTicketData(value){
     if (!value) {
       this.assignCopy();
     }
-    this.filteredItems = Object.assign([], this.userList).filter(
-      item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+    this.filteredItems = Object.assign([], this.listTickets).filter(
+      item => item.createdAt.toLowerCase().indexOf(value.toLowerCase()) > -1
     )
   }
 

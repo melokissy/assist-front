@@ -12,9 +12,9 @@
                 <div class="card-header"><i class="fas fa-table mr-1"></i>Relatório de ticket por usuários</div>
                 <div class="card-body">
                     <!-- Filtros -->
-                    <label class="label-pesquisa">Filtrar usuários</label>
-                    <input class="input-busca" #myInput placeholder="Nome do Usuário..." [(ngModel)]="name"
-                    (input)="filterItem(myInput.value)">
+                    <label class="label-pesquisa">Gerar relatório do mês </label>
+                    <input class="input-busca-data" #myInputData placeholder="Data..." [(ngModel)]="dataCriado"
+                    (input)="filterItemData(myInputData.value)" type="month">
 
                   <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -26,7 +26,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let user of this.filteredItems">
+                        <tr *ngFor="let user of this.userList">
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{user.name}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">{{user.profile}}</td>
                           <td class="columStyle mdl-data-table__cell--non-numeric">
