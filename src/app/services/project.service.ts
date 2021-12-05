@@ -16,6 +16,7 @@ export class ProjectService {
   // apiUrl = 'http://localhost:41124/AssistApi/resource/users';
 
   apiUrl = `${environment.apiUrl}projects/`;
+  apiUrlAtivos = `${environment.apiUrl}projects/ativos`;
 
   public lastId = 0;
 
@@ -27,6 +28,21 @@ export class ProjectService {
   listar() {
     return this.http
       .get(this.apiUrl)
+      .pipe<Project[]>(
+        map(
+          (response: any[]) => {
+            return response
+              .map(
+                projectApi => this.newProject(projectApi)
+              )
+          }
+        )
+      )
+  }
+
+  listarAtivos() {
+    return this.http
+      .get(this.apiUrlAtivos)
       .pipe<Project[]>(
         map(
           (response: any[]) => {

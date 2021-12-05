@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService
     , private roteador: Router) {
-    //  this.loginService.currentUser.subscribe(x => this.currentUser = x);
   }
   ngOnInit() { }
 
@@ -58,10 +57,5 @@ export class LoginComponent implements OnInit {
   get isTecnico() {
     return this.currentUser && this.currentUser.profile === "Tecnico";
   }
-
-  // logout() {
-  //   this.loginService.logout();
-  //   this.roteador.navigate(['/login']);
-  // }
 
 }

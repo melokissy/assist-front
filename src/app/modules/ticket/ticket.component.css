@@ -65,7 +65,18 @@
   font-size: 15px;
   font-family: Roboto;
   border: 1px solid rgba(0, 0, 0, 0.336);
-  width: 195px;
+  width: 140px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  height: 25px;
+}
+.input-busca-data{
+  margin-left: 15px;
+  z-index: 1000;
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  width: 180px;
   border-radius: 4px;
   margin-bottom: 15px;
   height: 25px;
@@ -76,7 +87,7 @@
   font-size: 15px;
   font-family: Roboto;
   border: 1px solid rgba(0, 0, 0, 0.336);
-  width: 300px;
+  width: 290px;
   border-radius: 4px;
   margin-bottom: 15px;
   height: 25px;

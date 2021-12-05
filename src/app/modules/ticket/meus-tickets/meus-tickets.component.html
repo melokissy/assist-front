@@ -15,6 +15,10 @@
               <div class="card-body">
                 <label class="label-1" *ngIf="ticketList.length <= 0">Usuário não possui tickets</label>
 
+                <label class="label-pesquisa">Filtrar tickets</label>
+                <input class="input-busca-data" #myInputData placeholder="Data..." [(ngModel)]="dataCriado"
+                (input)="filterItemData(myInputData.value)" type="month">
+
                 <div class="table-responsive"  *ngIf="ticketList.length > 0">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -28,7 +32,7 @@
                       <th class="columStyle mdl-data-table__cell--non-numeric titulo">Visualizar</th>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let ticket of this.ticketList" >
+                      <tr *ngFor="let ticket of this.filteredItems" >
                         <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.number}}</td>
                         <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.subject}}</td>
                         <td class="columStyle mdl-data-table__cell--non-numeric">{{ticket.requester.name}}</td>

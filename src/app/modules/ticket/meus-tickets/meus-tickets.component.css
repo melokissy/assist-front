@@ -19,6 +19,20 @@
  section .columStyle {
 	 padding-left: 35px;
 }
+.label-pesquisa{
+  margin-left: 5px;
+}
+.input-busca-data{
+  margin-left: 15px;
+  z-index: 1000;
+  font-size: 15px;
+  font-family: Roboto;
+  border: 1px solid rgba(0, 0, 0, 0.336);
+  width: 180px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  height: 25px;
+}
  .btn-new-user {
 	 float: right;
 	 margin-right: 50px;

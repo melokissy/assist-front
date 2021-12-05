@@ -21,6 +21,8 @@ export class MeusTicketsComponent implements OnInit {
   projectService: ProjectService;
   ticketList: Ticket[];
   mensagemErro: any;
+  filteredItems: any[];
+  dataCriado: null;
 
   constructor(
     public ticketService: TicketService,
@@ -44,14 +46,13 @@ export class MeusTicketsComponent implements OnInit {
     this.userLogado.profile = localStorage.getItem('user-autenticated-profile');
 
     this.listarTickets(this.userLogado.id);
-    console.log(this.userLogado.id);
   }
 
   listarTickets(id: string){
     this.ticketService.ticketByUser(id).subscribe(
       lista => {
         this.ticketList = lista;
-        console.log(this.ticketList);
+        this.assignCopy();
       },
       (responseError: HttpErrorResponse) => {
         this.mensagemErro = '';
@@ -64,5 +65,21 @@ export class MeusTicketsComponent implements OnInit {
       }
     );
   }
+
+  assignCopy() {
+    this.filteredItems = Object.assign([], this.ticketList);
+  }
+
+
+  filterItemData(value) {
+    if (!value) {
+      console.log('ararasncicna', this.ticketList);
+      this.assignCopy();
+    }
+    this.filteredItems = Object.assign([], this.ticketList).filter(
+      item => item.createdAt.toLowerCase().indexOf(value.toLowerCase()) > -1
+    )
+  }
+
 
 }

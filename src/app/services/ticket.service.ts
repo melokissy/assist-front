@@ -76,8 +76,8 @@ export class TicketService {
   }
 
    // PUT /ticket/ticket-resolve/:id
-   public resolverTicket(id: number, ticket: Ticket) : Observable<Ticket>{
-    return this.http.put<Ticket>(this.apiUrlResolve+`${id}`, ticket);
+   public resolverTicket(id: number, ticket: Ticket,  idUser: string) : Observable<Ticket>{
+    return this.http.put<Ticket>(this.apiUrlResolve+`${id}/user/${idUser}`, ticket);
   }
 
 

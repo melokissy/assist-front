@@ -98,7 +98,6 @@ export class TicketInfoComponent implements OnInit {
     this.auxTicket = new Ticket();
     this.route.params.subscribe(params => this.ticketId = params['id']);
     this.dialog = dialog;
-    // this.formTicket = this.createFormGroup(new Ticket);
 
   }
 
@@ -273,10 +272,15 @@ export class TicketInfoComponent implements OnInit {
         this.handleAlert('danger', 'Ticket já está resolvido');
       }
       if (this.ticket.status != 'Resolvido') {
-        this.ticketService.resolverTicket(this.ticketId, this.ticket).subscribe(ticketResolvido => {
+        this.ticketService.resolverTicket(this.ticketId, this.ticket, this.userLogado.id).subscribe(ticketResolvido => {
           this.handleAlert('success', 'Ticket resolvido com sucesso!');
           this.reloadPage();
-        });
+        }, (responseError: HttpErrorResponse) => {
+            //resposta caso existam erros!
+            this.mensagemErro = responseError.error;
+            this.handleAlert('danger',this.mensagemErro);
+          }
+        );
       }
     }
   }

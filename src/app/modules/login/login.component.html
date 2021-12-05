@@ -10,12 +10,9 @@
           <form autocomplete="off" class="mdl-card__supporting-text" (ngSubmit)="handleLogin(formLogin)"
             #formLogin="ngForm" autocomplete="off" class="mdl-card__supporting-text">
             <!-- aqui os campos do formulário -->
-            <assist-form-group [campo]="email">
-              <input type="email" #email="ngModel" [(ngModel)]="login.email" name="email" assistFormField required
-                autofocus>
-              <span class="mdl-textfield__error" *ngIf="email.invalid">
-                Informar um email é obrigatório!
-              </span>
+            <assist-form-group [campo]="email" >
+              <input type="email" #email="ngModel" [(ngModel)]="login.email" name="email"  assistFormField required autofocus>
+              <span class="mdl-textfield__error" *ngIf="email.invalid"> Informar um email é obrigatório!</span>
             </assist-form-group>
 
             <assist-form-group [campo]="password">

@@ -103,7 +103,7 @@ export class CadastroTicketComponent implements OnInit {
   }
 
   getProjects(){
-    this.projectService.listar().subscribe( projects => {
+    this.projectService.listarAtivos().subscribe( projects => {
       this.projectList = projects;
       this.createFormNewTicket();
     });

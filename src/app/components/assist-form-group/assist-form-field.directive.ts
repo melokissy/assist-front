@@ -16,10 +16,9 @@ export class AssistFormFieldDirective implements OnInit {
       campo.id = campo.name;
       campo.setAttribute('placeholder', ' ');
       campo.classList.add('mdl-textfield__input');
-    }
-
-    else {
+    } else {
       throw new Error("Atributo 'name' é obrigatório");
     }
+
   }
 }
