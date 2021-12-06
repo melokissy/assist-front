@@ -5,15 +5,13 @@
 
   <div class="mdl-layout__header-row">
     <span class="headerGlobal__title mdl-layout-title">Assist Support </span>
-
     <div class="mdl-layout-spacer"></div>
+
   </div>
 </header>
 <section class="headerGlobal__menuArea mdl-layout__drawer" [ngClass]="{ 'headerGlobal__menuArea--active': isMenuOpen }">
   <span class="mdl-layout-title">
-    <!-- <img class="headerGlobal__logo" src="assets/img/logo.svg" alt="AssistSupport"> -->
     <div [routerLink]="'/dashboard'"></div>
-
   </span>
 
   <header class="headerGlobal__userInfo">
@@ -51,20 +49,17 @@
           <a style="color: rgb(56, 56, 56);" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink"
             [routerLink]="'/relatorios'">Ticket por projeto</a><br>
         </div>
-         <div style="margin-bottom: 5px;">
+        <div style="margin-bottom: 5px;">
           <a style="color: rgb(56, 56, 56);" (click)="notToggleSubmenu()" [(ngModel)]="relatorioLink"
             [routerLink]="'/relatorios/usuarios'">Ticket por usuário</a><br>
         </div>
-
       </div>
-
     </a>
 
     <a [routerLink]="'/login'" class="mdl-navigation__link" (click)="logout()">
       <span class="material-icons">logout</span> Logout
     </a>
   </nav>
-
 
 </section>
 <!-- FECHAR MENU EM QUALQUER LUGAR DA TELA -->

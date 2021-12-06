@@ -8,22 +8,14 @@ import { User } from '../models/user';
 @Injectable()
 export class LoginService {
 
-  // api = 'http://localhost:3200/login'
   apiUrl = `${environment.apiUrl}login/`;
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-
   constructor(private http: HttpClient) {
-    // this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    // this.currentUser = this.currentUserSubject.asObservable();
-
    }
 
-//   public get currentUserValue(): User {
-//     return this.currentUserSubject.value;
-// }
 
   logar(dadosLogin) {
     return this.http
@@ -37,17 +29,10 @@ export class LoginService {
           localStorage.setItem('user-autenticated-name', response.name);
           localStorage.setItem('user-autenticated-profile', response.profile);
           localStorage.setItem('assist-token', response.token);
-          // this.currentUserSubject.next(response);
 
           return response;
         })
       )
   }
-
-//   logout() {
-//     // remove user from local storage to log user out
-//     localStorage.removeItem('currentUser');
-//     this.currentUserSubject.next(null);
-// }
 
 }

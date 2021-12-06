@@ -8,14 +8,6 @@ import { CadastroComponent } from './modules/cadastro/cadastro.component';
 import { UsersComponent } from './modules/user/user.component';
 
 
-// const rotas: Routes = [
-//   {path: '', component: LoginComponent},
-//   {path: 'inbox', component: CaixaDeEntradaComponent },
-//   {path: 'cadastro', component: CadastroComponent},
-//   {path: 'users', component: UserComponent},
-
-//   ]
-
 const rotas: Routes = [
 
   {

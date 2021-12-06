@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import dialogPolyfill from 'dialog-polyfill';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.services';
 import { UserService } from 'src/app/services/user.service';
@@ -20,11 +21,6 @@ export class HeaderComponent implements OnInit{
   relatorioclicked = false;
   relatorioLink = false;
 
-//   constructor(
-//     private authenticationService: LoginService
-// ) {
-//     this.currentUser = this.authenticationService.currentUserValue;
-// }
   ngOnInit(): void {
     this.userLogado.idUser = localStorage.getItem('user-autenticated-idUser');
     this.userLogado.name = localStorage.getItem('user-autenticated-name');
@@ -59,5 +55,6 @@ export class HeaderComponent implements OnInit{
   notToggleSubmenu(){
     this.relatorioLink = true;
   }
+
 
 }

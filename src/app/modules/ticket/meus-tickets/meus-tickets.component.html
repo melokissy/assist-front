@@ -15,8 +15,8 @@
               <div class="card-body">
                 <label class="label-1" *ngIf="ticketList.length <= 0">Usuário não possui tickets</label>
 
-                <label class="label-pesquisa">Filtrar tickets</label>
-                <input class="input-busca-data" #myInputData placeholder="Data..." [(ngModel)]="dataCriado"
+                <label class="label-pesquisa" *ngIf="ticketList.length > 0">Filtrar tickets</label>
+                <input class="input-busca-data" #myInputData placeholder="Data..." [(ngModel)]="dataCriado" *ngIf="ticketList.length > 0"
                 (input)="filterItemData(myInputData.value)" type="month">
 
                 <div class="table-responsive"  *ngIf="ticketList.length > 0">
